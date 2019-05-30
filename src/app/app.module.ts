@@ -10,6 +10,8 @@ import { LoginModule } from './login/login.module';
 import { NotFoundComponent } from './shared/notFound/not-found.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { CoreModule } from './core/core.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -35,7 +37,12 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       },
       isolate: true
-    })
+    }),
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      progressBar: true,
+      closeButton: true
+    }) // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]
