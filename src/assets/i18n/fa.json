@@ -1,0 +1,16 @@
+{
+  "Organization": {
+    "Title": "مدیریت رده ها",
+    "BtnSave": "ذخیره اطلاعات",
+    "TreeTitle": "رده ها",
+    "TreeWarning": "با دابل کلیک بر روی هر رده میتوانید به صفحه ویرایش بروید",
+    "OrgName": "نام رده",
+    "OrgDescription": "توضیحات",
+    "OrgParentCaption": "نام رده بالادستی",
+    "BtnEdit": "ویرایش اطلاعات",
+    "EditTitle": "صفحه ویرایش اطلاعات",
+    "BtnClose": "انصراف",
+    "BtnAddNew": "ایجاد رده جدید",
+    "TitleNewOrg": "فرم ایجاد رده جدید"
+  }
+}

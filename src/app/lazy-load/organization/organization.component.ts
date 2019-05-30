@@ -1,7 +1,10 @@
-import { OrganizationCreateComponent } from './organization-create/organization-create.component';
+import { ServerResponseDto } from './../../dataModels/serverResponseDto';
+import { OrganizationEditComponent } from './organization-edit/organization-edit.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
-import { delay } from 'q';
+import { TranslateService } from '@ngx-translate/core';
+import { OrganizationDto } from '../../dataModels/organizationDto';
+import { OrganizationService } from 'src/app/core/organizationService';
 
 @Component({
   selector: 'app-organization',
@@ -11,19 +14,27 @@ import { delay } from 'q';
 
 export class OrganizationComponent implements OnInit {
   files: any[];
+  parentOrg = new OrganizationDto();
 
-  constructor(private modalService: NgbModal) {
+  constructor(private modalService: NgbModal, public translate: TranslateService, private orgService: OrganizationService) {
+    translate.setDefaultLang('fa');
   }
 
   ngOnInit() {
+    this.orgService.getTree().subscribe((res: ServerResponseDto<any>) => {
+      this.files = res.data;
+    }, error => {
+
+    });
   }
 
   treeSelectedChange(param: any) {
     console.log(param);
+    this.parentOrg.organizationName = 'Hamed Bagheri';
   }
 
   open(param: any) {
-    const modalRef = this.modalService.open(OrganizationCreateComponent, { windowClass: '.my-modal' });
+    const modalRef = this.modalService.open(OrganizationEditComponent, { windowClass: '.my-modal', size: 'lg' });
     modalRef.componentInstance.name = 'World';
   }
 

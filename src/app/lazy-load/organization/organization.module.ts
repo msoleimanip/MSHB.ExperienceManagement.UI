@@ -1,23 +1,27 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { TreeviewComponent } from './../../shared/treeview/treeview.component';
 import { CommonModule } from '@angular/common';
 import { OrganizationComponent } from './organization.component';
 import { OrganizationRoutingModule } from './organization-routing.module';
-import { OrganizationCreateComponent } from './organization-create/organization-create.component';
+import { OrganizationEditComponent } from './organization-edit/organization-edit.component';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OrganizationService } from 'src/app/core/organizationService';
+
 
 @NgModule({
   declarations: [
     OrganizationComponent,
-    OrganizationCreateComponent,
+    OrganizationEditComponent,
     TreeviewComponent
   ],
   imports: [
     OrganizationRoutingModule,
     CommonModule,
-    NgbModule
+    NgbModule,
+    TranslateModule
   ],
-  entryComponents: [OrganizationCreateComponent],
+  entryComponents: [OrganizationEditComponent],
   exports: [],
   providers: []
 })

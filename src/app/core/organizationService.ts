@@ -13,4 +13,12 @@ export class OrganizationService {
     return this.http.get('');
   }
 
+  getParentInfo(): Observable<any> {
+    return this.http.get('');
+  }
+
+  getRootNames(): Observable<any> {
+    return this.http.get('');
+  }
+
 }

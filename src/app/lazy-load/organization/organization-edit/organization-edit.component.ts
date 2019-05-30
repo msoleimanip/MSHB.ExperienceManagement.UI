@@ -2,11 +2,11 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-organization-create',
-  templateUrl: './organization-create.component.html',
-  styleUrls: ['./organization-create.component.css']
+  selector: 'app-organization-edit',
+  templateUrl: './organization-edit.component.html',
+  styleUrls: ['./organization-edit.component.css']
 })
-export class OrganizationCreateComponent {
+export class OrganizationEditComponent {
 
   @Input() name;
 

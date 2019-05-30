@@ -1,0 +1,14 @@
+{
+  "Organization": {
+    "Title": "Organizations Management",
+    "BtnSave": "Save",
+    "TreeTitle": "Units",
+    "TreeWarning": "By double clicking on each organization, you can open Edit page.",
+    "OrgName": "Organization Name",
+    "OrgDescription": "Description",
+    "OrgParentCaption": "Organization Parent Name",
+    "BtnEdit": "Accept and Edit",
+    "EditTitle": "Edit Page",
+    "BtnClose": "Close"
+  }
+}
