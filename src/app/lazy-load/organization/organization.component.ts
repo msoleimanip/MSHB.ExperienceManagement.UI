@@ -4,7 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { OrganizationDto } from '../../dataModels/organizationDto';
-import { OrganizationService } from 'src/app/core/organizationService';
+import { OrganizationService } from 'src/app/core/organization.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
