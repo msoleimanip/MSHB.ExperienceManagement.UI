@@ -1,18 +1,30 @@
 import { NotFoundComponent } from './shared/notFound/not-found.component';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { OrganizationModule } from './lazy-load/organization/organization.module';
 import { DashboardModule } from './lazy-load/dashboard/dashboard.module';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './_gaurds/auth.guard';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'organization', loadChildren: () => OrganizationModule },
-  { path: '', loadChildren: () => DashboardModule },
-  { path: 'notFound', component: NotFoundComponent },
-  { path: '', redirectTo: '/', pathMatch: 'full' },
-  { path: '**', redirectTo: '/notFound' }
+  {
+    path: '',
+    loadChildren: () => DashboardModule,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'organization',
+    loadChildren: () => OrganizationModule,
+    canActivate: [AuthGuard],
+    data: { roles: ['Admin'] }
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

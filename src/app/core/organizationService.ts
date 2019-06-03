@@ -10,7 +10,7 @@ export class OrganizationService {
   }
 
   getTree(): Observable<any> {
-    return this.http.get('/api/Organization/Get');
+    return this.http.get('/api/Organization/GetOrganizationByUser');
   }
 
   getParentInfo(): Observable<any> {
