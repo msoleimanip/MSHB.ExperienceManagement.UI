@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../dataModels/user';
+import { AuthenticationService } from '../core/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -7,10 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class MenuComponent implements OnInit {
-
+  currentUser: User;
   isExpanded = false;
 
-  constructor() {
+  constructor(private authenticationService: AuthenticationService, private router: Router) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   ngOnInit() {
@@ -24,6 +28,15 @@ export class MenuComponent implements OnInit {
 
   toggle() {
     this.isExpanded = !this.isExpanded;
+  }
+
+  get isAdmin() {    
+    return this.currentUser && this.currentUser.role.includes('Admin');
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
   }
 
 }

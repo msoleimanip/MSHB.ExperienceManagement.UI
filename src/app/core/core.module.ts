@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
-import { OrganizationService } from './organizationService';
-
-
-
+import { OrganizationService } from './organization.service';
 
 @NgModule({
   declarations: [],
