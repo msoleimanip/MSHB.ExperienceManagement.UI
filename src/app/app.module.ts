@@ -14,6 +14,7 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { LoginComponent } from './login/login.component';
 import {  ReactiveFormsModule } from '@angular/forms';
+import { AccessDeniedComponent } from './shared/access-denied/access-denied.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -24,13 +25,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     MenuComponent,
     NotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    AccessDeniedComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserModule,
-    CoreModule,    
+    CoreModule,
     ReactiveFormsModule,
     HttpClientModule,
     TranslateModule.forRoot({
@@ -47,7 +49,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       closeButton: true
     }) // ToastrModule added
   ],
-  providers: [ 
+  providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]

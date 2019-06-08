@@ -1,3 +1,4 @@
+import { AccessDeniedComponent } from './shared/access-denied/access-denied.component';
 import { NotFoundComponent } from './shared/notFound/not-found.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'accessDenied',
+    component: AccessDeniedComponent
   },
 
   // otherwise redirect to home

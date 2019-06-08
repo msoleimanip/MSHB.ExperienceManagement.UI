@@ -5,7 +5,6 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { OrganizationDto } from '../../dataModels/organizationDto';
 import { OrganizationService } from 'src/app/core/organization.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-organization',
@@ -19,16 +18,13 @@ export class OrganizationComponent implements OnInit {
 
   constructor(private modalService: NgbModal,
               public translate: TranslateService,
-              private orgService: OrganizationService,
-              private toastr: ToastrService) {
+              private orgService: OrganizationService) {
     translate.setDefaultLang('fa');
   }
 
   ngOnInit() {
     this.orgService.getTree().subscribe((res: ServerResponseDto<any>) => {
       this.files = res.data;
-    }, err => {
-      this.toastr.error(err.statusText, err.status.toString());
     });
   }
 
@@ -41,9 +37,9 @@ export class OrganizationComponent implements OnInit {
     const modalRef = this.modalService.open(OrganizationEditComponent, { windowClass: '.my-modal', size: 'lg' });
     modalRef.componentInstance.name = 'World';
   }
-    
+
   showAlert() {
-    this.toastr.success('Hello world!', 'Toastr fun!');
+    // this.toastr.success('Hello world!', 'Toastr fun!');
   }
 
 }

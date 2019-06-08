@@ -30,8 +30,8 @@ export class MenuComponent implements OnInit {
     this.isExpanded = !this.isExpanded;
   }
 
-  get isAdmin() {    
-    return this.currentUser && this.currentUser.role.includes('Admin');
+  get isAdmin() {
+    return this.currentUser && this.currentUser.isAdmin;
   }
 
   logout() {

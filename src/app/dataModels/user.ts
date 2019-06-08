@@ -1,9 +1,9 @@
 export class User {
-    id: string;
-    username: string;
-    password: string;
-    firstName: string;
-    lastName: string;
-    role: Array<string>;
-    token?: string;
+  id: string;
+  displayName: string;
+  name: string;
+  family: string;
+  isAdmin: boolean;
+  role: Array<string>;
+  token?: string;
 }
