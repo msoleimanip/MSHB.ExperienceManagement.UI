@@ -3,12 +3,20 @@
     "Title": "Organizations Management",
     "BtnSave": "Save",
     "TreeTitle": "Units",
-    "TreeWarning": "By double clicking on each organization, you can open Edit page.",
     "OrgName": "Organization Name",
     "OrgDescription": "Description",
     "OrgParentCaption": "Organization Parent Name",
     "BtnEdit": "Accept and Edit",
     "EditTitle": "Edit Page",
     "BtnClose": "Close"
+  },
+  "Menu": {
+    "SiteTitle": "MSHB",
+    "Home": "Dashboard",
+    "Setting": "Setting",
+    "BaseInfo": "BaseInformation",
+    "Organization":"Organization",
+    "Logout": "Logout",
+    "Login": "Login"
   }
 }

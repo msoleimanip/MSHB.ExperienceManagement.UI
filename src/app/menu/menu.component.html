@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="currentUser">
-  <a class="navbar-brand" [routerLink]='["/"]'>Navbar</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" [routerLink]='["/"]'>{{ 'Menu.SiteTitle' | translate }}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,22 +7,25 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" [routerLink]='["/"]'>Home <span class="sr-only">(current)</span></a>
-      </li>     
-      <li class="nav-item dropdown">
+        <a class="nav-link" [routerLink]='["/"]'>{{ 'Menu.Home' | translate }}<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown"  *ngIf="currentUser">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          BaseInfo
+          {{ 'Menu.BaseInfo' | translate }}
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" [routerLink]='["/setting"]'>Setting</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown"  *ngIf="currentUser">
+          <a class="dropdown-item" [routerLink]='["/setting"]'>{{ 'Menu.Setting' | translate }}</a>
         </div>
       </li>
-      <li class="nav-item" *ngIf="isAdmin">
-        <a class="nav-link" [routerLink]='["/organization"]'>Organization</a>
+      <li class="nav-item" *ngIf="currentUser && isAdmin">
+        <a class="nav-link" [routerLink]='["/organization"]'>{{ 'Menu.Organization' | translate }}</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" (click)="logout()" >Logout</a>
+          <a class="nav-link"  *ngIf="currentUser" (click)="logout()">{{ 'Menu.Logout' | translate }}</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link"  *ngIf="!currentUser" (click)="loginModal()">{{ 'Menu.Login' | translate }}</a>
+          </li>
     </ul>
   </div>
 </nav>

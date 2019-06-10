@@ -1,7 +1,11 @@
+import { environment } from './../../environments/environment.prod';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../dataModels/user';
 import { AuthenticationService } from '../core/authentication.service';
 import { Router } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-menu',
@@ -13,8 +17,12 @@ export class MenuComponent implements OnInit {
   currentUser: User;
   isExpanded = false;
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) {
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router,
+              private modalService: NgbModal,
+              public translate: TranslateService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    translate.setDefaultLang(environment.language);
   }
 
   ngOnInit() {
@@ -36,7 +44,12 @@ export class MenuComponent implements OnInit {
 
   logout() {
     this.authenticationService.logout();
-    this.router.navigate(['/login']);
+    this.router.navigate(['']);
+  }
+
+  loginModal() {
+    const modalRef = this.modalService.open(LoginComponent, { windowClass: '.my-modal', size: 'sm' });
+    modalRef.componentInstance.name = 'Hamed';
   }
 
 }

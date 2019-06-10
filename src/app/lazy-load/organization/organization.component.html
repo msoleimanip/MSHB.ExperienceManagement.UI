@@ -1,26 +1,23 @@
 <div class="container" style="margin-top: 50px;">
   <div class="panel panel-info">
     <div class="panel-heading">
-      {{ 'Organization.Title' | translate }}     
+      {{ 'Organization.Title' | translate }}
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <div class="alert alert-warning">
-          <label class="control-label">{{'Organization.TreeWarning' | translate}}</label>
-        </div>
       </div>
       <app-treeview [canSearch]="true" [hasCheckbox]="false" [titleLabel]="'Organization.TreeTitle' | translate"
-        [items]="files" [id]="'crtUser'" (changed)="treeSelectedChange($event)" (dblClick)="open($event)">
+        [items]="files" [id]="'crtUser'" (click)="treeClick($event)">
       </app-treeview>
     </div>
 
     <div class="panel-footer">
-      <button type="button" class="btn btn-primary" data-toggle="collapse"
-        data-target="#createOrg">{{ 'Organization.BtnAddNew' | translate }}</button>
+      <button type="button" class="btn btn-outline-success">{{ 'Organization.BtnAddNew' | translate }}</button>&nbsp;
+      <button type="button" class="btn btn-outline-warning" (click)="edit()">{{ 'Organization.BtnEdit' | translate }}</button>
     </div>
   </div>
 
-  <div class="panel panel-success collapse" id="createOrg">
+  <!-- <div class="panel panel-success collapse" id="createOrg">
     <div class="panel-heading">
       <label class="control-label">{{ 'Organization.TitleNewOrg' | translate }}</label>
     </div>
@@ -53,6 +50,6 @@
     <div class="panel-footer">
       <button class="btn btn-success" (click)="showAlert()">{{ 'Organization.BtnSave' | translate }}</button>
     </div>
-  </div>
+  </div> -->
 
 </div>

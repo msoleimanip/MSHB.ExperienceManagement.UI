@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +10,10 @@ import { Component, OnInit } from '@angular/core';
 
 export class DashboardComponent implements OnInit {
 
-  constructor() {
+  hamedList = [1, 2, 3, 4, 5, 6, 7, 8]; 
+
+  constructor(public translate: TranslateService) {
+    translate.setDefaultLang(environment.language);    
   }
 
   ngOnInit() {

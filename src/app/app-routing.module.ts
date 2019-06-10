@@ -10,8 +10,7 @@ import { AuthGuard } from './_gaurds/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => DashboardModule,
-    canActivate: [AuthGuard]
+    loadChildren: () => DashboardModule
   },
   {
     path: 'organization',

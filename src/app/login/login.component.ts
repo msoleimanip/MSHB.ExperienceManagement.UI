@@ -1,11 +1,14 @@
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../core/authentication.service';
-import { OrganizationService } from '../core/organization.service';
 
-@Component({ templateUrl: 'login.component.html' })
+@Component({
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
@@ -18,7 +21,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private organizationService: OrganizationService
+    public activeModal: NgbActiveModal
   ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
@@ -51,16 +54,11 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(() => {
-        this.router.navigate([this.returnUrl]);
+       this.loading = false;
+       this.activeModal.close();
       }, error => {
         this.error = error;
         this.loading = false;
       });
-  }
-
-  checkService() {
-    this.organizationService.getTree().subscribe(res => {
-      console.log(res);
-    });
   }
 }

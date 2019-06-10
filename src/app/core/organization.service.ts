@@ -13,12 +13,7 @@ export class OrganizationService {
     return this.http.get('/api/Organization/GetOrganizationByUser');
   }
 
-  getParentInfo(): Observable<any> {
-    return this.http.get('');
+  getOrganization(id: number): Observable<any> {
+    return this.http.get('/api/Organization/Get?id=' + id);
   }
-
-  getRootNames(): Observable<any> {
-    return this.http.get('');
-  }
-
 }

@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { ServerResponseDto } from './../../dataModels/serverResponseDto';
 import { OrganizationEditComponent } from './organization-edit/organization-edit.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -5,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { OrganizationDto } from '../../dataModels/organizationDto';
 import { OrganizationService } from 'src/app/core/organization.service';
+
 
 @Component({
   selector: 'app-organization',
@@ -19,7 +21,7 @@ export class OrganizationComponent implements OnInit {
   constructor(private modalService: NgbModal,
               public translate: TranslateService,
               private orgService: OrganizationService) {
-    translate.setDefaultLang('fa');
+    translate.setDefaultLang(environment.language);
   }
 
   ngOnInit() {
@@ -28,18 +30,21 @@ export class OrganizationComponent implements OnInit {
     });
   }
 
-  treeSelectedChange(param: any) {
-    console.log(param);
-    this.parentOrg.organizationName = 'Hamed Bagheri';
+  treeClick(param: any) {
+    if (param.id && param.id !== 0) {
+      this.parentOrg.organizationName = param.parents;
+      this.parentOrg.id = param.id;
+    }
   }
 
-  open(param: any) {
-    const modalRef = this.modalService.open(OrganizationEditComponent, { windowClass: '.my-modal', size: 'lg' });
-    modalRef.componentInstance.name = 'World';
-  }
-
-  showAlert() {
-    // this.toastr.success('Hello world!', 'Toastr fun!');
+  edit() {
+    if (this.parentOrg && this.parentOrg.id !== 0) {
+      this.orgService.getOrganization(this.parentOrg.id).subscribe(res => {
+        const modalRef = this.modalService.open(OrganizationEditComponent, { windowClass: '.my-modal', size: 'lg' });
+        modalRef.componentInstance.organization = res.data;
+        modalRef.componentInstance.parentsTitle = this.parentOrg.organizationName;
+      });
+    }
   }
 
 }

@@ -1,3 +1,87 @@
-<h1>
-  Dashboard
-</h1>
+<div class="landing-layer">
+  <div class="container">
+    <h2>خودساختگی ، کسب تجربه ، ورود به بازار کار</h2>
+    <h1>با اساتید مجرب و کارآزموده در خودآموز تاپ لرن</h1>
+    <h3>با کمترین هزینه خودت یاد بگیر</h3>
+    <div class="center-layer">
+      <div class="search-form">
+        <form action="/courses" itemprop="potentialAction" itemscope="" itemtype="http://schema.org/toSearchAction"
+          method="get" role="form">
+          <div class="easy-autocomplete" style="width: 570px;"><input id="main-search" type="text" name="search"
+              placeholder="چی دوست داری یاد بگیری ؟" autocomplete="off" style="border-radius:40px!important">
+            <div class="easy-autocomplete-container" id="eac-container-main-search">
+              <ul style="display: none;"></ul>
+            </div>
+          </div> <button> <i class="glyphicon glyphicon-search"></i> </button>
+        </form>
+      </div>
+      <div class="row statictis">
+        <div class="col-md-4 col-sm-4 col-xs-4 box"><i class="glyphicon glyphicon-user"></i> <span> 2 مدرس مجرب </span>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4 box"><i class="glyphicon glyphicon-user"></i> <span> 13 دانشجو </span>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4 box"><i class="glyphicon glyphicon-book"></i> <span> 25 دقیقه آموزش
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <section class="terms-item-layer">
+    <header class="section-heading">
+      <h2>آخرین دوره های تاپ لرن</h2><a href="/courses"> مشاهده همه دوره ها </a>
+    </header>
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 term-box" *ngFor="let item of hamedList">
+        <article>
+          <div class="img-layer">
+            <img data-src="/assets/images/1.jpg" class="img" alt="دوره معماری تمیز در Asp.Net Core"
+              title="دوره معماری تمیز در Asp.Net Core" src="/assets/images/1.jpg" data-was-processed="true">
+            <div class="description">
+              <ul>
+                <li><i class="glyphicon glyphicon-comment"></i> 0</li>
+                <li><i class="glyphicon glyphicon-download-alt"></i> 17</li>
+                <li><i class="glyphicon glyphicon-eye-open"></i> 282</li>
+              </ul><a href="#" title="دوره معماری تمیز در Asp.Net Core" class="more"> مشاهده جزییات این دوره </a>
+            </div>
+          </div>
+          <h2><a href="#" title="دوره معماری تمیز در Asp.Net Core"> دوره معماری تمیز در Asp.Net Core </a></h2>
+          <div class="footer"><span class="time"> <i class="glyphicon glyphicon-time"></i> 00:16:00 </span> <label>
+              300,000
+              تومان </label></div>
+        </article>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="container">
+    <section class="terms-item-layer">
+      <header class="section-heading">
+        <h2>محبوب ترین ها</h2><a href="/courses"> مشاهده </a>
+      </header>
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 term-box" *ngFor="let item of hamedList">
+          <article>
+            <div class="img-layer">
+              <img data-src="/assets/images/2.jpg" class="img" alt="دوره معماری تمیز در Asp.Net Core"
+                title="دوره معماری تمیز در Asp.Net Core" src="/assets/images/2.jpg" data-was-processed="true">
+              <div class="description">
+                <ul>
+                  <li><i class="glyphicon glyphicon-comment"></i> 0</li>
+                  <li><i class="glyphicon glyphicon-download-alt"></i> 17</li>
+                  <li><i class="glyphicon glyphicon-eye-open"></i> 282</li>
+                </ul><a href="#" title="دوره معماری تمیز در Asp.Net Core" class="more"> مشاهده جزییات این دوره </a>
+              </div>
+            </div>
+            <h2><a href="#" title="دوره معماری تمیز در Asp.Net Core"> دوره معماری تمیز در Asp.Net Core </a></h2>
+            <div class="footer"><span class="time"> <i class="glyphicon glyphicon-time"></i> 00:16:00 </span> <label>
+                300,000
+                تومان </label></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>

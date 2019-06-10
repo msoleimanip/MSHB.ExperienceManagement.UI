@@ -7,7 +7,6 @@ declare var $: any;
   templateUrl: './treeview.component.html',
   styleUrls: ['./treeview.component.css'],
   encapsulation: ViewEncapsulation.None
-
 })
 
 export class TreeviewComponent implements OnInit, OnChanges {
@@ -17,7 +16,6 @@ export class TreeviewComponent implements OnInit, OnChanges {
   @Input() items: any[];
   @Input() hasCheckbox = false;
   @Input() canSearch = false;
-  @Output() changed: EventEmitter<any> = new EventEmitter();
   @Output() dblClick: EventEmitter<any> = new EventEmitter();
   @Output() click: EventEmitter<any> = new EventEmitter();
 
@@ -52,31 +50,32 @@ export class TreeviewComponent implements OnInit, OnChanges {
     // $('#tr').jstree(true).refresh();
 
     $('#tr' + self.id).click(function () {
-      let orgChartId = 0;
       let temp = GetNode();
-      if (temp.length > 0) {
-        orgChartId = temp[0];
-
-        self.click.emit(orgChartId);
+      if (temp) {
+        self.click.emit(temp);
       }
     });
 
     $('#tr' + self.id).dblclick(function () {
-      let orgChartId = 0;
       let temp = GetNode();
-      if (temp.length > 0) {
-        orgChartId = temp[0];
-
-        self.dblClick.emit(orgChartId);
+      if (temp) {
+        self.dblClick.emit(temp);
       }
     });
 
-    $('#tr' + self.id).on('changed.jstree', function (e, data) {
-      self.changed.emit(data.selected);
-    });
-
     function GetNode() {
-      return $('#tr' + self.id).jstree('get_selected');
+      let selectedNode = $('#tr' + self.id).jstree('get_selected', true)[0];
+      if (selectedNode) {
+        let rootTitle = selectedNode.text;
+
+        selectedNode.parents.forEach(element => {
+          if (element !== '#') {
+            rootTitle += ' / ' + $('#tr' + self.id).jstree(true).get_node(element).text;
+          }
+        });
+        return { id: selectedNode.id, parents: rootTitle };
+      }
+      return { id: 0, parents: '' };
     }
 
   }

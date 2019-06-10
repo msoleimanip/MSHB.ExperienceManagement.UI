@@ -6,7 +6,6 @@ import { OrganizationRoutingModule } from './organization-routing.module';
 import { OrganizationEditComponent } from './organization-edit/organization-edit.component';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { OrganizationService } from 'src/app/core/organization.service';
 
 
 @NgModule({
