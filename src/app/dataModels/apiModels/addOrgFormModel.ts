@@ -1,5 +1,4 @@
-export class OrganizationDto {
-  id: number;
+export class AddOrgFormModel {
   organizationName: string;
   description: string;
   parentId?: number;

@@ -1,9 +1,9 @@
+import { EditOrgFormModel } from './../../../dataModels/apiModels/editOrgFormModel';
 import { environment } from './../../../../environments/environment';
 import { OrganizationService } from 'src/app/core/organization.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit, Input } from '@angular/core';
-import { OrganizationDto } from 'src/app/dataModels/organizationDto';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -14,7 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class OrganizationEditComponent implements OnInit {
 
-  @Input() organization: OrganizationDto;
+  @Input() organization: EditOrgFormModel;
   @Input() parentsTitle: string;
 
   editForm: FormGroup;
@@ -23,10 +23,10 @@ export class OrganizationEditComponent implements OnInit {
   loading = false;
 
   constructor(public activeModal: NgbActiveModal,
-    private formBuilder: FormBuilder,
-    private organizationService: OrganizationService,
-    private toastr: ToastrService,
-    public translate: TranslateService) {
+              private formBuilder: FormBuilder,
+              private organizationService: OrganizationService,
+              private toastr: ToastrService,
+              public translate: TranslateService) {
     translate.setDefaultLang(environment.language);
   }
 
@@ -54,12 +54,9 @@ export class OrganizationEditComponent implements OnInit {
 
     this.organizationService.edit(this.organization).subscribe(res => {
       if (res.data) {
-        this.toastr.success(this.translate.instant('Organization.EditSuccessfully'), res.data);
+        this.toastr.success(this.translate.instant('Organization.EditSuccessfully'), this.organization.organizationId.toString());
         this.reloadTree = true;
-
-        this.submitted = false;
-        this.loading = false;
-        this.editForm.reset();
+        this.close();
       }
     }, err => {
       this.loading = false;

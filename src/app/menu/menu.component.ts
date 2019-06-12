@@ -1,11 +1,11 @@
 import { environment } from './../../environments/environment.prod';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
-import { User } from '../dataModels/user';
 import { AuthenticationService } from '../core/authentication.service';
 import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { TranslateService } from '@ngx-translate/core';
+import { User } from '../dataModels/viewModels/user';
 
 @Component({
   selector: 'app-menu',
@@ -49,7 +49,6 @@ export class MenuComponent implements OnInit {
 
   loginModal() {
     const modalRef = this.modalService.open(LoginComponent, { windowClass: '.my-modal', size: 'sm' });
-    modalRef.componentInstance.name = 'Hamed';
   }
 
 }

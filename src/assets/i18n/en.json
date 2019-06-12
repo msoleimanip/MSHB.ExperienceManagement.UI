@@ -1,4 +1,19 @@
 {
+  "Menu": {
+    "SiteTitle": "MSHB",
+    "Home": "Dashboard",
+    "Setting": "Setting",
+    "BaseInfo": "BaseInformation",
+    "Organization": "Organization",
+    "Logout": "Logout",
+    "Login": "Login"
+  },
+  "Login": {
+    "Username": "Username",
+    "Password": "Password",
+    "FormTitle": "Login Users Form",
+    "BtnLogin": "Login"
+  },
   "Organization": {
     "Title": "Organizations Management",
     "BtnSave": "Save",
@@ -6,17 +21,16 @@
     "OrgName": "Organization Name",
     "OrgDescription": "Description",
     "OrgParentCaption": "Organization Parent Name",
-    "BtnEdit": "Accept and Edit",
+    "BtnEdit": "Edit",
     "EditTitle": "Edit Page",
-    "BtnClose": "Close"
-  },
-  "Menu": {
-    "SiteTitle": "MSHB",
-    "Home": "Dashboard",
-    "Setting": "Setting",
-    "BaseInfo": "BaseInformation",
-    "Organization":"Organization",
-    "Logout": "Logout",
-    "Login": "Login"
+    "BtnClose": "Close",
+    "BtnAddNew": "Create New",
+    "CreateTitle": "Create New Organization Page",
+    "BtnCreate": "Create",
+    "InputOrganizationNameError": "Organization Name is Required",
+    "TreeNotSelectedError": "No one selected from Organizations",
+    "ModelStateError": "ModelSatet is invalid, please check input errors",
+    "AddSuccessfully": "New organization added successfully",
+    "EditSuccessfully": "Organization updated successfully"
   }
 }

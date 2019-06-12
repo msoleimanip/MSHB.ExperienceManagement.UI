@@ -1,4 +1,4 @@
-export class ServerResponseDto<T> {
+export class ServerResponseViewModel<T> {
   errorCode: string;
   errorMessage: string;
   detailErrorList: Array<any> = [];

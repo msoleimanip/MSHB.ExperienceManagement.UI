@@ -1,7 +1,7 @@
+import { AddOrgFormModel } from './../../../dataModels/apiModels/addOrgFormModel';
 import { environment } from './../../../../environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit, Input } from '@angular/core';
-import { OrganizationDto } from 'src/app/dataModels/organizationDto';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OrganizationService } from 'src/app/core/organization.service';
 import { ToastrService } from 'ngx-toastr';
@@ -14,7 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class OrganizationCreateComponent implements OnInit {
 
-  organization: OrganizationDto;
+  organization: AddOrgFormModel;
   @Input() parentsTitle: string;
   createForm: FormGroup;
   submitted = false;

@@ -1,7 +1,8 @@
+import { EditOrgFormModel } from './../dataModels/apiModels/editOrgFormModel';
+import { AddOrgFormModel } from './../dataModels/apiModels/addOrgFormModel';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { OrganizationDto } from '../dataModels/organizationDto';
 
 @Injectable()
 
@@ -18,11 +19,11 @@ export class OrganizationService {
     return this.http.get('/api/Organization/Get?id=' + id);
   }
 
-  add(org: OrganizationDto): Observable<any> {
+  add(org: AddOrgFormModel): Observable<any> {
     return this.http.post('/api/Organization/AddOrganization', org);
   }
 
-  edit(org: OrganizationDto): Observable<any> {
+  edit(org: EditOrgFormModel): Observable<any> {
     return this.http.post('/api/Organization/EditOrganization', org);
   }
 }

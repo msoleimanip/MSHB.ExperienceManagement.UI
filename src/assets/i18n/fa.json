@@ -1,4 +1,19 @@
 {
+  "Menu": {
+    "SiteTitle": "MSHB",
+    "Home": "داشبورد",
+    "Setting": "تنظیمات",
+    "BaseInfo": "اطلاعات پایه",
+    "Organization": "مدیریت رده ها",
+    "Logout": "خروج",
+    "Login": "ورود"
+  },
+  "Login": {
+    "Username": "نام کاربری",
+    "Password": "کلمه عبور",
+    "FormTitle": "صفحه ورود کاربران",
+    "BtnLogin": "ورود به سامانه"
+  },
   "Organization": {
     "Title": "مدیریت رده ها",
     "BtnSave": "ذخیره اطلاعات",
@@ -17,14 +32,5 @@
     "ModelStateError": "لطفا مقادیر را به درستی وارد کنید",
     "AddSuccessfully": "رده مورد نظر با موفقیت ثبت شد",
     "EditSuccessfully": "رده مورد نظر با موفقیت ویرایش شد"
-  },
-  "Menu": {
-    "SiteTitle": "MSHB",
-    "Home": "داشبورد",
-    "Setting": "تنظیمات",
-    "BaseInfo": "اطلاعات پایه",
-    "Organization": "مدیریت رده ها",
-    "Logout": "خروج",
-    "Login": "ورود"
   }
 }
