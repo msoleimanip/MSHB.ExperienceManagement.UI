@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { OrganizationDto } from '../dataModels/organizationDto';
 
 @Injectable()
 
@@ -15,5 +16,13 @@ export class OrganizationService {
 
   getOrganization(id: number): Observable<any> {
     return this.http.get('/api/Organization/Get?id=' + id);
+  }
+
+  add(org: OrganizationDto): Observable<any> {
+    return this.http.post('/api/Organization/AddOrganization', org);
+  }
+
+  edit(org: OrganizationDto): Observable<any> {
+    return this.http.post('/api/Organization/EditOrganization', org);
   }
 }

@@ -14,7 +14,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { LoginComponent } from './login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AccessDeniedComponent } from './shared/access-denied/access-denied.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -33,6 +33,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     AppRoutingModule,
     CoreModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,

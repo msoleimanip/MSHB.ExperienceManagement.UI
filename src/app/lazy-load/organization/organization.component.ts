@@ -1,3 +1,4 @@
+import { OrganizationCreateComponent } from './organization-create/organization-create.component';
 import { environment } from './../../../environments/environment';
 import { ServerResponseDto } from './../../dataModels/serverResponseDto';
 import { OrganizationEditComponent } from './organization-edit/organization-edit.component';
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { OrganizationDto } from '../../dataModels/organizationDto';
 import { OrganizationService } from 'src/app/core/organization.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -19,12 +21,17 @@ export class OrganizationComponent implements OnInit {
   parentOrg = new OrganizationDto();
 
   constructor(private modalService: NgbModal,
-              public translate: TranslateService,
-              private orgService: OrganizationService) {
+    public translate: TranslateService,
+    private orgService: OrganizationService,
+    private toastr: ToastrService) {
     translate.setDefaultLang(environment.language);
   }
 
   ngOnInit() {
+    this.loadTree();
+  }
+
+  loadTree() {
     this.orgService.getTree().subscribe((res: ServerResponseDto<any>) => {
       this.files = res.data;
     });
@@ -38,12 +45,31 @@ export class OrganizationComponent implements OnInit {
   }
 
   edit() {
-    if (this.parentOrg && this.parentOrg.id !== 0) {
+    if (this.parentOrg.id && this.parentOrg.id !== 0) {
       this.orgService.getOrganization(this.parentOrg.id).subscribe(res => {
-        const modalRef = this.modalService.open(OrganizationEditComponent, { windowClass: '.my-modal', size: 'lg' });
+        let modalRef = this.modalService.open(OrganizationEditComponent, { windowClass: '.my-modal', size: 'lg' });
         modalRef.componentInstance.organization = res.data;
         modalRef.componentInstance.parentsTitle = this.parentOrg.organizationName;
       });
+    } else {
+      this.toastr.error(this.translate.instant('Organization.TreeNotSelectedError'));
+    }
+  }
+
+  create() {
+    if (this.parentOrg.id && this.parentOrg.id !== 0) {
+      let modalRef = this.modalService.open(OrganizationCreateComponent, { windowClass: '.my-modal', size: 'lg' });
+      modalRef.componentInstance.parentsTitle = this.parentOrg.organizationName;
+      let organization = new OrganizationDto();
+      organization.parentId = this.parentOrg.id;
+      modalRef.componentInstance.organization = organization;
+      modalRef.result.then(result => {
+        if (result === true) {
+          this.loadTree();
+        }
+      });
+    } else {
+      this.toastr.error(this.translate.instant('Organization.TreeNotSelectedError'));
     }
   }
 

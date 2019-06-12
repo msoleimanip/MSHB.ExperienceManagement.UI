@@ -5,19 +5,25 @@
     "TreeTitle": "رده ها",
     "OrgName": "نام رده",
     "OrgDescription": "توضیحات",
-    "OrgParentCaption": "نام رده بالادستی",
+    "OrgParentCaption": "مسیر کلی",
     "BtnEdit": "ویرایش اطلاعات",
     "EditTitle": "صفحه ویرایش اطلاعات",
     "BtnClose": "انصراف",
     "BtnAddNew": "ایجاد رده جدید",
-    "TitleNewOrg": "فرم ایجاد رده جدید"
+    "CreateTitle": "صفحه ایجاد رده جدید",
+    "BtnCreate": "ثبت اطلاعات",
+    "InputOrganizationNameError": "نام رده می باسیتی وارد شود",
+    "TreeNotSelectedError": "از نمودار رده ها موردی انتخاب نشده است",
+    "ModelStateError": "لطفا مقادیر را به درستی وارد کنید",
+    "AddSuccessfully": "رده مورد نظر با موفقیت ثبت شد",
+    "EditSuccessfully": "رده مورد نظر با موفقیت ویرایش شد"
   },
   "Menu": {
     "SiteTitle": "MSHB",
     "Home": "داشبورد",
     "Setting": "تنظیمات",
     "BaseInfo": "اطلاعات پایه",
-    "Organization":"مدیریت رده ها",
+    "Organization": "مدیریت رده ها",
     "Logout": "خروج",
     "Login": "ورود"
   }

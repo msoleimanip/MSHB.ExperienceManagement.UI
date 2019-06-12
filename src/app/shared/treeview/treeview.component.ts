@@ -18,6 +18,7 @@ export class TreeviewComponent implements OnInit, OnChanges {
   @Input() canSearch = false;
   @Output() dblClick: EventEmitter<any> = new EventEmitter();
   @Output() click: EventEmitter<any> = new EventEmitter();
+  firstLoad = true;
 
   ngOnInit() {
   }
@@ -30,38 +31,46 @@ export class TreeviewComponent implements OnInit, OnChanges {
   }
 
   createTree(self: any, items: any) {
-    $('#tr' + self.id).jstree({
-      checkbox: {
-        keep_selected_style: false
-      },
-      plugins: [(self.hasCheckbox ? 'checkbox' : ''), (self.canSearch ? 'search' : '')],
-      core: {
-        multiple: true,
-        check_callback: true,
-        expand_selected_onload: false,
-        data: items,
-      },
-    });
 
-    $('#txtSearchTree' + self.id).keyup(function () {
-      $('#tr' + self.id).jstree(true).search($('#txtSearchTree' + self.id).val());
-    });
+    if (!this.firstLoad) {
+      $('#tr' + self.id).jstree(true).settings.core.data = items;
+      $('#tr' + self.id).jstree(true).refresh();
+    }
 
-    // $('#tr').jstree(true).refresh();
+    if (this.firstLoad) {
+      $('#tr' + self.id).jstree({
+        checkbox: {
+          keep_selected_style: false
+        },
+        plugins: [(self.hasCheckbox ? 'checkbox' : ''), (self.canSearch ? 'search' : '')],
+        core: {
+          multiple: true,
+          check_callback: true,
+          expand_selected_onload: false,
+          data: items
+        },
+      });
 
-    $('#tr' + self.id).click(function () {
-      let temp = GetNode();
-      if (temp) {
-        self.click.emit(temp);
-      }
-    });
+      $('#txtSearchTree' + self.id).keyup(function () {
+        $('#tr' + self.id).jstree(true).search($('#txtSearchTree' + self.id).val());
+      });
 
-    $('#tr' + self.id).dblclick(function () {
-      let temp = GetNode();
-      if (temp) {
-        self.dblClick.emit(temp);
-      }
-    });
+      $('#tr' + self.id).click(function () {
+        let temp = GetNode();
+        if (temp) {
+          self.click.emit(temp);
+        }
+      });
+
+      $('#tr' + self.id).dblclick(function () {
+        let temp = GetNode();
+        if (temp) {
+          self.dblClick.emit(temp);
+        }
+      });
+
+      this.firstLoad = false;
+    }
 
     function GetNode() {
       let selectedNode = $('#tr' + self.id).jstree('get_selected', true)[0];
@@ -77,7 +86,6 @@ export class TreeviewComponent implements OnInit, OnChanges {
       }
       return { id: 0, parents: '' };
     }
-
   }
 
 }

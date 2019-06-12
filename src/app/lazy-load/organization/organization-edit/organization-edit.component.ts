@@ -1,6 +1,11 @@
+import { environment } from './../../../../environments/environment';
+import { OrganizationService } from 'src/app/core/organization.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit, Input } from '@angular/core';
 import { OrganizationDto } from 'src/app/dataModels/organizationDto';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-organization-edit',
@@ -12,11 +17,57 @@ export class OrganizationEditComponent implements OnInit {
   @Input() organization: OrganizationDto;
   @Input() parentsTitle: string;
 
-  constructor(public activeModal: NgbActiveModal) {
+  editForm: FormGroup;
+  submitted = false;
+  reloadTree = false;
+  loading = false;
+
+  constructor(public activeModal: NgbActiveModal,
+    private formBuilder: FormBuilder,
+    private organizationService: OrganizationService,
+    private toastr: ToastrService,
+    public translate: TranslateService) {
+    translate.setDefaultLang(environment.language);
   }
 
   ngOnInit(): void {
-    console.log(this.organization);
+    this.editForm = this.formBuilder.group({
+      organizationName: [this.organization.organizationName, Validators.required],
+      description: [this.organization.description]
+    });
+  }
+
+  get f() { return this.editForm.controls; }
+
+
+  onSubmit() {
+    this.submitted = true;
+    this.loading = true;
+    if (this.editForm.invalid) {
+      this.toastr.error(this.translate.instant('Organization.ModelStateError'));
+      this.loading = false;
+      return;
+    }
+
+    this.organization.organizationName = this.editForm.get('organizationName').value;
+    this.organization.description = this.editForm.get('description').value;
+
+    this.organizationService.edit(this.organization).subscribe(res => {
+      if (res.data) {
+        this.toastr.success(this.translate.instant('Organization.EditSuccessfully'), res.data);
+        this.reloadTree = true;
+
+        this.submitted = false;
+        this.loading = false;
+        this.editForm.reset();
+      }
+    }, err => {
+      this.loading = false;
+    });
+  }
+
+  close() {
+    this.activeModal.close(this.reloadTree);
   }
 
 }

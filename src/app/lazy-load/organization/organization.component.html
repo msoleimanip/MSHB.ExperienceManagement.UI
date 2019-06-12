@@ -7,49 +7,13 @@
       <div class="form-group">
       </div>
       <app-treeview [canSearch]="true" [hasCheckbox]="false" [titleLabel]="'Organization.TreeTitle' | translate"
-        [items]="files" [id]="'crtUser'" (click)="treeClick($event)">
+        [items]="files" [id]="'org'" (click)="treeClick($event)">
       </app-treeview>
     </div>
 
     <div class="panel-footer">
-      <button type="button" class="btn btn-outline-success">{{ 'Organization.BtnAddNew' | translate }}</button>&nbsp;
+      <button type="button" class="btn btn-outline-success" (click)="create()">{{ 'Organization.BtnAddNew' | translate }}</button>&nbsp;
       <button type="button" class="btn btn-outline-warning" (click)="edit()">{{ 'Organization.BtnEdit' | translate }}</button>
     </div>
   </div>
-
-  <!-- <div class="panel panel-success collapse" id="createOrg">
-    <div class="panel-heading">
-      <label class="control-label">{{ 'Organization.TitleNewOrg' | translate }}</label>
-    </div>
-    <div class="panel-body">
-      <div class="form-group row">
-        <label for="orgParentCaption"
-          class="col-sm-2 col-form-label">{{'Organization.OrgParentCaption' | translate}}</label>
-        <div class="col-sm-10">
-          <input id="orgParentCaption" type="text" class="form-control" readonly value="{{parentOrg.organizationName}}"
-            placeholder="{{'Organization.OrgParentCaption'| translate}}">
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="orgName" class="col-sm-2 col-form-label">{{'Organization.OrgName'| translate}}</label>
-        <div class="col-sm-10">
-          <input id="orgName" type="text" class="form-control" placeholder="{{'Organization.OrgName'| translate}}">
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="orgDescription" class="col-sm-2 col-form-label">{{'Organization.OrgDescription'| translate}}</label>
-        <div class="col-sm-10">
-          <input id="orgDescription" type="text" class="form-control"
-            placeholder="{{'Organization.OrgDescription'| translate}}">
-        </div>
-      </div>
-
-    </div>
-    <div class="panel-footer">
-      <button class="btn btn-success" (click)="showAlert()">{{ 'Organization.BtnSave' | translate }}</button>
-    </div>
-  </div> -->
-
 </div>
