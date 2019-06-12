@@ -1,3 +1,4 @@
+import { EquipmentModule } from './lazy-load/equipment/equipment.module';
 import { AccessDeniedComponent } from './shared/access-denied/access-denied.component';
 import { NotFoundComponent } from './shared/notFound/not-found.component';
 import { NgModule } from '@angular/core';
@@ -15,6 +16,12 @@ const routes: Routes = [
   {
     path: 'organization',
     loadChildren: () => OrganizationModule,
+    canActivate: [AuthGuard],
+    data: { roles: ['Admin'] }
+  },
+  {
+    path: 'equipment',
+    loadChildren: () => EquipmentModule,
     canActivate: [AuthGuard],
     data: { roles: ['Admin'] }
   },

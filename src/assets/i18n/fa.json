@@ -6,7 +6,8 @@
     "BaseInfo": "اطلاعات پایه",
     "Organization": "مدیریت رده ها",
     "Logout": "خروج",
-    "Login": "ورود"
+    "Login": "ورود",
+    "Equipment": "مدیریت تجهیـزات"
   },
   "Login": {
     "Username": "نام کاربری",
@@ -28,6 +29,25 @@
     "CreateTitle": "صفحه ایجاد رده جدید",
     "BtnCreate": "ثبت اطلاعات",
     "InputOrganizationNameError": "نام رده می باسیتی وارد شود",
+    "TreeNotSelectedError": "از نمودار رده ها موردی انتخاب نشده است",
+    "ModelStateError": "لطفا مقادیر را به درستی وارد کنید",
+    "AddSuccessfully": "رده مورد نظر با موفقیت ثبت شد",
+    "EditSuccessfully": "رده مورد نظر با موفقیت ویرایش شد"
+  },
+  "Equipment": {
+    "Title": "مدیریت رده ها",
+    "BtnSave": "ذخیره اطلاعات",
+    "TreeTitle": "رده ها",
+    "EquipmentName": "نام رده",
+    "EquipmentDescription": "توضیحات",
+    "EquipmentParentCaption": "مسیر کلی",
+    "BtnEdit": "ویرایش اطلاعات",
+    "EditTitle": "صفحه ویرایش اطلاعات",
+    "BtnClose": "انصراف",
+    "BtnAddNew": "ایجاد رده جدید",
+    "CreateTitle": "صفحه ایجاد رده جدید",
+    "BtnCreate": "ثبت اطلاعات",
+    "InputEquipmentNameError": "نام رده می باسیتی وارد شود",
     "TreeNotSelectedError": "از نمودار رده ها موردی انتخاب نشده است",
     "ModelStateError": "لطفا مقادیر را به درستی وارد کنید",
     "AddSuccessfully": "رده مورد نظر با موفقیت ثبت شد",

@@ -6,7 +6,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NotFoundComponent } from './shared/notFound/not-found.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,7 +14,8 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { AccessDeniedComponent } from './shared/access-denied/access-denied.component';
+import { CommonModule } from '@angular/common';
+import { SharedModule } from './shared/shared.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -25,18 +25,18 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     MenuComponent,
-    NotFoundComponent,
     LoginComponent,
-    AccessDeniedComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     CoreModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
+    SharedModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -51,6 +51,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       closeButton: true
     }) // ToastrModule added
   ],
+  exports: [],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }

@@ -1,10 +1,13 @@
-import { NgModule } from '@angular/core';
+import { EquipmentService } from './equipment.service';
 import { OrganizationService } from './organization.service';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [],
   imports: [],
-  providers: [OrganizationService]
+  providers: [
+    OrganizationService,
+    EquipmentService]
 })
 
 export class CoreModule {
