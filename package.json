@@ -23,6 +23,7 @@
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
     "core-js": "^2.5.4",
+    "font-awesome": "^4.7.0",
     "glyphicons-only-bootstrap": "^1.0.1",
     "jstree": "^3.3.8",
     "jwt-decode": "^2.2.0",

@@ -7,7 +7,8 @@
     "Organization": "مدیریت رده ها",
     "Logout": "خروج",
     "Login": "ورود",
-    "Equipment": "مدیریت تجهیـزات"
+    "Equipment": "مدیریت تجهیـزات",
+    "Users": "مدیریت کاربران"
   },
   "Login": {
     "Username": "نام کاربری",
@@ -35,22 +36,31 @@
     "EditSuccessfully": "رده مورد نظر با موفقیت ویرایش شد"
   },
   "Equipment": {
-    "Title": "مدیریت رده ها",
+    "Title": "مدیریت تجهیزات",
     "BtnSave": "ذخیره اطلاعات",
-    "TreeTitle": "رده ها",
-    "EquipmentName": "نام رده",
+    "TreeTitle": "تجهیزات",
+    "EquipmentName": "نام تجهیز",
     "EquipmentDescription": "توضیحات",
     "EquipmentParentCaption": "مسیر کلی",
     "BtnEdit": "ویرایش اطلاعات",
     "EditTitle": "صفحه ویرایش اطلاعات",
     "BtnClose": "انصراف",
-    "BtnAddNew": "ایجاد رده جدید",
-    "CreateTitle": "صفحه ایجاد رده جدید",
+    "BtnAddNew": "ایجاد تجهیز جدید",
+    "CreateTitle": "صفحه ایجاد تجهیز جدید",
     "BtnCreate": "ثبت اطلاعات",
-    "InputEquipmentNameError": "نام رده می باسیتی وارد شود",
-    "TreeNotSelectedError": "از نمودار رده ها موردی انتخاب نشده است",
+    "InputEquipmentNameError": "نام تجهیز می باسیتی وارد شود",
+    "TreeNotSelectedError": "از نمودار تجهیزات موردی انتخاب نشده است",
     "ModelStateError": "لطفا مقادیر را به درستی وارد کنید",
-    "AddSuccessfully": "رده مورد نظر با موفقیت ثبت شد",
-    "EditSuccessfully": "رده مورد نظر با موفقیت ویرایش شد"
+    "AddSuccessfully": "تجهیز مورد نظر با موفقیت ثبت شد",
+    "EditSuccessfully": "تجهیز مورد نظر با موفقیت ویرایش شد"
+  },
+  "Users": {
+    "Title": "مدیریت کاربران",
+    "Search": "جستجو",
+    "UsersList": "لیست کاربران",
+    "Row": "ردیف",
+    "Name": "نام",
+    "Family": "نام خانوادگی",
+    "Username": "نام کاربری"
   }
 }

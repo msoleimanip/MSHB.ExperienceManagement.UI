@@ -7,6 +7,7 @@ import { OrganizationModule } from './lazy-load/organization/organization.module
 import { DashboardModule } from './lazy-load/dashboard/dashboard.module';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_gaurds/auth.guard';
+import { UsersModule } from './lazy-load/users/users.module';
 
 const routes: Routes = [
   {
@@ -22,6 +23,12 @@ const routes: Routes = [
   {
     path: 'equipment',
     loadChildren: () => EquipmentModule,
+    canActivate: [AuthGuard],
+    data: { roles: ['Admin'] }
+  },
+  {
+    path: 'users',
+    loadChildren: () => UsersModule,
     canActivate: [AuthGuard],
     data: { roles: ['Admin'] }
   },

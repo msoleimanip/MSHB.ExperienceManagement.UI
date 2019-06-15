@@ -1,3 +1,4 @@
+import { UsersService } from './users.service';
 import { EquipmentService } from './equipment.service';
 import { OrganizationService } from './organization.service';
 import { NgModule } from '@angular/core';
@@ -7,7 +8,9 @@ import { NgModule } from '@angular/core';
   imports: [],
   providers: [
     OrganizationService,
-    EquipmentService]
+    EquipmentService,
+    UsersService
+  ]
 })
 
 export class CoreModule {

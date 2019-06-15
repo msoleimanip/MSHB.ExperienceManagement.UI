@@ -11,7 +11,8 @@
         <a class="nav-link" [routerLink]='["/"]'>{{ 'Menu.Home' | translate }}<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown" *ngIf="currentUser">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
           {{ 'Menu.BaseInfo' | translate }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="currentUser">
@@ -22,14 +23,17 @@
         <a class="nav-link" [routerLink]='["/organization"]'>{{ 'Menu.Organization' | translate }}</a>
       </li>
       <li class="nav-item" *ngIf="currentUser && isAdmin">
-          <a class="nav-link" [routerLink]='["/equipment"]'>{{ 'Menu.Equipment' | translate }}</a>
-        </li>
+        <a class="nav-link" [routerLink]='["/equipment"]'>{{ 'Menu.Equipment' | translate }}</a>
+      </li>
+      <li class="nav-item" *ngIf="currentUser && isAdmin">
+        <a class="nav-link" [routerLink]='["/users"]'>{{ 'Menu.Users' | translate }}</a>
+      </li>
     </ul>
     <div class="form-inline my-2 my-lg-0">
-        <button class="btn btn-outline-info my-2 my-sm-0" *ngIf="!currentUser"
-          (click)="loginModal()">{{ 'Menu.Login' | translate }}</button>
-        <button class="btn btn-outline-info my-2 my-sm-0" *ngIf="currentUser"
-          (click)="logout()">{{ 'Menu.Logout' | translate }}</button>
+      <button class="btn btn-outline-info my-2 my-sm-0" *ngIf="!currentUser"
+        (click)="loginModal()">{{ 'Menu.Login' | translate }}</button>
+      <button class="btn btn-outline-info my-2 my-sm-0" *ngIf="currentUser"
+        (click)="logout()">{{ 'Menu.Logout' | translate }}</button>
     </div>
   </div>
 </nav>
