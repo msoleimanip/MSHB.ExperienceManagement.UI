@@ -1,4 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ViewEncapsulation, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { environment } from './../../../environments/environment';
 
 declare var $: any;
 
@@ -20,6 +22,9 @@ export class TreeviewComponent implements OnInit, OnChanges {
   @Output() click: EventEmitter<any> = new EventEmitter();
   firstLoad = true;
 
+constructor( public translate: TranslateService) {
+   translate.setDefaultLang(environment.language);
+}
   ngOnInit() {
   }
 

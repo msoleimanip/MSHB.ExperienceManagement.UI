@@ -15,17 +15,18 @@
       </div>
 
 
-      <div class="panel panel-promary">
+      <div class="panel panel-primary">
         <div class="panel-heading">
           <label>{{ 'Users.UsersList' | translate }}</label>
+          <button type="button" class="btn btn-success btn-Create" (click)="create()" >{{ 'Users.CreateNewUser' | translate }}</button>
         </div>
         <div class="panel-body">
           <table class="table table-hover table-bordered">
             <thead>
               <tr>
                 <th>{{ 'Users.Row' | translate }}</th>
-                <th>{{ 'Users.Name' | translate }}</th>
-                <th>{{ 'Users.Family' | translate }}</th>
+                <th>{{ 'Users.FirstName' | translate }}</th>
+                <th>{{ 'Users.LastName' | translate }}</th>
                 <th>{{ 'Users.Username' | translate }}</th>
                 <th></th>
               </tr>
@@ -37,9 +38,9 @@
                 <td>{{item.lastName}}</td>
                 <td>{{item.username}}</td>
                 <td>
-                    <button type="button" class="btn btn-sm btn-warning" Title="دسترسی کاربری"><i class="fa fa-eye"></i></button>&nbsp;
-                    <button type="button" class="btn btn-sm btn-success" Title="فعال سازی کاربر"><i class="fa" [ngClass]=" {'fa-unlock': !item.isActive, 'fa-lock': item.isActive}"></i></button>&nbsp;
-                    <button type="button" class="btn btn-sm btn-primary" Title="ویرایش"><i class="fa fa-pencil"></i></button>&nbsp;
+                    <button type="button" class="btn btn-sm btn-warning" [title]="'Users.BtnChangePermissionTitle'| translate" (click)="changePermission(item.id)"><i class="fa fa-eye"></i></button>&nbsp;
+                    <button type="button" class="btn btn-sm btn-success" [title]="'Users.BtnActiveTitle'| translate"><i class="fa" [ngClass]=" {'fa-unlock': !item.isActive, 'fa-lock': item.isActive}"></i></button>&nbsp;
+                    <button type="button" class="btn btn-sm btn-primary" [title]="'Users.BtnEditTitle'| translate" (click)="edit(item.id)"><i class="fa fa-pencil"></i></button>&nbsp;
                 </td>
               </tr>
             </tbody>

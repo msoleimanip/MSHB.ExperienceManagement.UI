@@ -1,3 +1,4 @@
+import { GroupAuthenticationService } from './groupAuthentication.service';
 import { UsersService } from './users.service';
 import { EquipmentService } from './equipment.service';
 import { OrganizationService } from './organization.service';
@@ -9,7 +10,8 @@ import { NgModule } from '@angular/core';
   providers: [
     OrganizationService,
     EquipmentService,
-    UsersService
+    UsersService,
+    GroupAuthenticationService
   ]
 })
 

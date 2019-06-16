@@ -15,6 +15,10 @@ export class OrganizationService {
     return this.http.get('/api/Organization/GetOrganizationByUser');
   }
 
+  getUserOrgazinationForUser(userId: string): Observable<any> {
+    return this.http.get('/api/Organization/getUserOrgazinationForUser?userId=' + userId);
+  }
+
   getOrganization(id: number): Observable<any> {
     return this.http.get('/api/Organization/Get?id=' + id);
   }

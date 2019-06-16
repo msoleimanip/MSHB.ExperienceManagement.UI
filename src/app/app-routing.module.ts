@@ -1,6 +1,5 @@
 import { EquipmentModule } from './lazy-load/equipment/equipment.module';
 import { AccessDeniedComponent } from './shared/access-denied/access-denied.component';
-import { NotFoundComponent } from './shared/notFound/not-found.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { OrganizationModule } from './lazy-load/organization/organization.module';

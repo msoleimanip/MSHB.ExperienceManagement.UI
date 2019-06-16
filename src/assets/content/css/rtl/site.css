@@ -950,3 +950,17 @@ a:active {
 .navbar-dark .navbar-nav .nav-link {
   color: rgb(255, 255, 255);
 }
+
+.btn-Create {
+  height: 38px;
+  margin-top: -4px;
+  float: left;
+}
+
+.text-danger {
+  font-size: 10px;
+}
+
+.form-control {
+  font-size: 13px;
+}

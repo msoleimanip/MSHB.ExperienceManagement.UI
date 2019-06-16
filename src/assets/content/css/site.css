@@ -841,3 +841,14 @@ a:active {
   font-color: #aaa;
   font-style: italic
 }
+
+
+.btn-Create {
+  height: 38px;
+  margin-top: -4px;
+  float: right;
+}
+
+.text-danger {
+  font-size: 10px;
+}

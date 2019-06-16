@@ -5,11 +5,18 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './users.component';
+import { UserOrganizationPermissionComponent } from './users-organization-permission/users-organization-permission.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { UsersEditComponent } from './users-edit/users-edit.component';
+import { UsersAddComponent } from './users-add/users-add.component';
 
 
 @NgModule({
   declarations: [
-    UsersComponent
+    UsersComponent,
+    UserOrganizationPermissionComponent,
+    UsersEditComponent,
+    UsersAddComponent
   ],
   imports: [
     CommonModule,
@@ -17,9 +24,10 @@ import { UsersComponent } from './users.component';
     NgbModule,
     TranslateModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
-  entryComponents: [],
+  entryComponents: [UserOrganizationPermissionComponent, UsersEditComponent, UsersAddComponent],
   exports: [],
   providers: []
 })

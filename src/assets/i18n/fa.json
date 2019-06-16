@@ -16,6 +16,9 @@
     "FormTitle": "صفحه ورود کاربران",
     "BtnLogin": "ورود به سامانه"
   },
+  "Tree": {
+    "SearchTitle": "جستجو بر روی نمودار"
+  },
   "Organization": {
     "Title": "مدیریت رده ها",
     "BtnSave": "ذخیره اطلاعات",
@@ -59,8 +62,25 @@
     "Search": "جستجو",
     "UsersList": "لیست کاربران",
     "Row": "ردیف",
-    "Name": "نام",
-    "Family": "نام خانوادگی",
-    "Username": "نام کاربری"
+    "FirstName": "نام",
+    "LastName": "نام خانوادگی",
+    "Username": "نام کاربری",
+    "Description": "توضیحات",
+    "IsActive":"وضعیت کاربر",
+    "Location": "استان",
+    "GroupAuthId":"گروه دسترسی",
+    "OrgPermissionTitle": "صفحه تغییر دسترسی رده ای",
+    "UserCreateTitle": "صفحه ایجاد کاربر جدید",
+    "BtnChangePermission": "تایید و ثبت تغییرات",
+    "BtnClose": "انصراف",
+    "OrgazinationList": "نمودار تمامی رده ها ",
+    "TreeTitle": "رده ها",
+    "InputUsernameError": "نام کاربری می باسیتی وارد شود",
+    "CreateNewUser": "ایجاد کاربر جدبد",
+    "BtnCreate": "تایید و ایجاد",
+    "BtnEdit": "تایید و ویرایش",
+    "BtnChangePermissionTitle": "تغییر دسترسی",
+    "BtnEditTitle": "ویرایش کاربر",
+    "BtnActiveTitle": "تغییر وضعیت کاربر"
   }
 }

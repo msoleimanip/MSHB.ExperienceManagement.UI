@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { TreeviewComponent } from './treeview/treeview.component';
 import { CommonModule } from '@angular/common';
 import { NotFoundComponent } from './notFound/not-found.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+     TranslateModule
   ],
   declarations: [
     TreeviewComponent,

@@ -1,0 +1,86 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{'Users.UserEditTitle'| translate}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group row">
+      <label for="username" class="col-sm-2 col-form-label">{{'Users.Username'| translate}}</label>
+      <div class="col-sm-10">
+        <input id="username" type="text" class="form-control" formControlName="username"
+          placeholder="{{'Users.Username'| translate}}">
+        <div [hidden]="(f.username.valid || f.username.untouched) && !submitted">
+          <div [hidden]="!f.username.hasError('required')" class="text-danger">
+            {{'Users.InputUsernameError'| translate}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="firstName" class="col-sm-2 col-form-label">{{'Users.FirstName'| translate}}</label>
+      <div class="col-sm-10">
+        <input id="firstName" type="text" class="form-control" formControlName="firstName"
+          placeholder="{{'Users.FirstName'| translate}}">
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <label for="lastName" class="col-sm-2 col-form-label">{{'Users.LastName'| translate}}</label>
+      <div class="col-sm-10">
+        <input id="lastName" type="text" class="form-control" formControlName="lastName"
+          placeholder="{{'Users.lastName'| translate}}">
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <label for="description" class="col-sm-2 col-form-label">{{'Users.Description'| translate}}</label>
+      <div class="col-sm-10">
+        <input id="description" type="text" class="form-control" formControlName="description"
+          placeholder="{{'Users.Description'| translate}}">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="location" class="col-sm-2 col-form-label">{{'Users.Location'| translate}}</label>
+      <div class="col-sm-10">
+        <input id="location" type="text" class="form-control" formControlName="location"
+          placeholder="{{'Users.Location'| translate}}">
+      </div>
+    </div>
+
+    <div class="form-group row has-error">
+      <label for="isActive" class="col-sm-2 col-form-label">{{'Users.IsActive'| translate}}</label>
+      <div class="col-sm-10">
+        <select id="isActive" type="text" class="form-control" formControlName="isActive"
+          (change)="isActiveSelect = !isActiveSelect;"
+          [ngClass]="{'border-success':isActiveSelect, 'border-danger': !isActiveSelect}">
+          <option value="{{true}}">فعال</option>
+          <option value="{{false}}">غیرفعال</option>
+        </select>
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <label for="groupAuthId" class="col-sm-2 col-form-label">{{'Users.GroupAuthId'| translate}}</label>
+      <div class="col-sm-10">
+        <select id="groupAuthId" type="text" class="form-control" formControlName="groupAuthId">
+          <option *ngFor="let gAuth of groupAuthentication" value="{{gAuth.id}}">{{gAuth.name}}</option>
+        </select>
+      </div>
+    </div>
+
+  </form>
+</div>
+<div class="modal-footer">
+  <img *ngIf="loading" class="pl-2" src="/assets/images/wait.gif" />
+  <button type="button" class="btn btn-outline-success"
+    (click)="onSubmit()">{{'Users.BtnEdit'| translate}}</button>
+  <button type="button" class="btn btn-outline-danger" (click)="close()">{{'Users.BtnClose'| translate}}</button>
+</div>
