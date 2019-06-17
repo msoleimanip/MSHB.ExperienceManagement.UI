@@ -3,6 +3,7 @@ import { EditUserFormModel } from './../dataModels/apiModels/editUserFormModel';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { SearchUserFormModel } from '../dataModels/apiModels/searchUserFormModel';
 
 @Injectable()
 
@@ -11,8 +12,8 @@ export class UsersService {
   constructor(private http: HttpClient) {
   }
 
-  getUsers(): Observable<any> {
-    return this.http.get('/api/Account/GetUsers');
+  getUsers(searchUserForm: SearchUserFormModel): Observable<any> {
+    return this.http.post('/api/Account/GetUsers', searchUserForm);
   }
 
   getUserById(userId: string): Observable<any> {

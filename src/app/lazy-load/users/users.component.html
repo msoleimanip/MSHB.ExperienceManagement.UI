@@ -1,16 +1,61 @@
 <div class="container" style="margin-top: 50px;">
   <div class="panel panel-success">
     <div class="panel-heading">
-      <h4>{{ 'Users.Title' | translate }}</h4>
+      <label>{{ 'Users.Title' | translate }}</label>
+      <button type="button" class="btn btn-primary btn-Create" data-toggle="collapse" data-target="#searchPanel"
+        aria-expanded="false">{{ 'Users.Search' | translate }}</button>
     </div>
     <div class="panel-body">
 
-      <div class="panel panel-info">
+      <div class="panel panel-info collapse" id="searchPanel">
         <div class="panel-heading">
           <label>{{ 'Users.Search' | translate }}</label>
         </div>
         <div class="panel-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-md-3">{{ 'Users.FirstName' | translate }}</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" [(ngModel)]="searchModel.firstName" />
+                </div>
+              </div>
 
+              <div class="form-group row">
+                <label class="col-md-3">{{ 'Users.LastName' | translate }}</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" [(ngModel)]="searchModel.lastName" />
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-md-3">{{ 'Users.Username' | translate }}</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" [(ngModel)]="searchModel.username" />
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3">{{ 'Users.IsActive' | translate }}</label>
+                <div class="col-md-9">
+                  <select class="form-control" [(ngModel)]="searchModel.isActive">
+                    <option value="">انتخاب کنید</option>
+                    <option value="{{true}}">فعال</option>
+                    <option value="{{false}}">غیرفعال</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+        <div class="panel-footer">
+          <button type="button" class="btn btn-success" (click)="loadUsers()">جستــجو</button>
+          <img *ngIf="loading" class="pl-2" src="/assets/images/wait.gif" />
         </div>
       </div>
 
@@ -18,7 +63,8 @@
       <div class="panel panel-primary">
         <div class="panel-heading">
           <label>{{ 'Users.UsersList' | translate }}</label>
-          <button type="button" class="btn btn-success btn-Create" (click)="create()" >{{ 'Users.CreateNewUser' | translate }}</button>
+          <button type="button" class="btn btn-success btn-Create"
+            (click)="create()">{{ 'Users.CreateNewUser' | translate }}</button>
         </div>
         <div class="panel-body">
           <table class="table table-hover table-bordered">
@@ -38,19 +84,30 @@
                 <td>{{item.lastName}}</td>
                 <td>{{item.username}}</td>
                 <td>
-                    <button type="button" class="btn btn-sm btn-warning" [title]="'Users.BtnChangePermissionTitle'| translate" (click)="changePermission(item.id)"><i class="fa fa-eye"></i></button>&nbsp;
-                    <button type="button" class="btn btn-sm btn-success" [title]="'Users.BtnActiveTitle'| translate"><i class="fa" [ngClass]=" {'fa-unlock': !item.isActive, 'fa-lock': item.isActive}"></i></button>&nbsp;
-                    <button type="button" class="btn btn-sm btn-primary" [title]="'Users.BtnEditTitle'| translate" (click)="edit(item.id)"><i class="fa fa-pencil"></i></button>&nbsp;
+                  <button type="button" class="btn btn-sm btn-warning"
+                    [title]="'Users.BtnChangePermissionTitle'| translate" (click)="changePermission(item.id)"><i
+                      class="fa fa-eye"></i></button>&nbsp;
+                  <button type="button" class="btn btn-sm btn-success" [title]="'Users.BtnActiveTitle'| translate"><i
+                      class="fa"
+                      [ngClass]=" {'fa-unlock': !item.isActive, 'fa-lock': item.isActive}"></i></button>&nbsp;
+                  <button type="button" class="btn btn-sm btn-primary" [title]="'Users.BtnEditTitle'| translate"
+                    (click)="edit(item.id)"><i class="fa fa-pencil"></i></button>&nbsp;
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
+        <div class="panel-footer">
+          <ngb-pagination [collectionSize]="70" [(page)]="searchModel.pageIndex" (pageChange)="loadUsers()"
+            [maxSize]="5" [boundaryLinks]="true">
+          </ngb-pagination>
+        </div>
       </div>
 
     </div>
-
+    <!--
     <div class="panel-footer">
-    </div>
+
+    </div> -->
   </div>
 </div>

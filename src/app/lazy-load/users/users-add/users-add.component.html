@@ -57,7 +57,7 @@
     <div class="form-group row has-error">
       <label for="isActive" class="col-sm-2 col-form-label">{{'Users.IsActive'| translate}}</label>
       <div class="col-sm-10">
-        <select id="isActive" type="text" class="form-control" formControlName="isActive"
+        <select id="isActive" class="form-control" formControlName="isActive"
           (change)="isActiveSelect = !isActiveSelect;"
           [ngClass]="{'border-success':isActiveSelect, 'border-danger': !isActiveSelect}">
           <option value="{{true}}">فعال</option>

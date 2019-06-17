@@ -9,6 +9,7 @@ import { UsersService } from 'src/app/core/users.service';
 import { ServerResponseViewModel } from 'src/app/dataModels/viewModels/serverResponseViewModel';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { SearchUserFormModel } from 'src/app/dataModels/apiModels/searchUserFormModel';
 
 
 @Component({
@@ -19,7 +20,9 @@ import { ToastrService } from 'ngx-toastr';
 
 export class UsersComponent implements OnInit, OnDestroy {
 
+  searchModel = new SearchUserFormModel();
   users: Array<UserViewModel>;
+  loading = false;
 
   constructor(public translate: TranslateService,
     private usersService: UsersService,
@@ -32,14 +35,22 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.usersService.getUsers().subscribe((res: ServerResponseViewModel<Array<UserViewModel>>) => {
-      this.users = res.data;
-    });
+    this.loadUsers();
   }
 
   ngOnDestroy(): void {
     this.config.backdrop = true;
     this.config.keyboard = true;
+  }
+
+  loadUsers() {
+    this.loading = true;
+    this.usersService.getUsers(this.searchModel).subscribe((res: ServerResponseViewModel<Array<UserViewModel>>) => {
+      this.users = res.data;
+      this.loading = false;
+    }, err => {
+      this.loading = false;
+    });
   }
 
   changePermission(userId: string) {

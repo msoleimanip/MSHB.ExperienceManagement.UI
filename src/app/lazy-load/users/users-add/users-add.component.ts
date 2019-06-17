@@ -27,11 +27,11 @@ export class UsersAddComponent implements OnInit {
 
 
   constructor(public activeModal: NgbActiveModal,
-    private formBuilder: FormBuilder,
-    private usersService: UsersService,
-    private toastr: ToastrService,
-    public translate: TranslateService,
-    private groupAuthenticationService: GroupAuthenticationService) {
+              private formBuilder: FormBuilder,
+              private usersService: UsersService,
+              private toastr: ToastrService,
+              public translate: TranslateService,
+              private groupAuthenticationService: GroupAuthenticationService) {
     translate.setDefaultLang(environment.language);
     this.addUserModel.isActive = false;
   }
