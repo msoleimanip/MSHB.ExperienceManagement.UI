@@ -9,5 +9,4 @@ export class AddUserFormModel {
   isActive: boolean;
   isPresident?: number;
   groupAuthId: number;
-  organizationId: number;
 }

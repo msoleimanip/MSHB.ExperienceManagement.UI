@@ -1,3 +1,4 @@
+import { NgbdSortableHeader } from './../_directives/sortable.directive';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { NgModule } from '@angular/core';
 import { TreeviewComponent } from './treeview/treeview.component';
@@ -13,12 +14,14 @@ import { TranslateModule } from '@ngx-translate/core';
   declarations: [
     TreeviewComponent,
     AccessDeniedComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    NgbdSortableHeader
   ],
   exports: [
     TreeviewComponent,
     AccessDeniedComponent,
-    NotFoundComponent]
+    NotFoundComponent,
+    NgbdSortableHeader]
 })
 
 export class SharedModule { }

@@ -51,7 +51,7 @@ constructor( public translate: TranslateService) {
         core: {
           multiple: true,
           check_callback: true,
-          expand_selected_onload: false,
+          expand_selected_onload: true,
           data: items
         },
       });

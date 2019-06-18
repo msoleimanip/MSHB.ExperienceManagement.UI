@@ -6,4 +6,5 @@ export class User {
   isAdmin: boolean;
   role: Array<string>;
   token?: string;
+  fullName: string;
 }

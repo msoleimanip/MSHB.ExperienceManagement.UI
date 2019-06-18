@@ -39,12 +39,14 @@ export class UsersAddComponent implements OnInit {
   ngOnInit(): void {
     this.addForm = this.formBuilder.group({
       username: ['', Validators.required],
+      password: ['', Validators.required],
       firstName: [''],
       lastName: [''],
       description: [''],
       location: [''],
       isActive: [this.addUserModel.isActive],
-      groupAuthId: ['']
+      phoneNumber: [''],
+      groupAuthId: ['', Validators.required]
     });
 
     this.groupAuthenticationService.getGroupAuthentication()
@@ -64,12 +66,19 @@ export class UsersAddComponent implements OnInit {
       return;
     }
 
-    // this.organization.organizationName = this.createForm.get('organizationName').value;
-    // this.organization.description = this.createForm.get('description').value;
+    this.addUserModel.username = this.addForm.get('username').value;
+    this.addUserModel.password = this.addForm.get('password').value;
+    this.addUserModel.firstName = this.addForm.get('firstName').value;
+    this.addUserModel.lastName = this.addForm.get('lastName').value;
+    this.addUserModel.description = this.addForm.get('description').value;
+    this.addUserModel.location = this.addForm.get('location').value;
+    this.addUserModel.isActive = this.addForm.get('isActive').value;
+    this.addUserModel.phoneNumber = this.addForm.get('phoneNumber').value;
+    this.addUserModel.groupAuthId = this.addForm.get('groupAuthId').value;
 
     this.usersService.addUser(this.addUserModel).subscribe(res => {
       if (res.data) {
-        this.toastr.success(this.translate.instant('Organization.AddSuccessfully'), res.data);
+        this.toastr.success(this.translate.instant('Users.AddSuccessfully'), res.data);
         this.submitted = false;
         this.loading = false;
       }

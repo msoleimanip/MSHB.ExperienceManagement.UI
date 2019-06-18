@@ -67,13 +67,13 @@
             (click)="create()">{{ 'Users.CreateNewUser' | translate }}</button>
         </div>
         <div class="panel-body">
-          <table class="table table-hover table-bordered">
+          <table class="table table-hover table-bordered table-striped">
             <thead>
               <tr>
                 <th>{{ 'Users.Row' | translate }}</th>
-                <th>{{ 'Users.FirstName' | translate }}</th>
-                <th>{{ 'Users.LastName' | translate }}</th>
-                <th>{{ 'Users.Username' | translate }}</th>
+                <th scope="col" sortable="firstname" (sort)="onSort($event)">{{ 'Users.FirstName' | translate }}</th>
+                <th scope="col" sortable="lastname" (sort)="onSort($event)">{{ 'Users.LastName' | translate }}</th>
+                <th scope="col" sortable="username" (sort)="onSort($event)">{{ 'Users.Username' | translate }}</th>
                 <th></th>
               </tr>
             </thead>
@@ -98,9 +98,20 @@
           </table>
         </div>
         <div class="panel-footer">
-          <ngb-pagination [collectionSize]="70" [(page)]="searchModel.pageIndex" (pageChange)="loadUsers()"
-            [maxSize]="5" [boundaryLinks]="true">
-          </ngb-pagination>
+          <div class="row">
+            <div class="col-md-6">
+              <ngb-pagination [collectionSize]="70" [(page)]="searchModel.pageIndex" (pageChange)="loadUsers()"
+                [maxSize]="5" [boundaryLinks]="true">
+              </ngb-pagination>
+            </div>
+            <div class="col-md-6">
+              <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="searchModel.pageSize" (change)="loadUsers()" >
+                <option [ngValue]="10">10 items per page</option>
+                <option [ngValue]="15">15 items per page</option>
+                <option [ngValue]="20">20 items per page</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
 

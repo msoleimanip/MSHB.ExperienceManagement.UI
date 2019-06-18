@@ -11,11 +11,11 @@
         <a class="nav-link" [routerLink]='["/"]'>{{ 'Menu.Home' | translate }}<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown" *ngIf="currentUser">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true"
+        <a class="nav-link dropdown-toggle" id="navbarBase" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
           {{ 'Menu.BaseInfo' | translate }}
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="currentUser">
+        <div class="dropdown-menu" aria-labelledby="navbarBase" *ngIf="currentUser">
           <a class="dropdown-item" [routerLink]='["/setting"]'>{{ 'Menu.Setting' | translate }}</a>
         </div>
       </li>
@@ -27,6 +27,17 @@
       </li>
       <li class="nav-item" *ngIf="currentUser && isAdmin">
         <a class="nav-link" [routerLink]='["/users"]'>{{ 'Menu.Users' | translate }}</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown" *ngIf="currentUser">
+        <a class="nav-link dropdown-toggle" id="navbarUser" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          {{ currentUser.fullName }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarUser" *ngIf="currentUser">
+          <a class="dropdown-item" [routerLink]='["/changePassword"]'>{{ 'Menu.ChangePassword' | translate }}</a>
+        </div>
       </li>
     </ul>
     <div class="form-inline my-2 my-lg-0">

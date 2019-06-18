@@ -33,6 +33,7 @@ export class AuthenticationService {
           user.family = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname'];
           user.id = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/userdata'];
           user.isAdmin = decoded.IsPresident === '1';
+          user.fullName = user.name + ' ' + user.family;
           user.token = res.data.access_token;
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);

@@ -8,7 +8,8 @@
     "Logout": "خروج",
     "Login": "ورود",
     "Equipment": "مدیریت تجهیـزات",
-    "Users": "مدیریت کاربران"
+    "Users": "مدیریت کاربران",
+    "ChangePassword": "تغییر کلمه عبور"
   },
   "Login": {
     "Username": "نام کاربری",
@@ -65,8 +66,10 @@
     "FirstName": "نام",
     "LastName": "نام خانوادگی",
     "Username": "نام کاربری",
+    "Password": "رمز عبور",
     "Description": "توضیحات",
     "IsActive":"وضعیت کاربر",
+    "PhoneNumber":"شماره تماس",
     "Location": "استان",
     "GroupAuthId":"گروه دسترسی",
     "OrgPermissionTitle": "صفحه تغییر دسترسی رده ای",
@@ -76,6 +79,8 @@
     "OrgazinationList": "نمودار تمامی رده ها ",
     "TreeTitle": "رده ها",
     "InputUsernameError": "نام کاربری می باسیتی وارد شود",
+    "InputPasswordError": "رمز عبور می باسیتی وارد شود",
+    "InputGroupAuthIdError": "گروه دسترسی می باسیتی انتخاب شود",
     "CreateNewUser": "ایجاد کاربر جدبد",
     "BtnCreate": "تایید و ایجاد",
     "BtnEdit": "تایید و ویرایش",
