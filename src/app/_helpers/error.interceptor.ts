@@ -22,11 +22,21 @@ export class ErrorInterceptor implements HttpInterceptor {
         this.toastr.error(err.statusText, err.status.toString());
         this.router.navigate(['accessDenied']);
       } else if ([501].indexOf(err.status) !== -1) {
-        this.toastr.error(err.error.errorMessage, err.error.errorCode);
+        let message = '';
+        if (err && err.error && err.error.detailErrorList) {
+          err.error.detailErrorList.forEach(element => {
+            message += element.message + '\r\n';
+          });
+        }
+        if (message !== '') {
+          this.toastr.error(message, err.error.errorCode);
+        } else {
+          this.toastr.error(err.error.errorMessage, err.error.errorCode);
+        }
       }
 
       const error = err.error.message || err.statusText;
       return throwError(error);
-    }))
+    }));
   }
 }

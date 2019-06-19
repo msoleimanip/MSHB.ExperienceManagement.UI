@@ -22,6 +22,7 @@ export class UsersAddComponent implements OnInit {
   addForm: FormGroup;
   submitted = false;
   loading = false;
+  reloadTable = false;
   isActiveSelect = false;
   groupAuthentication: Array<GroupAuthenticationViewModel>;
 
@@ -61,7 +62,7 @@ export class UsersAddComponent implements OnInit {
     this.submitted = true;
     this.loading = true;
     if (this.addForm.invalid) {
-      this.toastr.error(this.translate.instant('Organization.ModelStateError'));
+      this.toastr.error(this.translate.instant('Users.ModelStateError'));
       this.loading = false;
       return;
     }
@@ -78,9 +79,11 @@ export class UsersAddComponent implements OnInit {
 
     this.usersService.addUser(this.addUserModel).subscribe(res => {
       if (res.data) {
-        this.toastr.success(this.translate.instant('Users.AddSuccessfully'), res.data);
+        this.toastr.success(this.translate.instant('Users.AddSuccessfully'), '100');
+        this.addForm.reset();
         this.submitted = false;
         this.loading = false;
+        this.reloadTable = true;
       }
     }, err => {
       this.loading = false;
@@ -88,6 +91,6 @@ export class UsersAddComponent implements OnInit {
   }
 
   close() {
-    this.activeModal.close(true);
+    this.activeModal.close(this.reloadTable);
   }
 }

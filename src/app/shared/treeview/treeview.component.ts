@@ -20,11 +20,12 @@ export class TreeviewComponent implements OnInit, OnChanges {
   @Input() canSearch = false;
   @Output() dblClick: EventEmitter<any> = new EventEmitter();
   @Output() click: EventEmitter<any> = new EventEmitter();
+  @Output() clickByCheckbox: EventEmitter<any> = new EventEmitter();
   firstLoad = true;
 
-constructor( public translate: TranslateService) {
-   translate.setDefaultLang(environment.language);
-}
+  constructor(public translate: TranslateService) {
+    translate.setDefaultLang(environment.language);
+  }
   ngOnInit() {
   }
 
@@ -61,10 +62,12 @@ constructor( public translate: TranslateService) {
       });
 
       $('#tr' + self.id).click(function () {
-        let temp = GetNode();
-        if (temp) {
-          self.click.emit(temp);
+        if (!self.hasCheckbox) {
+          self.click.emit(GetNode());
+        } else {
+          self.clickByCheckbox.emit(GetNodeByChange());
         }
+
       });
 
       $('#tr' + self.id).dblclick(function () {
@@ -90,6 +93,22 @@ constructor( public translate: TranslateService) {
         return { id: selectedNode.id, parents: rootTitle };
       }
       return { id: 0, parents: '' };
+    }
+
+    function GetNodeByChange() {
+      let selectedNodes = $('#tr' + self.id).jstree('get_selected', true);
+      let nodes = [];
+      if (selectedNodes && selectedNodes.length > 0) {
+
+        selectedNodes.forEach(element => {
+          let temp = $('#tr' + self.id).jstree().get_node(element);
+          if (temp.children.length === 0) {
+            debugger;
+            nodes.push(element.id);
+          }
+        });
+      }
+      return nodes;
     }
   }
 

@@ -22,6 +22,7 @@ export class UsersEditComponent implements OnInit {
   editForm: FormGroup;
   submitted = false;
   loading = false;
+  reloadTable = false;
   isActiveSelect: boolean;
   groupAuthentication: Array<GroupAuthenticationViewModel>;
 
@@ -38,12 +39,14 @@ export class UsersEditComponent implements OnInit {
   ngOnInit(): void {
     this.editForm = this.formBuilder.group({
       username: [this.editUserModel.username, Validators.required],
+      password: [''],
       firstName: [this.editUserModel.firstName],
       lastName: [this.editUserModel.lastName],
       description: [this.editUserModel.description],
       location: [this.editUserModel.location],
       isActive: [this.editUserModel.isActive],
-      groupAuthId: [this.editUserModel.groupAuthId]
+      phoneNumber: [this.editUserModel.phoneNumber],
+      groupAuthId: [this.editUserModel.groupAuthId, Validators.required]
     });
 
     this.isActiveSelect = this.editUserModel.isActive;
@@ -60,19 +63,27 @@ export class UsersEditComponent implements OnInit {
     this.submitted = true;
     this.loading = true;
     if (this.editForm.invalid) {
-      this.toastr.error(this.translate.instant('Organization.ModelStateError'));
+      this.toastr.error(this.translate.instant('Users.ModelStateError'));
       this.loading = false;
       return;
     }
 
-    // this.organization.organizationName = this.createForm.get('organizationName').value;
-    // this.organization.description = this.createForm.get('description').value;
+    this.editUserModel.username = this.editForm.get('username').value;
+    this.editUserModel.firstName = this.editForm.get('firstName').value;
+    this.editUserModel.password = this.editForm.get('password').value;
+    this.editUserModel.lastName = this.editForm.get('lastName').value;
+    this.editUserModel.description = this.editForm.get('description').value;
+    this.editUserModel.location = this.editForm.get('location').value;
+    this.editUserModel.isActive = this.editForm.get('isActive').value;
+    this.editUserModel.phoneNumber = this.editForm.get('phoneNumber').value;
+    this.editUserModel.groupAuthId = this.editForm.get('groupAuthId').value;
 
     this.usersService.editUser(this.editUserModel).subscribe(res => {
       if (res.data) {
-        this.toastr.success(this.translate.instant('Organization.AddSuccessfully'), res.data);
-        this.submitted = false;
+        this.toastr.success(this.translate.instant('Users.EditSuccessfully'), '200');
         this.loading = false;
+        this.reloadTable = true;
+        this.close();
       }
     }, err => {
       this.loading = false;
@@ -80,6 +91,6 @@ export class UsersEditComponent implements OnInit {
   }
 
   close() {
-    this.activeModal.close(true);
+    this.activeModal.close(this.reloadTable);
   }
 }

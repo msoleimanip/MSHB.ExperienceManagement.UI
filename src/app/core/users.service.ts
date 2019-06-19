@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SearchUserFormModel } from '../dataModels/apiModels/searchUserFormModel';
+import { UserOrgAssignFormModel } from '../dataModels/apiModels/userOrgAssignFormModel';
+import { UserEquipmentAssignFormModel } from '../dataModels/apiModels/userEquipmentAssignFormModel';
 
 @Injectable()
 
@@ -26,5 +28,13 @@ export class UsersService {
 
   addUser(addUserModel: AddUserFormModel): Observable<any> {
     return this.http.post('/api/Account/addUser', addUserModel);
+  }
+
+  userOrganizationAssign(userOrgAssignModel: UserOrgAssignFormModel): Observable<any> {
+    return this.http.post('/api/Account/userOrganizationAssign', userOrgAssignModel);
+  }
+
+  userEquipmentAssign(userEquipmentAssignModel: UserEquipmentAssignFormModel): Observable<any> {
+    return this.http.post('/api/Account/userEquipmentAssign', userEquipmentAssignModel);
   }
 }

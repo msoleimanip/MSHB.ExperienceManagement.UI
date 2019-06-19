@@ -78,14 +78,17 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of users; let row = index">
+              <tr *ngFor="let item of users.searchUserViewModel; let row = index;">
                 <td>{{row + 1}}</td>
                 <td>{{item.firstName}}</td>
                 <td>{{item.lastName}}</td>
                 <td>{{item.username}}</td>
                 <td>
                   <button type="button" class="btn btn-sm btn-warning"
-                    [title]="'Users.BtnChangePermissionTitle'| translate" (click)="changePermission(item.id)"><i
+                    [title]="'Users.BtnChangePermissionTitle'| translate" (click)="changeOrgPermission(item.id)"><i
+                      class="fa fa-eye"></i></button>&nbsp;
+                  <button type="button" class="btn btn-sm btn-info"
+                    [title]="'Users.BtnChangePermissionTitle'| translate" (click)="changeEquiomentPermission(item.id)"><i
                       class="fa fa-eye"></i></button>&nbsp;
                   <button type="button" class="btn btn-sm btn-success" [title]="'Users.BtnActiveTitle'| translate"><i
                       class="fa"
@@ -100,12 +103,13 @@
         <div class="panel-footer">
           <div class="row">
             <div class="col-md-6">
-              <ngb-pagination [collectionSize]="70" [(page)]="searchModel.pageIndex" (pageChange)="loadUsers()"
-                [maxSize]="5" [boundaryLinks]="true">
+              <ngb-pagination [collectionSize]="users.totalCount" [(page)]="searchModel.pageIndex"
+                (pageChange)="loadUsers()" [maxSize]="5" [boundaryLinks]="true">
               </ngb-pagination>
             </div>
             <div class="col-md-6">
-              <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="searchModel.pageSize" (change)="loadUsers()" >
+              <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="searchModel.pageSize"
+                (change)="loadUsers()">
                 <option [ngValue]="10">10 items per page</option>
                 <option [ngValue]="15">15 items per page</option>
                 <option [ngValue]="20">20 items per page</option>

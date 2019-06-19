@@ -9,12 +9,14 @@ import { UserOrganizationPermissionComponent } from './users-organization-permis
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UsersEditComponent } from './users-edit/users-edit.component';
 import { UsersAddComponent } from './users-add/users-add.component';
+import { UserEquipmentPermissionComponent } from './users-equipment-permission/users-equipment-permission.component';
 
 
 @NgModule({
   declarations: [
     UsersComponent,
     UserOrganizationPermissionComponent,
+    UserEquipmentPermissionComponent,
     UsersEditComponent,
     UsersAddComponent
   ],
@@ -27,7 +29,11 @@ import { UsersAddComponent } from './users-add/users-add.component';
     FormsModule,
     SharedModule
   ],
-  entryComponents: [UserOrganizationPermissionComponent, UsersEditComponent, UsersAddComponent],
+  entryComponents: [
+    UserOrganizationPermissionComponent,
+    UsersEditComponent,
+    UsersAddComponent,
+    UserEquipmentPermissionComponent],
   exports: [],
   providers: []
 })

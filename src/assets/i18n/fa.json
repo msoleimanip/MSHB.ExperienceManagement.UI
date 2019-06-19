@@ -74,6 +74,7 @@
     "GroupAuthId":"گروه دسترسی",
     "OrgPermissionTitle": "صفحه تغییر دسترسی رده ای",
     "UserCreateTitle": "صفحه ایجاد کاربر جدید",
+    "UserEditTitle": "صفحه ویرایش اطلاعات",
     "BtnChangePermission": "تایید و ثبت تغییرات",
     "BtnClose": "انصراف",
     "OrgazinationList": "نمودار تمامی رده ها ",
@@ -86,6 +87,9 @@
     "BtnEdit": "تایید و ویرایش",
     "BtnChangePermissionTitle": "تغییر دسترسی",
     "BtnEditTitle": "ویرایش کاربر",
-    "BtnActiveTitle": "تغییر وضعیت کاربر"
+    "BtnActiveTitle": "تغییر وضعیت کاربر",
+    "AddSuccessfully": "کاربر با موفقیت اضافه شد",
+    "EditSuccessfully": "کاربر با موفقیت یرایش شد",
+    "ModelStateError": "لطفا مقادیر را به درستی وارد کنید"
   }
 }

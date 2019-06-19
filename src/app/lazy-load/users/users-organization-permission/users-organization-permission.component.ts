@@ -1,11 +1,12 @@
+import { UserOrgAssignFormModel } from './../../../dataModels/apiModels/userOrgAssignFormModel';
 import { OrganizationViewModel } from './../../../dataModels/viewModels/organizationViewModel';
 import { environment } from './../../../../environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OrganizationService } from 'src/app/core/organization.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { UsersService } from 'src/app/core/users.service';
 
 @Component({
   selector: 'app-users-organization-permission',
@@ -16,24 +17,20 @@ export class UserOrganizationPermissionComponent implements OnInit {
 
   @Input() userId: string;
   files: any[];
-  changeForm: FormGroup;
-  submitted = false;
   loading = false;
   parentOrg = new OrganizationViewModel();
 
   constructor(public activeModal: NgbActiveModal,
-    private formBuilder: FormBuilder,
-    private organizationService: OrganizationService,
-    private toastr: ToastrService   ) {
+              private organizationService: OrganizationService,
+              private usersService: UsersService,
+              private toastr: ToastrService,
+              private translate: TranslateService) {
+    translate.setDefaultLang(environment.language);
   }
 
 
   ngOnInit(): void {
-    this.changeForm = this.formBuilder.group({
-      organizationId: ['', Validators.required]
-    });
-
-    this.organizationService.getUserOrgazinationForUser(this.userId).subscribe(res =>{
+    this.organizationService.getUserOrgazinationForUser(this.userId).subscribe(res => {
       this.files = res.data;
     });
   }
@@ -45,16 +42,27 @@ export class UserOrganizationPermissionComponent implements OnInit {
     }
   }
 
-  get f() { return this.changeForm.controls; }
-
   onSubmit() {
-    // this.submitted = true;
-    // this.loading = true;
-    // if (this.createForm.invalid) {
-    //   this.toastr.error(this.translate.instant('Organization.ModelStateError'));
-    //   this.loading = false;
-    //   return;
-    // }
+    this.loading = true;
+    if (!this.parentOrg.id || !this.userId) {
+      this.toastr.error(this.translate.instant('Users.ModelStateError'));
+      this.loading = false;
+      return;
+    } else {
+      const userOrgAssignModel = new UserOrgAssignFormModel();
+      userOrgAssignModel.userId = this.userId;
+      userOrgAssignModel.organizationId = this.parentOrg.id;
+
+      this.usersService.userOrganizationAssign(userOrgAssignModel).subscribe(res => {
+        if (res.data) {
+          this.toastr.success(this.translate.instant('Users.AddSuccessfully'), '100');
+          this.loading = false;
+          this.close();
+        }
+      }, err => {
+        this.loading = false;
+      });
+    }
   }
 
   close() {

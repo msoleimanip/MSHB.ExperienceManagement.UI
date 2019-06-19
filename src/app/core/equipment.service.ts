@@ -15,6 +15,10 @@ export class EquipmentService {
     return this.http.get('/api/Equipment/GetEquipmentByUser');
   }
 
+  getEquipmentForUser(userId: string): Observable<any> {
+    return this.http.get('/api/Equipment/getUserEquipmentForUser?userId=' + userId);
+  }
+
   getEquipment(id: number): Observable<any> {
     return this.http.get('/api/Equipment/Get?id=' + id);
   }
