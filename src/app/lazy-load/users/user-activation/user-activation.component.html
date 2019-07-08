@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{'Users.UserActivationTitle'| translate}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="activationForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group row has-error">
+      <label for="isActive" class="col-sm-2 col-form-label">{{'Users.IsActive'| translate}}</label>
+      <div class="col-sm-10">
+        <select id="isActive" class="form-control" formControlName="isActive"
+          (change)="isActiveSelect = !isActiveSelect;"
+          [ngClass]="{'border-success':isActiveSelect.toString()==='true', 'border-danger': isActiveSelect.toString()==='false'}">
+          <option value="{{true}}">فعال</option>
+          <option value="{{false}}">غیرفعال</option>
+        </select>
+      </div>
+    </div>
+
+  </form>
+</div>
+<div class="modal-footer">
+  <img *ngIf="loading" class="pl-2" src="/assets/images/wait.gif" />
+  <button type="button" class="btn btn-outline-success" (click)="onSubmit()">{{'Users.BtnCreate'| translate}}</button>
+  <button type="button" class="btn btn-outline-danger" (click)="close()">{{'Users.BtnClose'| translate}}</button>
+</div>

@@ -1,6 +1,6 @@
+import { GroupAuthenticationService } from './../../../core/group-authentication.service';
 import { GroupAuthenticationViewModel } from './../../../dataModels/viewModels/groupAuthenticationViewModel';
 import { ServerResponseViewModel } from 'src/app/dataModels/viewModels/serverResponseViewModel';
-import { GroupAuthenticationService } from './../../../core/groupAuthentication.service';
 import { environment } from './../../../../environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -18,6 +18,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 export class UsersEditComponent implements OnInit {
 
+  @Input() presidentTypesSelect: any;
   @Input() editUserModel: EditUserFormModel;
   editForm: FormGroup;
   submitted = false;
@@ -46,7 +47,8 @@ export class UsersEditComponent implements OnInit {
       location: [this.editUserModel.location],
       isActive: [this.editUserModel.isActive],
       phoneNumber: [this.editUserModel.phoneNumber],
-      groupAuthId: [this.editUserModel.groupAuthId, Validators.required]
+      groupAuthId: [this.editUserModel.groupAuthId, Validators.required],
+      isPresident: [this.editUserModel.isPresident, Validators.required]
     });
 
     this.isActiveSelect = this.editUserModel.isActive;

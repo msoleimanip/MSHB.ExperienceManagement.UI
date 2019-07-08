@@ -1,3 +1,6 @@
+import { MyprofileComponent } from './../myprofile/myprofile.component';
+import { ChangePasswordFormModel } from './../dataModels/apiModels/changePasswordFormModel';
+import { PresidentType } from './../dataModels/enums/presidentType';
 import { environment } from './../../environments/environment.prod';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
@@ -18,9 +21,9 @@ export class MenuComponent implements OnInit {
   isExpanded = false;
 
   constructor(private authenticationService: AuthenticationService,
-              private router: Router,
-              private modalService: NgbModal,
-              public translate: TranslateService) {
+    private router: Router,
+    private modalService: NgbModal,
+    public translate: TranslateService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     translate.setDefaultLang(environment.language);
   }
@@ -29,17 +32,8 @@ export class MenuComponent implements OnInit {
 
   }
 
-
-  collapse() {
-    this.isExpanded = false;
-  }
-
-  toggle() {
-    this.isExpanded = !this.isExpanded;
-  }
-
   get isAdmin() {
-    return this.currentUser && this.currentUser.isAdmin;
+    return this.currentUser && this.currentUser.isPresident === PresidentType.Admin;
   }
 
   logout() {
@@ -49,6 +43,20 @@ export class MenuComponent implements OnInit {
 
   loginModal() {
     const modalRef = this.modalService.open(LoginComponent, { windowClass: '.my-modal', size: 'sm' });
+  }
+
+  changePass() {
+    const changePasswordModel = new ChangePasswordFormModel();
+    changePasswordModel.userId = this.currentUser.id;
+
+    const modalRef = this.modalService.open(MyprofileComponent, { windowClass: '.my-modal', size: 'sm' });
+    modalRef.componentInstance.changePasswordModel = changePasswordModel;
+
+    modalRef.result.then(result => {
+      if (result === true) {
+        this.authenticationService.logout();
+      }
+    });
   }
 
 }

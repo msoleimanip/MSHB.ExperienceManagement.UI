@@ -1,3 +1,4 @@
+import { PresidentType } from './dataModels/enums/presidentType';
 import { IssueModule } from './lazy-load/issue/issue.module';
 import { EquipmentModule } from './lazy-load/equipment/equipment.module';
 import { AccessDeniedComponent } from './shared/access-denied/access-denied.component';
@@ -16,38 +17,38 @@ const routes: Routes = [
   },
   {
     path: 'organization',
-    loadChildren: () => OrganizationModule,
+    loadChildren: './lazy-load/organization/organization.module#OrganizationModule',
     canActivate: [AuthGuard],
-    data: { roles: ['Admin'] }
+    data: { roles: [PresidentType.Admin] }
   },
   {
     path: 'equipment',
-    loadChildren: () => EquipmentModule,
+    loadChildren: './lazy-load/equipment/equipment.module#EquipmentModule',
     canActivate: [AuthGuard],
-    data: { roles: ['Admin'] }
+    data: { roles: [PresidentType.Admin] }
   },
   {
     path: 'users',
-    loadChildren: () => UsersModule,
+    loadChildren: './lazy-load/users/users.module#UsersModule',
     canActivate: [AuthGuard],
-    data: { roles: ['Admin'] }
+    data: { roles: [PresidentType.Admin] }
   },
   {
     path: 'issue',
-    loadChildren: () => IssueModule,
+    loadChildren: './lazy-load/issue/issue.module#IssueModule',
     canActivate: [AuthGuard],
     data: { roles: [] }
   },
   {
-    path: 'login',
-    component: LoginComponent
+    path: 'authentication',
+    loadChildren: './lazy-load/authentication/authentication.module#AuthenticationModule',
+    canActivate: [AuthGuard],
+    data: { roles: [PresidentType.Admin] }
   },
   {
-    path: 'accessDenied',
-    component: AccessDeniedComponent
+    path: 'shared',
+    loadChildren: './shared/shared.module#SharedModule',
   },
-
-  // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];
 

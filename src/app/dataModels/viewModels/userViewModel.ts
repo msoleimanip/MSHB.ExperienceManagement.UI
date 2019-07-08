@@ -1,3 +1,5 @@
+import { PresidentType } from '../enums/presidentType';
+
 export class UserViewModel {
   id: string;
   username: string;
@@ -7,7 +9,7 @@ export class UserViewModel {
   location: string;
   phoneNumber: string;
   isActive: boolean;
-  isPresident?: number;
+  isPresident?: PresidentType;
   groupAuthId?: number;
   organizationId?: number;
   userConfigurationId?: number;

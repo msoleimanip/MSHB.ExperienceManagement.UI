@@ -1,7 +1,8 @@
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { UsersEditComponent } from './users-edit/users-edit.component';
 import { EditUserFormModel } from './../../dataModels/apiModels/editUserFormModel';
 import { NgbdSortableHeader, SortEvent } from './../../_directives/sortable.directive';
 import { UsersAddComponent } from './users-add/users-add.component';
-import { UsersEditComponent } from './users-edit/users-edit.component';
 import { UserOrganizationPermissionComponent } from './users-organization-permission/users-organization-permission.component';
 import { UserViewModel } from './../../dataModels/viewModels/userViewModel';
 import { environment } from './../../../environments/environment';
@@ -9,7 +10,6 @@ import { Component, OnInit, OnDestroy, QueryList, ViewChildren } from '@angular/
 import { TranslateService } from '@ngx-translate/core';
 import { UsersService } from 'src/app/core/users.service';
 import { ServerResponseViewModel } from 'src/app/dataModels/viewModels/serverResponseViewModel';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { SearchUserFormModel } from 'src/app/dataModels/apiModels/searchUserFormModel';
 import { SearchUserViewModel } from 'src/app/dataModels/viewModels/searchUserViewModel';
@@ -73,9 +73,9 @@ export class UsersComponent implements OnInit, OnDestroy {
 
 
   edit(userId: string) {
+    debugger;
     this.usersService.getUserById(userId).subscribe((res: ServerResponseViewModel<UserViewModel>) => {
-      const modalRef = this.modalService.open(UsersEditComponent, { windowClass: '.my-modal', size: 'lg' });
-      let model = new EditUserFormModel();
+      const model = new EditUserFormModel();
       model.userId = res.data.id;
       model.description = res.data.description;
       model.firstName = res.data.firstName;
@@ -86,6 +86,7 @@ export class UsersComponent implements OnInit, OnDestroy {
       model.phoneNumber = res.data.phoneNumber;
       model.username = res.data.username;
 
+      const modalRef = this.modalService.open(UsersEditComponent, { windowClass: '.my-modal', size: 'lg' });
       modalRef.componentInstance.editUserModel = model;
 
       modalRef.result.then(result => {
@@ -97,7 +98,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   create() {
-    const modalRef =  this.modalService.open(UsersAddComponent, { windowClass: '.my-modal', size: 'lg' });
+    const modalRef = this.modalService.open(UsersAddComponent, { windowClass: '.my-modal', size: 'lg' });
     modalRef.result.then(result => {
       if (result === true) {
         this.loadUsers();

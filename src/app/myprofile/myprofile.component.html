@@ -1,0 +1,56 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{'MyProfile.ChangeTitle'| translate}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="changeForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group row">
+      <label for="currentPassword" class="col-sm-5 col-form-label">{{'MyProfile.CurrentPassword'| translate}}</label>
+      <div class="col-sm-7">
+        <input id="currentPassword" type="password" class="form-control" formControlName="currentPassword" autocomplete="off"
+          placeholder="{{'MyProfile.CurrentPassword'| translate}}">
+        <div [hidden]="(f.currentPassword.valid || f.currentPassword.untouched) && !submitted">
+          <div [hidden]="!f.currentPassword.hasError('required')" class="text-danger">
+            {{'MyProfile.InputcurrentPasswordError'| translate}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="newPassword" class="col-sm-5 col-form-label">{{'MyProfile.NewPassword'| translate}}</label>
+      <div class="col-sm-7">
+        <input id="newPassword" type="password" class="form-control" formControlName="newPassword" autocomplete="off"
+          placeholder="{{'MyProfile.NewPassword'| translate}}">
+        <div [hidden]="(f.newPassword.valid || f.newPassword.untouched) && !submitted">
+          <div [hidden]="!f.newPassword.hasError('required')" class="text-danger">
+            {{'MyProfile.InputNewPasswordError'| translate}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <label for="confirmPassword" class="col-sm-5 col-form-label">{{'MyProfile.ConfirmPassword'| translate}}</label>
+      <div class="col-sm-7">
+        <input id="confirmPassword" type="password" class="form-control" formControlName="confirmPassword" autocomplete="off"
+          placeholder="{{'MyProfile.ConfirmPassword'| translate}}">
+        <div [hidden]="(f.confirmPassword.valid || f.confirmPassword.untouched) && !submitted">
+          <div [hidden]="!f.confirmPassword.hasError('required')" class="text-danger">
+            {{'MyProfile.InputConfirmPasswordError'| translate}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
+<div class="modal-footer">
+  <img *ngIf="loading" class="pl-2" src="/assets/images/wait.gif" />
+  <button type="button" class="btn btn-outline-success" (click)="onSubmit()">{{'MyProfile.BtnChange'| translate}}</button>
+  <button type="button" class="btn btn-outline-danger" (click)="close()">{{'MyProfile.BtnClose'| translate}}</button>
+</div>

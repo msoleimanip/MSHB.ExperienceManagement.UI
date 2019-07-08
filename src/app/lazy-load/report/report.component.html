@@ -1,0 +1,45 @@
+<div class="container" style="margin-top: 50px;">
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <label>{{ 'Report.ReportTitle' | translate }}</label>
+    </div>
+    <div class="panel-body">
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <label>{{ 'Report.List' | translate }}</label>
+        </div>
+        <div class="panel-body">
+          <table class="table table-hover table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>{{ 'Report.Row' | translate }}</th>
+                <th>{{ 'Report.Title' | translate }}</th>
+                <th>{{ 'Report.CreateDate' | translate }}</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of reports; let row = index;">
+                <td>{{row + 1}}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.createDate}}</td>
+                <td>
+                  <button class="btn btn-sm btn-primary" (click)="loadDesign(item.id)">{{'Report.BtnEdit'| translate}}</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel-footer">
+
+        </div>
+      </div>
+
+    </div>
+    <!--
+    <div class="panel-footer">
+
+    </div> -->
+  </div>
+</div>

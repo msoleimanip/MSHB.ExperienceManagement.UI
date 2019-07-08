@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
+import { MyprofileComponent } from './myprofile/myprofile.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -26,6 +27,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     MenuComponent,
     LoginComponent,
+    MyprofileComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +59,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [LoginComponent]
+  entryComponents: [LoginComponent, MyprofileComponent]
 })
 export class AppModule { }

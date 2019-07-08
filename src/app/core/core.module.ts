@@ -1,17 +1,23 @@
-import { GroupAuthenticationService } from './groupAuthentication.service';
+import { GroupAuthenticationService } from 'src/app/core/group-authentication.service';
+import { OrganizationService } from 'src/app/core/organization.service';
+import { EquipmentService } from 'src/app/core/equipment.service';
+import { ReportService } from './report.service';
+import { FileService } from './upload.service';
+import { PersianDatePickerHelper } from './persianDatePickerHelper';
 import { UsersService } from './users.service';
-import { EquipmentService } from './equipment.service';
-import { OrganizationService } from './organization.service';
 import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [],
   imports: [],
   providers: [
-    OrganizationService,
-    EquipmentService,
     UsersService,
-    GroupAuthenticationService
+    GroupAuthenticationService,
+    PersianDatePickerHelper,
+    FileService,
+    ReportService,
+    EquipmentService,
+    OrganizationService
   ]
 })
 

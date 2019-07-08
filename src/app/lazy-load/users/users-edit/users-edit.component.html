@@ -21,6 +21,15 @@
     </div>
 
     <div class="form-group row">
+      <label for="password" class="col-sm-2 col-form-label">{{'Users.Password'| translate}}</label>
+      <div class="col-sm-10">
+        <input id="password" type="text" class="form-control" formControlName="password"
+          placeholder="{{'Users.Password'| translate}}">
+      </div>
+    </div>
+
+
+    <div class="form-group row">
       <label for="firstName" class="col-sm-2 col-form-label">{{'Users.FirstName'| translate}}</label>
       <div class="col-sm-10">
         <input id="firstName" type="text" class="form-control" formControlName="firstName"
@@ -66,6 +75,21 @@
       </div>
     </div>
 
+    <div class="form-group row">
+      <label for="isPresident" class="col-md-2">{{ 'Users.IsPresident' | translate }}</label>
+      <div class="col-md-10">
+        <select class="form-control" formControlName="isPresident">
+          <option value="">{{ 'Users.IsPresident' | translate }}</option>
+          <option *ngFor="let type of presidentTypesSelect" [value]="type.value">{{ type.title | translate }}
+          </option>
+        </select>
+        <div [hidden]="(f.isPresident.valid || f.isPresident.untouched) && !submitted">
+          <div [hidden]="!f.isPresident.hasError('required')" class="text-danger">
+            {{'Users.InputIsPresidentError'| translate}}
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="form-group row">
       <label for="groupAuthId" class="col-sm-2 col-form-label">{{'Users.GroupAuthId'| translate}}</label>
@@ -80,7 +104,6 @@
 </div>
 <div class="modal-footer">
   <img *ngIf="loading" class="pl-2" src="/assets/images/wait.gif" />
-  <button type="button" class="btn btn-outline-success"
-    (click)="onSubmit()">{{'Users.BtnEdit'| translate}}</button>
-  <button type="button" class="btn btn-outline-danger" (click)="close()">{{'Users.BtnClose'| translate}}</button>
+  <button type="button" class="btn btn-outline-success" (click)="onSubmit()">{{'General.BtnEdit'| translate}}</button>
+  <button type="button" class="btn btn-outline-danger" (click)="close()">{{'General.BtnClose'| translate}}</button>
 </div>

@@ -1,3 +1,5 @@
+import { ChangePasswordFormModel } from './../dataModels/apiModels/changePasswordFormModel';
+import { ChangeActivationFormModel } from './../dataModels/apiModels/changeActivationFormModel';
 import { AddUserFormModel } from './../dataModels/apiModels/addUserFormModel';
 import { EditUserFormModel } from './../dataModels/apiModels/editUserFormModel';
 import { Injectable } from '@angular/core';
@@ -36,5 +38,13 @@ export class UsersService {
 
   userEquipmentAssign(userEquipmentAssignModel: UserEquipmentAssignFormModel): Observable<any> {
     return this.http.post('/api/Account/userEquipmentAssign', userEquipmentAssignModel);
+  }
+
+  changeActivateUser(changeActivationModel: ChangeActivationFormModel): Observable<any> {
+    return this.http.post('/api/Account/changeActivateUser', changeActivationModel);
+  }
+
+  changePassword(changePasswordModel: ChangePasswordFormModel): Observable<any>{
+    return this.http.post('/api/Account/changePassword', changePasswordModel);
   }
 }

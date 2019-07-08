@@ -1,4 +1,18 @@
 {
+  "General": {
+    "Active": "فعال",
+    "DeActive": "غیرفعال",
+    "SelectItems": "انتخاب کنید",
+    "ModelStateError": "لطفا مقادیر را به درستی وارد کنید",
+    "TreeNotSelectedError": "اقامتگاه میبایستی انتخاب شده باشد.",
+    "TreeHasChildError": "اقامتگاه انتخاب شده نبایستی زیرشاخه داشته باشد.",
+    "TreeSelectCaption": "اقامتگاه انتخاب شده",
+    "GenderType": "جنسیت",
+    "InputGenderTypeError": "جنسیت میبایستی انتخاب شود.",
+    "BtnClose": "انصراف",
+    "BtnCreate": "تایید و ایجاد",
+    "BtnEdit": "تایید و ویرایش"
+  },
   "Menu": {
     "SiteTitle": "MSHB",
     "Home": "داشبورد",
@@ -11,7 +25,8 @@
     "Users": "مدیریت کاربران",
     "ChangePassword": "تغییر کلمه عبور",
     "CurrentOperations": "عملیات جاری",
-    "IssueManagement":"مدیریت مسائل"
+    "IssueManagement": "مدیریت مسائل",
+    "Authentication": "مدیریت دسترسی ها"
   },
   "Login": {
     "Username": "نام کاربری",
@@ -70,10 +85,10 @@
     "Username": "نام کاربری",
     "Password": "رمز عبور",
     "Description": "توضیحات",
-    "IsActive":"وضعیت کاربر",
-    "PhoneNumber":"شماره تماس",
+    "IsActive": "وضعیت کاربر",
+    "PhoneNumber": "شماره تماس",
     "Location": "استان",
-    "GroupAuthId":"گروه دسترسی",
+    "GroupAuthId": "گروه دسترسی",
     "OrgPermissionTitle": "صفحه تغییر دسترسی رده ای",
     "UserCreateTitle": "صفحه ایجاد کاربر جدید",
     "UserEditTitle": "صفحه ویرایش اطلاعات",
@@ -93,5 +108,22 @@
     "AddSuccessfully": "کاربر با موفقیت اضافه شد",
     "EditSuccessfully": "کاربر با موفقیت یرایش شد",
     "ModelStateError": "لطفا مقادیر را به درستی وارد کنید"
+  },
+  "Authentication": {
+    "Title": "مدیریت گروه ها",
+    "AddTitle": "ایجاد گروه جدید",
+    "EditTitle": "ویرایش اطلاعات گروه",
+    "GroupList": "لیست گروه ها",
+    "CreateNewGroup": "گروه جدید",
+    "Row": "ردیف",
+    "Name": "نام گروه",
+    "Description": "جزییات",
+    "BtnEditTitle": "ویرایش گروه",
+    "InputNameError": "نام گروه میبایستی وارد شود.",
+    "RoleIds": "دسترسی ها",
+    "InputRoleIdsError": "میبایستی از شناسه ها انتخاب گردد.",
+    "UnSelectAllText": "عدم انتخاب همه",
+    "SelectAllText": "انتخاب همه",
+    "AddSuccessfully": "گروه با موفقیت اضافه شد"
   }
 }

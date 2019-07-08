@@ -18,9 +18,11 @@ export class TreeviewComponent implements OnInit, OnChanges {
   @Input() items: any[];
   @Input() hasCheckbox = false;
   @Input() canSearch = false;
+  @Input() selectItem: string;
   @Output() dblClick: EventEmitter<any> = new EventEmitter();
   @Output() click: EventEmitter<any> = new EventEmitter();
   @Output() clickByCheckbox: EventEmitter<any> = new EventEmitter();
+  @Output() loaded: EventEmitter<any> = new EventEmitter();
   firstLoad = true;
 
   constructor(public translate: TranslateService) {
@@ -30,6 +32,13 @@ export class TreeviewComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+
+    if (changes.selectItem) {
+      if (!this.firstLoad) {
+        $('#tr' + this.id).jstree(true).select_node(changes.selectItem.currentValue);
+      }
+    }
+
     const self = this;
     if (changes.items !== undefined && changes.items.currentValue !== undefined) {
       this.createTree(self, changes.items.currentValue);
@@ -37,7 +46,6 @@ export class TreeviewComponent implements OnInit, OnChanges {
   }
 
   createTree(self: any, items: any) {
-
     if (!this.firstLoad) {
       $('#tr' + self.id).jstree(true).settings.core.data = items;
       $('#tr' + self.id).jstree(true).refresh();
@@ -57,6 +65,10 @@ export class TreeviewComponent implements OnInit, OnChanges {
         },
       });
 
+      $('#tr' + self.id).bind('loaded.jstree', function (event, data) {
+        self.loaded.emit();
+      });
+
       $('#txtSearchTree' + self.id).keyup(function () {
         $('#tr' + self.id).jstree(true).search($('#txtSearchTree' + self.id).val());
       });
@@ -65,7 +77,7 @@ export class TreeviewComponent implements OnInit, OnChanges {
         if (!self.hasCheckbox) {
           self.click.emit(GetNode());
         } else {
-          self.clickByCheckbox.emit(GetNodeByChange());
+          self.clickByCheckbox.emit(GetNodeByHasChange());
         }
 
       });
@@ -84,18 +96,19 @@ export class TreeviewComponent implements OnInit, OnChanges {
       let selectedNode = $('#tr' + self.id).jstree('get_selected', true)[0];
       if (selectedNode) {
         let rootTitle = selectedNode.text;
+        let hasChild = selectedNode.children.length === 0 ? false : true;
 
         selectedNode.parents.forEach(element => {
           if (element !== '#') {
             rootTitle += ' / ' + $('#tr' + self.id).jstree(true).get_node(element).text;
           }
         });
-        return { id: selectedNode.id, parents: rootTitle };
+        return { id: selectedNode.id, parents: rootTitle, hasChild };
       }
       return { id: 0, parents: '' };
     }
 
-    function GetNodeByChange() {
+    function GetNodeByHasChange() {
       let selectedNodes = $('#tr' + self.id).jstree('get_selected', true);
       let nodes = [];
       if (selectedNodes && selectedNodes.length > 0) {
@@ -103,6 +116,7 @@ export class TreeviewComponent implements OnInit, OnChanges {
         selectedNodes.forEach(element => {
           let temp = $('#tr' + self.id).jstree().get_node(element);
           if (temp.children.length === 0) {
+            debugger;
             nodes.push(element.id);
           }
         });
