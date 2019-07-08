@@ -106,7 +106,9 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   onSort({ column, direction }: SortEvent) {
-    console.log(column + ' | ' + direction);
+    this.searchModel.sortModel.sort = direction;
+    this.searchModel.sortModel.col = column;
+    this.loadUsers();
   }
 }
 

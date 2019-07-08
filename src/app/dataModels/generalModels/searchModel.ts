@@ -1,7 +1,7 @@
 import { SortModel } from './sortModel';
 
 export class SearchModel {
-  sortModel: SortModel;
+  sortModel = new SortModel();
   pageIndex = 1;
   pageSize = 10;
 }

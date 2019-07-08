@@ -103,7 +103,6 @@ export class TreeviewComponent implements OnInit, OnChanges {
         selectedNodes.forEach(element => {
           let temp = $('#tr' + self.id).jstree().get_node(element);
           if (temp.children.length === 0) {
-            debugger;
             nodes.push(element.id);
           }
         });

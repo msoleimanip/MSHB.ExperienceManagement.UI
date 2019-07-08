@@ -9,7 +9,9 @@
     "Login": "ورود",
     "Equipment": "مدیریت تجهیـزات",
     "Users": "مدیریت کاربران",
-    "ChangePassword": "تغییر کلمه عبور"
+    "ChangePassword": "تغییر کلمه عبور",
+    "CurrentOperations": "عملیات جاری",
+    "IssueManagement":"مدیریت مسائل"
   },
   "Login": {
     "Username": "نام کاربری",
