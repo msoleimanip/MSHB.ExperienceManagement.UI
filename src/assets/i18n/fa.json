@@ -12,7 +12,7 @@
     "BtnClose": "انصراف",
     "BtnCreate": "تایید و ایجاد",
     "BtnEdit": "تایید و ویرایش",
-    "SelectedCount":"تعداد موارد انتخابی"
+    "SelectedCount": "تعداد موارد انتخابی"
   },
   "IssueType": {
     "Question": "سوال",
@@ -134,10 +134,11 @@
     "AddSuccessfully": "گروه با موفقیت اضافه شد"
   },
   "Issue": {
-    "Title":"عنوان",
+    "Title": "عنوان",
     "SelectRoomType": "نوع مسئله",
     "isActive": "وضعیت",
     "AddNew": "ایجاد مسئله جدید",
-    "Equipments": "تجهیزات"
+    "Equipments": "تجهیزات",
+    "IssueSubjecs": "عناوین"
   }
 }

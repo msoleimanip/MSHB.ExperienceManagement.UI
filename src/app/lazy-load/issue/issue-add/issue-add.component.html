@@ -1,0 +1,55 @@
+<hr>
+<div class="card">
+  <div class="card-header">
+    <h3>Non linear stepper</h3>
+  </div>
+  <div class="card-body">
+    <div id="issueStepper" class="bs-stepper">
+      <div class="bs-stepper-header">
+        <div class="step" data-target="#IssueSubjecs">
+          <button class="step-trigger">
+            <span class="bs-stepper-circle">1</span>
+            <span class="bs-stepper-label">{{'Issue.IssueSubjecs'| translate}}</span>
+          </button>
+        </div>
+        <div class="line"></div>
+        <div class="step" data-target="#test-l-2">
+          <button class="step-trigger">
+            <span class="bs-stepper-circle">2</span>
+            <span class="bs-stepper-label">Password</span>
+          </button>
+        </div>
+        <div class="line"></div>
+        <div class="step" data-target="#test-l-3">
+          <button class="step-trigger">
+            <span class="bs-stepper-circle">3</span>
+            <span class="bs-stepper-label">Validate</span>
+          </button>
+        </div>
+      </div>
+      <div class="bs-stepper-content">
+        <div>
+          <form id="IssueSubjecs" class="content">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" />
+            </div>
+            <button (click)="next()" class="btn btn-primary">Next</button>
+          </form>
+          <form id="test-l-2" class="content">
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+            </div>
+            <button (click)="next()" class="btn btn-primary">Next</button>
+          </form>
+          <div id="test-l-3" class="content text-center">
+            <button type="submit" class="btn btn-primary mt-5">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

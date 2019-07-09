@@ -6,9 +6,13 @@ import { IssueComponent } from './issue.component';
 import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { IssueAddComponent } from './issue-add/issue-add.component';
 
 @NgModule({
-  declarations: [IssueComponent],
+  declarations: [
+    IssueComponent,
+    IssueAddComponent
+  ],
   imports: [
     CommonModule,
     IssueRoutingModule,
@@ -17,6 +21,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ReactiveFormsModule,
     FormsModule,
     SharedModule
+  ],
+  entryComponents: [
   ]
 })
 export class IssueModule { }

@@ -1,3 +1,4 @@
+import { AddIssueFormModel } from './../dataModels/apiModels/addIssueFormModel';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -12,5 +13,9 @@ export class IssueService {
 
   getIssuesForUser(searchIssueModel: SearchIssueFormModel): Observable<any> {
     return this.http.post('api/Issue/getIssuesForUser', searchIssueModel);
+  }
+
+  addIssue(addIssueModel: AddIssueFormModel): Observable<any> {
+    return this.http.post('api/Issue/addIssue', addIssueModel);
   }
 }

@@ -1,4 +1,5 @@
-import { NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { IssueAddComponent } from './issue-add/issue-add.component';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticationService } from './../../core/authentication.service';
 import { ServerResponseViewModel } from 'src/app/dataModels/viewModels/serverResponseViewModel';
 import { IssueService } from './../../core/issue.service';
@@ -28,7 +29,8 @@ export class IssueComponent implements OnInit, OnDestroy {
   issues: SearchIssueViewModel;
   currentUser: User;
 
-  constructor(private issueService: IssueService,
+  constructor(private modalService: NgbModal,
+              private issueService: IssueService,
               private equipmentService: EquipmentService,
               private authenticationService: AuthenticationService,
               public translate: TranslateService,
@@ -60,8 +62,6 @@ export class IssueComponent implements OnInit, OnDestroy {
   }
 
   loadIssue() {
-
-    debugger;
     if (!this.selectedIds || this.selectedIds.length === 0) {
       this.toastr.error(this.translate.instant('General.TreeNotSelectedError'));
       return;
@@ -79,11 +79,6 @@ export class IssueComponent implements OnInit, OnDestroy {
       this.loading = false;
     });
   }
-
-  add() {
-
-  }
-
 }
 
 

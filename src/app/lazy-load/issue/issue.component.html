@@ -1,7 +1,7 @@
 <div class="form-group" style="margin-top: 2px;">
   <div class="card">
     <div class="card-body">
-      <button class="btn btn-success pull-left" (click)="add()">{{'Issue.AddNew' |translate}}</button>
+      <a class="btn btn-success pull-left" [routerLink]="['add']" routerLinkActive="router-link-active"  >{{'Issue.AddNew' |translate}}</a>
     </div>
   </div>
 </div>
