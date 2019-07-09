@@ -1,143 +1,166 @@
-<!-- <hr>
-<div class="panel panel-default">
-  <div class="panel-heading">
-
+<div class="form-group" style="margin-top: 2px;">
+  <div class="card">
+    <div class="card-body">
+      <button class="btn btn-success pull-left" (click)="add()">{{'Issue.AddNew' |translate}}</button>
+    </div>
   </div>
-  <div class="panel-body">
+</div>
 
-  </div>
-  <div class="panel-footer">
+<div class="row" style="margin-top: 15px;">
 
-  </div>
-</div> -->
+  <div class="col-md-4">
 
-<hr>
-<div class="container" style="margin-top: 30px;">
-
-  <div>
-    <div class="col-xs-12 available-columns inner-available trans-fade-in">
-      <div class="available-columns__overlay"></div>
-      <div>
-        <div class="available-columns__overlay"></div>
-        <div class="available-columns__type inline-block">
-          سیستمی
+    <!-- Begin Tree -->
+    <div class="card">
+      <div class="card-body">
+        <div class="card-heading">
+          {{ 'Equipment.Title' | translate }}
         </div>
-        <div class="available-columns__info col-md-9 col-sm-9">
-          <div class="row">
-            <div class="available-columns__airlines inline-block col-sm-3 col-xs-5 col-md-3 col-lg-2">
-              <div class="airlines-columns">
-                <img src="https://cdn.alibaba.ir/static/img/airlines/Domestic/EP.png" alt="آسمان" class="img-circle">
-                <span>آسمان</span>
+        <div class="form-group">
+        </div>
+        <div class="panel-body">
+          <app-treeview [canSearch]="true" [hasCheckbox]="true" [titleLabel]="'Issue.Equipments' | translate"
+            [items]="files" [id]="'equipment'" (clickByCheckbox)="treeClick($event)">
+          </app-treeview>
+        </div>
+        <div class="card-footer">
+          <label class="text-success">{{'General.SelectedCount'| translate}}</label>: <label
+            class="text-success">{{selectedIds.length}}</label>
+        </div>
+      </div>
+      <!-- End Tree -->
+      <hr>
+
+      <!-- begin search Panel -->
+      <div class="card">
+        <div class="card-body">
+          <div class="form-group">
+
+            <div class="form-group row">
+              <label class="col-md-3">{{ 'Issue.Title' | translate }}</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" [(ngModel)]="searchModel.title" />
               </div>
             </div>
-            <div class="available-columns__destination col-sm-9 col-xs-7 col-md-9 col-lg-10">
-              <div class="row">
-                <div class="destination-aircraft col-md-5 col-sm-6"><span>
-                    Fokker 100 -
-                  </span> <span>
-                    اکونومی
-                  </span></div>
-                <!---->
-                <div class="available-pin"><i class="icon icon-location"></i></div>
-              </div>
-              <div class="destination-map row">
-                <div class="destination-map__from col-xs-4 col-sm-5 col-md-4 "><strong class="from">شیراز</strong>
-                  <strong class="time">
-                    05:00
-                  </strong></div>
-                <div class="destination-map__airicon col-xs-4 col-sm-2 col-md-4"><span
-                    class="airline-time hidden-xs hidden-sm">سه‌شنبه 4 تیر</span> <i class="fa fa-plane w-normal"></i>
-                  <!---->
-                </div>
-                <div class="destination-map__to pull-left col-xs-4 col-sm-5 col-md-4 text-center"><strong
-                    class="to">تهران</strong> <strong class="time">
-                    06:25
-                  </strong></div>
+
+            <div class="form-group row">
+              <label class="col-md-3">{{ 'General.IssueType' | translate }}</label>
+              <div class="col-md-9">
+                <select class="form-control" [(ngModel)]="searchModel.issueType">
+                  <option value="">{{ 'General.SelectItems' | translate }}</option>
+                  <option *ngFor="let type of issueTypesSelect" [value]="type.value">{{ type.title | translate }}
+                  </option>
+                </select>
               </div>
             </div>
+
+            <div class="form-group row">
+              <label class="col-md-3">{{ 'Issue.isActive' | translate }}</label>
+              <div class="col-md-9">
+                <select class="form-control" [(ngModel)]="searchModel.isActive">
+                  <option value="">{{ 'General.SelectItems' | translate }}</option>
+                  <option value="{{true}}">فعال</option>
+                  <option value="{{false}}">غیرفعال</option>
+                </select>
+              </div>
+            </div>
+
           </div>
-          <div role="tablist" class="panel-group airlines-details hidden-xs">
-            <div class="panel panel-default">
-              <div class="panel-collapse collapse" id="collapseExample">
-                <div class="alibaba-tab">
-                  <ul>
-                    <li class="active">
-                      <!----> <span>اطلاعات پرواز</span>
-                      <div class="promoted-tab-indicator"></div>
-                    </li>
-                  </ul>
-                  <div class="pan-container">
-                    <div class="pan">
-                        <div class="available-detail"><div class="row"><div class="col-md-4 col-sm-4 no-padding"><div class="info-airline__flight-number">
-                            شماره پرواز: <span class="font-en">EP3768</span></div> <div class="info-airline__baggage">
-                            مقدار بار مجاز : <span>20</span> کیلوگرم
-                        </div> <!----> <div class="info-airline__class">
-                            کلاس نرخی: <span>Q</span></div></div> <div class="col-md-4 col-sm-4 no-padding"><div class="info-airline__airline">
-                            شیراز
-                        </div> <div class="info-airline__time"><span class="departing-time">05:00</span></div> <div class="info-airline__date-to">
-                            سه‌شنبه 4 تیر (25 ژوئن)
-                        </div></div> <div class="col-md-4 col-sm-4 no-padding text-left"><div class="info-airline__airline">
-                            تهران
-                        </div> <div class="info-airline__time"><div class="departing-time"><span>
-                                    06:25
-                                </span></div></div> <div class="info-airline__date-to">
-                            سه‌شنبه 4 تیر (25 ژوئن)
-                        </div></div></div></div>
-                    </div>
-                    <!---->
+
+        </div>
+        <div class="card-footer">
+          <button type="button" class="btn btn-success" (click)="loadIssue()">جستــجو</button>
+          <img *ngIf="loading" class="pl-2" src="/assets/images/wait.gif" />
+        </div>
+      </div>
+      <!-- End search Panel -->
+    </div>
+    <div class="col-md-8">
+
+      <div *ngFor="let item of issues" class="col-xs-12 available-columns inner-available trans-fade-in">
+        <div class="available-columns__overlay"></div>
+        <div>
+          <div class="available-columns__overlay"></div>
+          <div class="available-columns__type inline-block">
+            {{ issueType[item.issueType] |translate}}
+          </div>
+          <div class="available-columns__info col-md-9 col-sm-9">
+            <div class="row">
+              <div class="available-columns__airlines inline-block col-sm-3 col-xs-5 col-md-3 col-lg-2">
+                <div class="airlines-columns">
+                  <img src="/api/File/download/{{item.fileId}}" alt="{{item.roomNumber}}" class="img-circle">
+                  <span>{{item.capacity}}</span>
+                </div>
+              </div>
+              <div class="available-columns__destination col-sm-9 col-xs-7 col-md-9 col-lg-10">
+                <div class="row">
+                  <div class="destination-aircraft col-md-5 col-sm-6">
+                    <span> شماره اتاق: {{item.roomNumber}}</span>
+                    <span>
+                      <ngb-rating [rate]="item.rank">
+                        <ng-template let-fill="fill" let-index="index">
+                          <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+                        </ng-template>
+                      </ngb-rating>
+                    </span>
+                  </div>
+                  <div class="available-pin"><i class="icon icon-location"></i></div>
+                </div>
+                <div class="destination-map row">
+                  <div class="destination-map__from col-xs-4 col-sm-5 col-md-4 ">
+                    <strong class="from">{{'AccommodationRoom.DeliveryTime'| translate}}</strong>
+                    <strong class="time">
+                      {{item.deliveryTime}}
+                    </strong>
+                  </div>
+                  <div class="destination-map__airicon col-xs-4 col-sm-2 col-md-4">
+                    <span class="airline-time hidden-xs hidden-sm">فرآیند نظافت</span>
+                    <i class="glyphicon glyphicon-trash w-normal"></i>
+                  </div>
+                  <div class="destination-map__to pull-left col-xs-4 col-sm-5 col-md-4 text-center">
+                    <strong class="to">{{'AccommodationRoom.EvacuationTime'| translate}}</strong>
+                    <strong class="time">
+                      {{item.evacuationTime}}
+                    </strong>
                   </div>
                 </div>
               </div>
-              <div role="tab" class="panel-heading">
-                <div class="panel-title">
-                  <a role="button" class="collapsed" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" >
-                    <span>اطلاعات بیشتر</span>
-                    <i class="icon icon-arrow-down-16"></i>
-                  </a>
+            </div>
+            <div role="tablist" class="panel-group airlines-details hidden-xs">
+              <div class="panel panel-default">
+
+                <div role="tab" class="panel-heading">
+                  <div class="panel-title">
+                    <a role="button" (click)="showDetails()">
+                      <span>{{'AccommodationRoom.MoreInfo'| translate}}</span>&nbsp;
+                      <i class="fa fa-eye"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
+            <div class="hr dashed"></div>
           </div>
-          <div class="hr dashed"></div>
-        </div>
-        <!---->
-        <div id="available-columns__footer-0" class="available-columns__footer col-xs-12 col-md-3 col-sm-3">
-          <div class="col-xs-6 footer-pricing col-md-12 col-sm-12">
-            <span class="pricing-value">
-              <span class="w-bold">3,525,000</span>ریال</span>
-            <span class="pricing-notifier text-red hidden-sm hidden-md hidden-lg"></span>
-          </div>
-          <div class="col-xs-6 footer-price-action col-md-12 col-sm-12">
-            <button id="domestic-available0" class="btn btn-primary btn-block pull-left available-btn-action">
-              <span>انتخاب بلیط</span>
-            </button>
-            <span class="pricing-notifier col-md-12 col-sm-12 text-center block hidden-xs"></span>
-          </div>
-          <div class="pricing-detail hidden-xs text-left w-normal col-md-12 col-sm-12">
-            <div class="collapse" id="collapseExample">
-              <div class="pricing-detail__view">
-                <div class="label-view">
-                  بزرگسال <span>×2</span>
-                </div>
-                <div class="price">
-                  7,050,000 ریال
-                </div>
+          <div id="available-columns__footer-0" class="available-columns__footer col-xs-12 col-md-3 col-sm-3">
+            <div class="col-xs-6 footer-pricing col-md-12 col-sm-12">
+              <span class="pricing-value">
+                <span class="w-bold">{{item.roomPrice| number:'3.0'}}</span>ریال</span>
+              <span class="pricing-notifier text-red hidden-sm hidden-md hidden-lg"></span>
+            </div>
+            <div class="col-xs-6 footer-price-action col-md-12 col-sm-12">
+              <div class="form-group row">
+                <button class="btn btn-primary" (click)="edit(item.id)">
+                  <span class="fa fa-pencil"></span>
+                </button>
+                &nbsp;
+                <button class="btn btn-danger" (click)="delete(item.id, item.roomNumber)">
+                  <span class="fa fa-trash"></span>
+                </button>
               </div>
-              <!---->
-              <!---->
-              <div class="pricing-detail__view total-price">
-                <div class="label-view"><strong>مجموع</strong></div>
-                <div class="price text-dark"><strong>7,050,000 ریال</strong></div>
-              </div>
-              <!---->
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-xs-12">
-      <!---->
+
     </div>
   </div>
-
-</div>

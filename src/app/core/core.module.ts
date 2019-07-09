@@ -1,3 +1,4 @@
+import { IssueService } from './issue.service';
 import { GroupAuthenticationService } from 'src/app/core/group-authentication.service';
 import { OrganizationService } from 'src/app/core/organization.service';
 import { EquipmentService } from 'src/app/core/equipment.service';
@@ -17,7 +18,8 @@ import { NgModule } from '@angular/core';
     FileService,
     ReportService,
     EquipmentService,
-    OrganizationService
+    OrganizationService,
+    IssueService
   ]
 })
 

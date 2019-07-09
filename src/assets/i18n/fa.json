@@ -7,11 +7,18 @@
     "TreeNotSelectedError": "اقامتگاه میبایستی انتخاب شده باشد.",
     "TreeHasChildError": "اقامتگاه انتخاب شده نبایستی زیرشاخه داشته باشد.",
     "TreeSelectCaption": "اقامتگاه انتخاب شده",
-    "GenderType": "جنسیت",
+    "IssueType": "نوع مسئله",
     "InputGenderTypeError": "جنسیت میبایستی انتخاب شود.",
     "BtnClose": "انصراف",
     "BtnCreate": "تایید و ایجاد",
-    "BtnEdit": "تایید و ویرایش"
+    "BtnEdit": "تایید و ویرایش",
+    "SelectedCount":"تعداد موارد انتخابی"
+  },
+  "IssueType": {
+    "Question": "سوال",
+    "Help": "یاری رسانی",
+    "Maintanence": "نگهداری",
+    "Other": "انواع دیگر"
   },
   "Menu": {
     "SiteTitle": "MSHB",
@@ -125,5 +132,12 @@
     "UnSelectAllText": "عدم انتخاب همه",
     "SelectAllText": "انتخاب همه",
     "AddSuccessfully": "گروه با موفقیت اضافه شد"
+  },
+  "Issue": {
+    "Title":"عنوان",
+    "SelectRoomType": "نوع مسئله",
+    "isActive": "وضعیت",
+    "AddNew": "ایجاد مسئله جدید",
+    "Equipments": "تجهیزات"
   }
 }
