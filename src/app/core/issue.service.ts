@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SearchIssueFormModel } from '../dataModels/apiModels/searchIssueFormModel';
+import { AddIssueDetailFormModel } from '../dataModels/apiModels/addIssueDetailFormModel';
 
 @Injectable()
 
@@ -17,5 +18,9 @@ export class IssueService {
 
   addIssue(addIssueModel: AddIssueFormModel): Observable<any> {
     return this.http.post('api/Issue/addIssue', addIssueModel);
+  }
+
+  addIssueDetails(addIssueDetailModel: AddIssueDetailFormModel): Observable<any> {
+    return this.http.post('api/Issue/addIssueDetails', addIssueDetailModel);
   }
 }

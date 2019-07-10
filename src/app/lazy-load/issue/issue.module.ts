@@ -7,6 +7,8 @@ import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { IssueAddComponent } from './issue-add/issue-add.component';
+import { DropzoneModule } from 'ngx-dropzone-wrapper';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { IssueAddComponent } from './issue-add/issue-add.component';
     TranslateModule,
     ReactiveFormsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    DropzoneModule,
+    AngularEditorModule,
   ],
   entryComponents: [
   ]

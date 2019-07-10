@@ -15,10 +15,10 @@
     "SelectedCount": "تعداد موارد انتخابی"
   },
   "IssueType": {
-    "Question": "سوال",
-    "Help": "یاری رسانی",
-    "Maintanence": "نگهداری",
-    "Other": "انواع دیگر"
+    "Question": "سـوال: طرح سوال برای رفع مشکل جاری",
+    "Help": "کمک رسانی: طرح مسئله برای تزریق دانش و تجربه",
+    "Maintanence": "نگهداری: طرح مسئله برای آموزش و نگهداری ",
+    "Other": "سـایر موارد"
   },
   "Menu": {
     "SiteTitle": "MSHB",
@@ -139,6 +139,21 @@
     "isActive": "وضعیت",
     "AddNew": "ایجاد مسئله جدید",
     "Equipments": "تجهیزات",
-    "IssueSubjecs": "عناوین"
+    "IssueSubjecs": "عناوین",
+    "CreateNewIssue": "ثبت اطلاعات مسئله",
+    "Icon": "تصویر",
+    "Description": "جزئیات",
+    "Caption": "عنوان",
+    "Text": "متن",
+    "Files": "فایل ها",
+    "Details": "جزئیات مسله",
+    "Next": "مرحله بعدی",
+    "InputIssueTypeError": "نوع مسئله میبایستی انتخاب شود",
+    "InputTitleError": "عنوان مسئله میبایستی وارد شود.",
+    "InputDescriptionError": "جزییات میبایستی وارد گردد",
+    "InputImageIdError": "آیکون برای مسئله جاری بارگذاری نشده است",
+    "InputEquipmentIdsError": "از تجهزیرات مربوطه موردی انتخاب نشده است.",
+    "InputTextError": "متن میبایستی وارد شود.",
+    "InputCaptionError": "عنوان میبایستی وارد شود."
   }
 }

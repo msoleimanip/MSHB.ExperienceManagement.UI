@@ -1,26 +1,27 @@
 <hr>
 <div class="card">
   <div class="card-header">
-    <h3>Non linear stepper</h3>
+    <h3>{{'Issue.CreateNewIssue'| translate}}</h3>
   </div>
   <div class="card-body">
     <div id="issueStepper" class="bs-stepper">
       <div class="bs-stepper-header">
-        <div class="step" data-target="#IssueSubjecs">
+
+        <div class="step" data-target="#step1">
           <button class="step-trigger">
             <span class="bs-stepper-circle">1</span>
             <span class="bs-stepper-label">{{'Issue.IssueSubjecs'| translate}}</span>
           </button>
         </div>
         <div class="line"></div>
-        <div class="step" data-target="#test-l-2">
+        <div class="step" data-target="#step2">
           <button class="step-trigger">
             <span class="bs-stepper-circle">2</span>
-            <span class="bs-stepper-label">Password</span>
+            <span class="bs-stepper-label">{{'Issue.Details'| translate}}</span>
           </button>
         </div>
         <div class="line"></div>
-        <div class="step" data-target="#test-l-3">
+        <div class="step" data-target="#step3">
           <button class="step-trigger">
             <span class="bs-stepper-circle">3</span>
             <span class="bs-stepper-label">Validate</span>
@@ -29,21 +30,140 @@
       </div>
       <div class="bs-stepper-content">
         <div>
-          <form id="IssueSubjecs" class="content">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" />
+
+          <form [formGroup]="step1Form" id="step1" class="content">
+            <hr>
+            <div class="container">
+              <div class="card">
+                <div class="card-body">
+
+                  <div class="form-group">
+                    <label class="control-label" for="IssueType">{{'General.IssueType'| translate}}</label>
+                    <select class="form-control" formControlName="issueType">
+                      <option value="">{{ 'General.SelectItems' | translate }}</option>
+                      <option *ngFor="let type of issueTypesSelect" [value]="type.value">{{ type.title | translate }}
+                      </option>
+                    </select>
+                    <div [hidden]="(step1.issueType.valid || step1.issueType.untouched) && !subStepp1">
+                      <div [hidden]="!step1.issueType.hasError('required')" class="text-danger">
+                        {{'Issue.InputIssueTypeError'| translate}}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label" for="title">{{'Issue.Title'| translate}}</label>
+                    <input id="title" type="text" class="form-control" placeholder="{{'Issue.Title'| translate}}"
+                      formControlName="title" />
+                    <div [hidden]="(step1.title.valid || step1.title.untouched) && !subStepp1">
+                      <div [hidden]="!step1.title.hasError('required')" class="text-danger">
+                        {{'Issue.InputTitleError'| translate}}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-form-label">{{'Issue.Icon'| translate}}</label>
+                    <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
+                      <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+                        <dropzone class="dropzone-container" [config]="configStep1" [disabled]="false" fxLayout="row"
+                          fxLayoutAlign="start strech" fxFlex="auto" [message]="'Click or drag images here to upload'"
+                          (error)="onUploadError($event)" (success)="onUploadSuccess($event,1)"></dropzone>
+                      </div>
+                      <div [hidden]="(step1.imageId.valid || step1.imageId.untouched) && !subStepp1">
+                        <div [hidden]="!step1.imageId.hasError('required')" class="text-danger">
+                          {{'Issue.InputImageIdError'| translate}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="description" class="col-form-label">{{'Issue.Description'| translate}}</label>
+                    <angular-editor formControlName="description" [config]="editorConfig"></angular-editor>
+                    <div [hidden]="(step1.description.valid || step1.description.untouched) && !subStepp1">
+                        <div [hidden]="!step1.description.hasError('required')" class="text-danger">
+                          {{'Issue.InputDescriptionError'| translate}}
+                        </div>
+                      </div>
+                  </div>
+
+                  <div class="card">
+                    <div class="card-body">
+                      <app-treeview [canSearch]="true" [hasCheckbox]="true"
+                        [titleLabel]="'Issue.Equipments' | translate" [items]="files" [id]="'equipment'"
+                        (clickByCheckbox)="treeClick($event)">
+                      </app-treeview>
+                    </div>
+                    <div class="card-footer">
+                      <div [hidden]="(step1.equipmentIds.valid || step1.equipmentIds.untouched) && !subStepp1">
+                        <div [hidden]="!step1.equipmentIds.hasError('required')" class="text-danger">
+                          {{'Issue.InputEquipmentIdsError'| translate}}
+                        </div>
+                      </div>
+
+                      <label class="text-success">{{'General.SelectedCount'| translate}}</label>: <label
+                        class="text-success">{{selectedIds.length}}</label>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="card-footer">
+                  <button (click)="next()" class="btn btn-primary">{{'Issue.Next'| translate}}</button>
+                </div>
+              </div>
             </div>
-            <button (click)="next()" class="btn btn-primary">Next</button>
+
           </form>
-          <form id="test-l-2" class="content">
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+
+          <form [formGroup]="step2Form" id="step2" class="content">
+            <hr>
+            <div class="container">
+              <div class="card">
+                <div class="card-body">
+
+                  <div class="form-group">
+                    <label for="caption" class="control-label">{{'Issue.Caption'| translate}}</label>
+                    <input id="caption" type="text" class="form-control" placeholder="{{'Issue.Title'| translate}}"
+                      formControlName="caption" />
+                    <div [hidden]="(step2.caption.valid || step2.caption.untouched) && !subStepp2">
+                      <div [hidden]="!step2.caption.hasError('required')" class="text-danger">
+                        {{'Issue.InputCaptionError'| translate}}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-form-label">{{'Issue.Files'| translate}}</label>
+                    <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
+                      <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+                        <dropzone class="dropzone-container" [config]="configStep2" [disabled]="false" fxLayout="row"
+                          fxLayoutAlign="start strech" fxFlex="auto" [message]="'Click or drag images here to upload'"
+                          (error)="onUploadError($event)" (success)="onUploadSuccess($event,2)"></dropzone>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-form-label">{{'Issue.Text'| translate}}</label>
+                    <angular-editor formControlName="text" [config]="editorConfig"></angular-editor>
+                    <div [hidden]="(step2.text.valid || step2.text.untouched) && !subStepp2">
+                      <div [hidden]="!step2.text.hasError('required')" class="text-danger">
+                        {{'Issue.InputTextError'| translate}}
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="card-footer">
+                  <button (click)="next()" class="btn btn-primary">{{'Issue.Next'| translate}}</button>
+                </div>
+              </div>
             </div>
-            <button (click)="next()" class="btn btn-primary">Next</button>
           </form>
-          <div id="test-l-3" class="content text-center">
+
+
+          <div id="step3" class="content text-center">
             <button type="submit" class="btn btn-primary mt-5">Submit</button>
           </div>
         </div>
