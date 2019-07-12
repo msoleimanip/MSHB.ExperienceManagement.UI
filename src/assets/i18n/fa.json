@@ -154,6 +154,10 @@
     "InputImageIdError": "آیکون برای مسئله جاری بارگذاری نشده است",
     "InputEquipmentIdsError": "از تجهزیرات مربوطه موردی انتخاب نشده است.",
     "InputTextError": "متن میبایستی وارد شود.",
-    "InputCaptionError": "عنوان میبایستی وارد شود."
+    "InputCaptionError": "عنوان میبایستی وارد شود.",
+    "FinalStep": "تائید نـهایی",
+    "HasImage": "وضعیت تصویر",
+    "EquipmentCount": "تعداد تجهیز",
+    "Accept": "تائید نهایی اطلاعات"
   }
 }

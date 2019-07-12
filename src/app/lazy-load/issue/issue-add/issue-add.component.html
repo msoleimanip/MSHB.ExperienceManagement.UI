@@ -24,7 +24,7 @@
         <div class="step" data-target="#step3">
           <button class="step-trigger">
             <span class="bs-stepper-circle">3</span>
-            <span class="bs-stepper-label">Validate</span>
+            <span class="bs-stepper-label">{{'Issue.FinalStep'| translate}}</span>
           </button>
         </div>
       </div>
@@ -82,10 +82,10 @@
                     <label for="description" class="col-form-label">{{'Issue.Description'| translate}}</label>
                     <angular-editor formControlName="description" [config]="editorConfig"></angular-editor>
                     <div [hidden]="(step1.description.valid || step1.description.untouched) && !subStepp1">
-                        <div [hidden]="!step1.description.hasError('required')" class="text-danger">
-                          {{'Issue.InputDescriptionError'| translate}}
-                        </div>
+                      <div [hidden]="!step1.description.hasError('required')" class="text-danger">
+                        {{'Issue.InputDescriptionError'| translate}}
                       </div>
+                    </div>
                   </div>
 
                   <div class="card">
@@ -163,8 +163,81 @@
           </form>
 
 
-          <div id="step3" class="content text-center">
-            <button type="submit" class="btn btn-primary mt-5">Submit</button>
+          <div [formGroup]="step3Form" id="step3" class="content">
+            <hr>
+            <div class="container">
+              <div class="card">
+                <div class="card-body">
+
+                  <ngb-accordion #acc="ngbAccordion">
+                    <ngb-panel id="toggle-1" title="{{'Issue.IssueSubjecs'| translate}}">
+                      <ng-template ngbPanelContent>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="label-control col-md-3">{{'General.IssueType'| translate}}</label>
+                              <input class="form-control col-md-9" readonly
+                                [value]="issueType[step1.issueType.value] |translate" />
+                            </div>
+
+                            <div class="form-group row">
+                              <label class="label-control col-md-3">{{'Issue.Title'| translate}}</label>
+                              <input class="form-control col-md-9" readonly [value]="step1.title.value" />
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="label-control col-md-3">{{'Issue.HasImage'| translate}}</label>
+                              <input type="checkbox" class="form-control col-1" readonly
+                                [checked]="step1.imageId.value !== ''" onclick="return false;" />
+                            </div>
+
+                            <div class="form-group row">
+                              <label class="label-control col-md-3">{{'Issue.EquipmentCount'| translate}}</label>
+                              <input class="form-control col-md-9" readonly [value]="this.selectedIds.length" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <label class="label-control col-md-2">{{'Issue.Description'| translate}}</label>
+                          <div class="col-md-10" [innerHtml]="step1.description.value"></div>
+                        </div>
+                      </ng-template>
+                    </ngb-panel>
+                    <ngb-panel id="toggle-2" title="{{'Issue.Details'| translate}}">
+                      <ng-template ngbPanelContent>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="label-control col-md-3">{{'Issue.Caption'| translate}}</label>
+                              <input type="text" class="form-control col-md-9" readonly [value]="step2.caption.value" />
+                            </div>
+
+                            <div class="form-group row">
+                              <label class="label-control col-md-3">{{'Issue.FileCount'| translate}}</label>
+                              <input type="text" class="form-control col-md-9" readonly
+                                [value]="step2.uploadFiles.value.length" />
+                            </div>
+
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="label-control col-md-3">{{'Issue.Text'| translate}}</label>
+                              <div class="col-md-9" [innerHtml]="step2.text.value"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-template>
+                    </ngb-panel>
+                  </ngb-accordion>
+
+                </div>
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-success">{{'Issue.Accept'| translate}}</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

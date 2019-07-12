@@ -1,7 +1,8 @@
 <div class="form-group" style="margin-top: 2px;">
   <div class="card">
     <div class="card-body">
-      <a class="btn btn-success pull-left" [routerLink]="['add']" routerLinkActive="router-link-active"  >{{'Issue.AddNew' |translate}}</a>
+      <a class="btn btn-success pull-left" [routerLink]="['add']"
+        routerLinkActive="router-link-active">{{'Issue.AddNew' |translate}}</a>
     </div>
   </div>
 </div>
@@ -23,144 +24,145 @@
             [items]="files" [id]="'equipment'" (clickByCheckbox)="treeClick($event)">
           </app-treeview>
         </div>
-        <div class="card-footer">
-          <label class="text-success">{{'General.SelectedCount'| translate}}</label>: <label
-            class="text-success">{{selectedIds.length}}</label>
-        </div>
       </div>
-      <!-- End Tree -->
-      <hr>
-
-      <!-- begin search Panel -->
-      <div class="card">
-        <div class="card-body">
-          <div class="form-group">
-
-            <div class="form-group row">
-              <label class="col-md-3">{{ 'Issue.Title' | translate }}</label>
-              <div class="col-md-9">
-                <input type="text" class="form-control" [(ngModel)]="searchModel.title" />
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label class="col-md-3">{{ 'General.IssueType' | translate }}</label>
-              <div class="col-md-9">
-                <select class="form-control" [(ngModel)]="searchModel.issueType">
-                  <option value="">{{ 'General.SelectItems' | translate }}</option>
-                  <option *ngFor="let type of issueTypesSelect" [value]="type.value">{{ type.title | translate }}
-                  </option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label class="col-md-3">{{ 'Issue.isActive' | translate }}</label>
-              <div class="col-md-9">
-                <select class="form-control" [(ngModel)]="searchModel.isActive">
-                  <option value="">{{ 'General.SelectItems' | translate }}</option>
-                  <option value="{{true}}">فعال</option>
-                  <option value="{{false}}">غیرفعال</option>
-                </select>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-        <div class="card-footer">
-          <button type="button" class="btn btn-success" (click)="loadIssue()">جستــجو</button>
-          <img *ngIf="loading" class="pl-2" src="/assets/images/wait.gif" />
-        </div>
+      <div class="card-footer">
+        <label class="text-success">{{'General.SelectedCount'| translate}}</label>: <label
+          class="text-success">{{selectedIds.length}}</label>
       </div>
-      <!-- End search Panel -->
     </div>
-    <div class="col-md-8">
+    <!-- End Tree -->
+    <hr>
 
-      <div *ngFor="let item of issues" class="col-xs-12 available-columns inner-available trans-fade-in">
-        <div class="available-columns__overlay"></div>
-        <div>
-          <div class="available-columns__overlay"></div>
-          <div class="available-columns__type inline-block">
-            {{ issueType[item.issueType] |translate}}
-          </div>
-          <div class="available-columns__info col-md-9 col-sm-9">
-            <div class="row">
-              <div class="available-columns__airlines inline-block col-sm-3 col-xs-5 col-md-3 col-lg-2">
-                <div class="airlines-columns">
-                  <img src="/api/File/download/{{item.fileId}}" alt="{{item.roomNumber}}" class="img-circle">
-                  <span>{{item.capacity}}</span>
-                </div>
-              </div>
-              <div class="available-columns__destination col-sm-9 col-xs-7 col-md-9 col-lg-10">
-                <div class="row">
-                  <div class="destination-aircraft col-md-5 col-sm-6">
-                    <span> شماره اتاق: {{item.roomNumber}}</span>
-                    <span>
-                      <ngb-rating [rate]="item.rank">
-                        <ng-template let-fill="fill" let-index="index">
-                          <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
-                        </ng-template>
-                      </ngb-rating>
-                    </span>
-                  </div>
-                  <div class="available-pin"><i class="icon icon-location"></i></div>
-                </div>
-                <div class="destination-map row">
-                  <div class="destination-map__from col-xs-4 col-sm-5 col-md-4 ">
-                    <strong class="from">{{'AccommodationRoom.DeliveryTime'| translate}}</strong>
-                    <strong class="time">
-                      {{item.deliveryTime}}
-                    </strong>
-                  </div>
-                  <div class="destination-map__airicon col-xs-4 col-sm-2 col-md-4">
-                    <span class="airline-time hidden-xs hidden-sm">فرآیند نظافت</span>
-                    <i class="glyphicon glyphicon-trash w-normal"></i>
-                  </div>
-                  <div class="destination-map__to pull-left col-xs-4 col-sm-5 col-md-4 text-center">
-                    <strong class="to">{{'AccommodationRoom.EvacuationTime'| translate}}</strong>
-                    <strong class="time">
-                      {{item.evacuationTime}}
-                    </strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div role="tablist" class="panel-group airlines-details hidden-xs">
-              <div class="panel panel-default">
+    <!-- begin search Panel -->
+    <div class="card">
+      <div class="card-body">
+        <div class="form-group">
 
-                <div role="tab" class="panel-heading">
-                  <div class="panel-title">
-                    <a role="button" (click)="showDetails()">
-                      <span>{{'AccommodationRoom.MoreInfo'| translate}}</span>&nbsp;
-                      <i class="fa fa-eye"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="hr dashed"></div>
-          </div>
-          <div id="available-columns__footer-0" class="available-columns__footer col-xs-12 col-md-3 col-sm-3">
-            <div class="col-xs-6 footer-pricing col-md-12 col-sm-12">
-              <span class="pricing-value">
-                <span class="w-bold">{{item.roomPrice| number:'3.0'}}</span>ریال</span>
-              <span class="pricing-notifier text-red hidden-sm hidden-md hidden-lg"></span>
-            </div>
-            <div class="col-xs-6 footer-price-action col-md-12 col-sm-12">
-              <div class="form-group row">
-                <button class="btn btn-primary" (click)="edit(item.id)">
-                  <span class="fa fa-pencil"></span>
-                </button>
-                &nbsp;
-                <button class="btn btn-danger" (click)="delete(item.id, item.roomNumber)">
-                  <span class="fa fa-trash"></span>
-                </button>
-              </div>
+          <div class="form-group row">
+            <label class="col-md-3">{{ 'Issue.Title' | translate }}</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" [(ngModel)]="searchModel.title" />
             </div>
           </div>
+
+          <div class="form-group row">
+            <label class="col-md-3">{{ 'General.IssueType' | translate }}</label>
+            <div class="col-md-9">
+              <select class="form-control" [(ngModel)]="searchModel.issueType">
+                <option value="">{{ 'General.SelectItems' | translate }}</option>
+                <option *ngFor="let type of issueTypesSelect" [value]="type.value">{{ type.title | translate }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3">{{ 'Issue.isActive' | translate }}</label>
+            <div class="col-md-9">
+              <select class="form-control" [(ngModel)]="searchModel.isActive">
+                <option value="">{{ 'General.SelectItems' | translate }}</option>
+                <option value="{{true}}">فعال</option>
+                <option value="{{false}}">غیرفعال</option>
+              </select>
+            </div>
+          </div>
+
         </div>
-      </div>
 
+      </div>
+      <div class="card-footer">
+        <button type="button" class="btn btn-success" (click)="loadIssue()">جستــجو</button>
+        <img *ngIf="loading" class="pl-2" src="/assets/images/wait.gif" />
+      </div>
     </div>
+    <!-- End search Panel -->
   </div>
+  <div class="col-md-8">
+
+    <div *ngFor="let item of issues" class="col-xs-12 available-columns inner-available trans-fade-in">
+      <div class="available-columns__overlay"></div>
+      <div>
+        <div class="available-columns__overlay"></div>
+        <div class="available-columns__type inline-block">
+          {{ issueType[item.issueType] |translate}}
+        </div>
+        <div class="available-columns__info col-md-9 col-sm-9">
+          <div class="row">
+            <div class="available-columns__airlines inline-block col-sm-3 col-xs-5 col-md-3 col-lg-2">
+              <div class="airlines-columns">
+                <img src="/api/File/download/{{item.fileId}}" alt="{{item.roomNumber}}" class="img-circle">
+                <span>{{item.capacity}}</span>
+              </div>
+            </div>
+            <div class="available-columns__destination col-sm-9 col-xs-7 col-md-9 col-lg-10">
+              <div class="row">
+                <div class="destination-aircraft col-md-5 col-sm-6">
+                  <span> شماره اتاق: {{item.roomNumber}}</span>
+                  <span>
+                    <ngb-rating [rate]="item.rank">
+                      <ng-template let-fill="fill" let-index="index">
+                        <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+                      </ng-template>
+                    </ngb-rating>
+                  </span>
+                </div>
+                <div class="available-pin"><i class="icon icon-location"></i></div>
+              </div>
+              <div class="destination-map row">
+                <div class="destination-map__from col-xs-4 col-sm-5 col-md-4 ">
+                  <strong class="from">{{'AccommodationRoom.DeliveryTime'| translate}}</strong>
+                  <strong class="time">
+                    {{item.deliveryTime}}
+                  </strong>
+                </div>
+                <div class="destination-map__airicon col-xs-4 col-sm-2 col-md-4">
+                  <span class="airline-time hidden-xs hidden-sm">فرآیند نظافت</span>
+                  <i class="glyphicon glyphicon-trash w-normal"></i>
+                </div>
+                <div class="destination-map__to pull-left col-xs-4 col-sm-5 col-md-4 text-center">
+                  <strong class="to">{{'AccommodationRoom.EvacuationTime'| translate}}</strong>
+                  <strong class="time">
+                    {{item.evacuationTime}}
+                  </strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div role="tablist" class="panel-group airlines-details hidden-xs">
+            <div class="panel panel-default">
+
+              <div role="tab" class="panel-heading">
+                <div class="panel-title">
+                  <a role="button" (click)="showDetails()">
+                    <span>{{'AccommodationRoom.MoreInfo'| translate}}</span>&nbsp;
+                    <i class="fa fa-eye"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hr dashed"></div>
+        </div>
+        <div id="available-columns__footer-0" class="available-columns__footer col-xs-12 col-md-3 col-sm-3">
+          <div class="col-xs-6 footer-pricing col-md-12 col-sm-12">
+            <span class="pricing-value">
+              <span class="w-bold">{{item.roomPrice| number:'3.0'}}</span>ریال</span>
+            <span class="pricing-notifier text-red hidden-sm hidden-md hidden-lg"></span>
+          </div>
+          <div class="col-xs-6 footer-price-action col-md-12 col-sm-12">
+            <div class="form-group row">
+              <button class="btn btn-primary" (click)="edit(item.id)">
+                <span class="fa fa-pencil"></span>
+              </button>
+              &nbsp;
+              <button class="btn btn-danger" (click)="delete(item.id, item.roomNumber)">
+                <span class="fa fa-trash"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

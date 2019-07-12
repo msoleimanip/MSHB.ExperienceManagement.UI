@@ -32,6 +32,8 @@ export class IssueAddComponent implements OnInit {
 
   step1Form: FormGroup;
   step2Form: FormGroup;
+  step3Form: FormGroup;
+
   public configStep1: DropzoneConfigInterface;
   public configStep2: DropzoneConfigInterface;
   editorConfig: AngularEditorConfig = {
@@ -44,6 +46,7 @@ export class IssueAddComponent implements OnInit {
   };
   currentUser: User;
   issueTypesSelect: any;
+  issueType = IssueType;
 
   files: any[];
   selectedIds = [];
@@ -80,6 +83,9 @@ export class IssueAddComponent implements OnInit {
       caption: ['', Validators.required],
       text: ['', Validators.required],
       uploadFiles: [new Array<string>()],
+    });
+
+    this.step3Form = this.formBuilder.group({
     });
 
     this.configStep1 = {
