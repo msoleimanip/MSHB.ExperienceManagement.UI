@@ -14,6 +14,8 @@ import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { User } from 'src/app/dataModels/viewModels/user';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { IssueService } from 'src/app/core/issue.service';
+import { ActivateIssueFormModel } from 'src/app/dataModels/apiModels/activateIssueFormModel';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-issue-add',
@@ -32,7 +34,6 @@ export class IssueAddComponent implements OnInit {
 
   step1Form: FormGroup;
   step2Form: FormGroup;
-  step3Form: FormGroup;
 
   public configStep1: DropzoneConfigInterface;
   public configStep2: DropzoneConfigInterface;
@@ -56,7 +57,8 @@ export class IssueAddComponent implements OnInit {
     private issueService: IssueService,
     private equipmentService: EquipmentService,
     private translate: TranslateService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private router: Router) {
     translate.setDefaultLang(environment.language);
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
@@ -66,7 +68,7 @@ export class IssueAddComponent implements OnInit {
     this.issueTypesSelect = Object.keys(IssueType).filter(Number).map(key => ({ title: IssueType[key], value: key }));
 
     this.stepper = new CustomeStepper(document.querySelector('#issueStepper'), {
-      linear: false,
+      linear: true,
       animation: true
     });
 
@@ -83,9 +85,6 @@ export class IssueAddComponent implements OnInit {
       caption: ['', Validators.required],
       text: ['', Validators.required],
       uploadFiles: [new Array<string>()],
-    });
-
-    this.step3Form = this.formBuilder.group({
     });
 
     this.configStep1 = {
@@ -154,15 +153,23 @@ export class IssueAddComponent implements OnInit {
 
       this.issueService.addIssue(addIssueModel).subscribe((res: ServerResponseViewModel<number>) => {
         this.issueId = res.data;
+        this.toastr.success(this.translate.instant('Issue.Step1Successfully'))
         this.stepper.next();
       }, error => {
         this.stepper.to(this.stepper._currentIndex);
       });
     } else if (this.stepper._currentIndex === 1) {
       this.subStepp2 = true;
+
+      if (!this.issueId) {
+        this.toastr.error(this.translate.instant('Issue.MustInsertStep1'));
+        this.stepper.to(this.stepper._currentIndex + 1);
+        return;
+      }
+
       if (this.step2Form.invalid) {
         this.toastr.error(this.translate.instant('Issue.Step2ModelStateError'));
-        this.stepper.to(this.stepper._currentIndex);
+        this.stepper.to(this.stepper._currentIndex + 1);
         return;
       }
 
@@ -175,9 +182,10 @@ export class IssueAddComponent implements OnInit {
 
       this.issueService.addIssueDetails(addIssueDetailModel).subscribe((res: ServerResponseViewModel<number>) => {
         this.issueDetailsId = res.data;
+        this.toastr.success(this.translate.instant('Issue.Step2Successfully'))
         this.stepper.next();
       }, error => {
-        this.stepper.to(this.stepper._currentIndex);
+        this.stepper.to(this.stepper._currentIndex + 1);
       });
     }
   }
@@ -200,4 +208,25 @@ export class IssueAddComponent implements OnInit {
     }
   }
 
+  activeIssue() {
+    if (this.step1Form.valid && this.step2Form.valid) {
+      if (this.issueId && this.issueDetailsId) {
+        let activateIssueModel = new ActivateIssueFormModel();
+        activateIssueModel.issueId = this.issueId;
+        activateIssueModel.isActive = true;
+        this.loading = true;
+        this.issueService.activateIssue(activateIssueModel).subscribe((res: ServerResponseViewModel<boolean>) => {
+          this.loading = false;
+          this.toastr.success(this.translate.instant('Issue.Compeleted'));
+          this.router.navigate(['issue']);
+        }, error => {
+          this.loading = false;
+        });
+      } else {
+        this.toastr.error(this.translate.instant('Issue.NotInsert'));
+      }
+    } else {
+      this.toastr.error(this.translate.instant('Issue.retryCheck'));
+    }
+  }  
 }

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SearchIssueFormModel } from '../dataModels/apiModels/searchIssueFormModel';
 import { AddIssueDetailFormModel } from '../dataModels/apiModels/addIssueDetailFormModel';
+import { ActivateIssueFormModel } from '../dataModels/apiModels/activateIssueFormModel';
 
 @Injectable()
 
@@ -22,5 +23,9 @@ export class IssueService {
 
   addIssueDetails(addIssueDetailModel: AddIssueDetailFormModel): Observable<any> {
     return this.http.post('api/Issue/addIssueDetails', addIssueDetailModel);
+  }
+
+  activateIssue(activateIssueModel: ActivateIssueFormModel): Observable<any> {
+    return this.http.post('api/Issue/activateIssue', activateIssueModel);
   }
 }

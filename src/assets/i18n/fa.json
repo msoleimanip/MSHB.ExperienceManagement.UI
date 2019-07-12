@@ -4,8 +4,8 @@
     "DeActive": "غیرفعال",
     "SelectItems": "انتخاب کنید",
     "ModelStateError": "لطفا مقادیر را به درستی وارد کنید",
-    "TreeNotSelectedError": "اقامتگاه میبایستی انتخاب شده باشد.",
-    "TreeHasChildError": "اقامتگاه انتخاب شده نبایستی زیرشاخه داشته باشد.",
+    "TreeNotSelectedError": "تجهیز میبایستی انتخاب شده باشد.",
+    "TreeHasChildError": "تجهیز انتخاب شده نبایستی زیرشاخه داشته باشد.",
     "TreeSelectCaption": "اقامتگاه انتخاب شده",
     "IssueType": "نوع مسئله",
     "InputGenderTypeError": "جنسیت میبایستی انتخاب شود.",
@@ -158,6 +158,15 @@
     "FinalStep": "تائید نـهایی",
     "HasImage": "وضعیت تصویر",
     "EquipmentCount": "تعداد تجهیز",
-    "Accept": "تائید نهایی اطلاعات"
+    "Accept": "تائید نهایی اطلاعات",
+    "FileCount": "تعداد فایل",
+    "Step1Successfully": "مرحله یک با موفقیت ثبت شد.",
+    "Step2Successfully": "مرحله دوم با موفقیت ثبت شد.",
+    "Step1ModelStateError": "موارد گام اول به درستی وارد نشده اند",
+    "Step2ModelStateError": "موارد گام دوم به درستی وارد نشده اند",
+    "NotInsert": "شما گام های قبلی را به درستی وارد نکرده اید",
+    "retryCheck": "لطفا گام های قبلی را وارد کنید",
+    "Compeleted": "موارد با موفقیت ثبت شدند",
+    "MustInsertStep1": "میبایستی ابتدا گام اول ثبت گردد."
   }
 }
