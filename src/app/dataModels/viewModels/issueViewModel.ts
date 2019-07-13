@@ -1,3 +1,4 @@
+import { EquipmentViewModel } from './equipmentViewModel';
 import { IssueType } from './../enums/issueType';
 
 export class IssueViewModel {
@@ -7,10 +8,11 @@ export class IssueViewModel {
   creationDate: string;
   lastUpdateDate: string;
   fileId: string;
-  answerCounts?: number;
+  answerCount?: number;
   isActive?: boolean;
   issueType: IssueType;
+  sumLikes?: number;
   userId: string;
   userName: string;
-  equipmentIds: Array<number>;
+  equipments = new Array<EquipmentViewModel>();
 }

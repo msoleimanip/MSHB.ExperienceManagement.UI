@@ -79,89 +79,39 @@
   </div>
   <div class="col-md-8">
 
-    <div *ngFor="let item of issues" class="col-xs-12 available-columns inner-available trans-fade-in">
-      <div class="available-columns__overlay"></div>
-      <div>
-        <div class="available-columns__overlay"></div>
-        <div class="available-columns__type inline-block">
-          {{ issueType[item.issueType] |translate}}
-        </div>
-        <div class="available-columns__info col-md-9 col-sm-9">
-          <div class="row">
-            <div class="available-columns__airlines inline-block col-sm-3 col-xs-5 col-md-3 col-lg-2">
-              <div class="airlines-columns">
-                <img src="/api/File/download/{{item.fileId}}" alt="{{item.roomNumber}}" class="img-circle">
-                <span>{{item.capacity}}</span>
-              </div>
-            </div>
-            <div class="available-columns__destination col-sm-9 col-xs-7 col-md-9 col-lg-10">
-              <div class="row">
-                <div class="destination-aircraft col-md-5 col-sm-6">
-                  <span> شماره اتاق: {{item.roomNumber}}</span>
-                  <span>
-                    <ngb-rating [rate]="item.rank">
-                      <ng-template let-fill="fill" let-index="index">
-                        <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
-                      </ng-template>
-                    </ngb-rating>
-                  </span>
-                </div>
-                <div class="available-pin"><i class="icon icon-location"></i></div>
-              </div>
-              <div class="destination-map row">
-                <div class="destination-map__from col-xs-4 col-sm-5 col-md-4 ">
-                  <strong class="from">{{'AccommodationRoom.DeliveryTime'| translate}}</strong>
-                  <strong class="time">
-                    {{item.deliveryTime}}
-                  </strong>
-                </div>
-                <div class="destination-map__airicon col-xs-4 col-sm-2 col-md-4">
-                  <span class="airline-time hidden-xs hidden-sm">فرآیند نظافت</span>
-                  <i class="glyphicon glyphicon-trash w-normal"></i>
-                </div>
-                <div class="destination-map__to pull-left col-xs-4 col-sm-5 col-md-4 text-center">
-                  <strong class="to">{{'AccommodationRoom.EvacuationTime'| translate}}</strong>
-                  <strong class="time">
-                    {{item.evacuationTime}}
-                  </strong>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div role="tablist" class="panel-group airlines-details hidden-xs">
-            <div class="panel panel-default">
+    <div *ngFor="let item of issues.searchIssueViewModel" class="col-xs-12">
 
-              <div role="tab" class="panel-heading">
-                <div class="panel-title">
-                  <a role="button" (click)="showDetails()">
-                    <span>{{'AccommodationRoom.MoreInfo'| translate}}</span>&nbsp;
-                    <i class="fa fa-eye"></i>
-                  </a>
-                </div>
-              </div>
+      <div class="card place-item">
+        <div class=" row card-body">
+          <div class="col-md-3 col-12 pc">
+            <img class="img-circle pr" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
+              src="/api/File/download/{{item.fileId}}" lazy="loaded">
+          </div>
+
+          <div class="col-12 col-md-5">
+            <div class="row line-item text-blue">
+              <h5> {{item.title}}</h5>
+            </div>
+            <div class="row line-item text-green">
+              <label>{{ issueType[item.issueType]| translate}}</label>
+            </div>
+            <div class="row line-item">
+              <label class="text-orange">{{'Issue.AnswerCount'| translate}}:&nbsp;</label>
+              <label class="issue-badge">{{item.answerCount}}</label>
             </div>
           </div>
-          <div class="hr dashed"></div>
-        </div>
-        <div id="available-columns__footer-0" class="available-columns__footer col-xs-12 col-md-3 col-sm-3">
-          <div class="col-xs-6 footer-pricing col-md-12 col-sm-12">
-            <span class="pricing-value">
-              <span class="w-bold">{{item.roomPrice| number:'3.0'}}</span>ریال</span>
-            <span class="pricing-notifier text-red hidden-sm hidden-md hidden-lg"></span>
-          </div>
-          <div class="col-xs-6 footer-price-action col-md-12 col-sm-12">
-            <div class="form-group row">
-              <button class="btn btn-primary" (click)="edit(item.id)">
-                <span class="fa fa-pencil"></span>
-              </button>
-              &nbsp;
-              <button class="btn btn-danger" (click)="delete(item.id, item.roomNumber)">
-                <span class="fa fa-trash"></span>
-              </button>
-            </div>
+
+          <div class="col-12 col-md-4">
+            <button class="btn btn-sm btn-warning pl" [title]="'Issue.Edit'| translate"><span
+                class="fa fa-pencil"></span></button>
+            <button class="btn btn-sm btn-danger pl btn-space" [title]="'Issue.Delete'| translate"><span
+                class="fa fa-trash"></span></button>
+            <button class="btn btn-sm btn-primary pl btn-space" [title]="'Issue.Display'| translate"><span
+                class="fa fa-television"></span></button>
           </div>
         </div>
       </div>
+
     </div>
 
   </div>

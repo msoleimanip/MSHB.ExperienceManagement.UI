@@ -20,8 +20,17 @@
     "Maintanence": "نگهداری: طرح مسئله برای آموزش و نگهداری ",
     "Other": "سـایر موارد"
   },
+  "SortType": {
+    "Newest": "جدیدترین ها",
+    "RecentActivity": "اخیرا فعالیت داشته",
+    "MostLikes": "بیشترین رای ها"
+  },
+  "FilterType": {
+    "NoAnswers": "بدون جواب ها",
+    "NoAcceptedAnswer": "مواردی که جوابشان تایید نشده"
+  },
   "Menu": {
-    "SiteTitle": "MSHB",
+    "SiteTitle": "سـجـات",
     "Home": "داشبورد",
     "Setting": "تنظیمات",
     "BaseInfo": "اطلاعات پایه",
@@ -32,7 +41,8 @@
     "Users": "مدیریت کاربران",
     "ChangePassword": "تغییر کلمه عبور",
     "CurrentOperations": "عملیات جاری",
-    "IssueManagement": "مدیریت مسائل",
+    "IssueManagement": "مسائل من",
+    "IssueSearch": "جستجو مسائل",
     "Authentication": "مدیریت دسترسی ها"
   },
   "Login": {
@@ -40,6 +50,19 @@
     "Password": "کلمه عبور",
     "FormTitle": "صفحه ورود کاربران",
     "BtnLogin": "ورود به سامانه"
+  },
+  "MyProfile": {
+    "ChangeTitle": "صفحه تغییر رمز عبور",
+    "CurrentPassword": "رمز عبور فعلی",
+    "InputcurrentPasswordError": "میبایست وارد شود",
+    "NewPassword": "رمز عبور جدید",
+    "InputNewPasswordError": "میبایست وارد شود",
+    "ConfirmPassword": "تکرار رمز جدید",
+    "InputConfirmPasswordError": "میبایست وارد شود",
+    "BtnChange": "تایید اطلاعات",
+    "BtnClose": "انصراف",
+    "ConfirmPasswordError": "رمز عبور و تکرار آن برابر نیستند",
+    "AddSuccessfully": "رمز عبور با موفقیت تغییر یافت"
   },
   "Tree": {
     "SearchTitle": "جستجو بر روی نمودار"
@@ -167,6 +190,23 @@
     "NotInsert": "شما گام های قبلی را به درستی وارد نکرده اید",
     "retryCheck": "لطفا گام های قبلی را وارد کنید",
     "Compeleted": "موارد با موفقیت ثبت شدند",
-    "MustInsertStep1": "میبایستی ابتدا گام اول ثبت گردد."
+    "MustInsertStep1": "میبایستی ابتدا گام اول ثبت گردد.",
+    "AnswerCount": "تعداد پاسخ",
+    "Edit": "ویــرایش",
+    "Delete": "حـذف",
+    "Display": "نمـایش",
+    "SearchTitle": "جستجو مسائل",
+    "YourQuestion": "درخواست شما",
+    "Question": "چی میخوای بپرسی؟",
+    "Search": "جـستجـو",
+    "Filter": "فیلتر",
+    "SortBy": "مرتب سازی براساس",
+    "FilterBy": "فیلتر براساس",
+    "Answer": "پاسخ",
+    "Like": "لایک",
+    "LastUpdateDate": "زمان آخرین تغییر"
+  },
+  "Dashboard": {
+    "SearchText": "چی دوست داری یاد بگیری ؟"
   }
 }

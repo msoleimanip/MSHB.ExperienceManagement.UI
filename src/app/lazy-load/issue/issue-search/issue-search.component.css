@@ -1,0 +1,63 @@
+.btn-w {
+  max-width: 100px;
+  margin-right: 10px;
+}
+
+.btn-search {
+  font-size: 11px;
+}
+
+.card-footer-sky {
+  background-color: rgba(0, 182, 255, 0.03);
+}
+
+.card-equal {
+  min-height: 228px;
+}
+
+.btn-tool {
+  height: 20px;
+  font-size: 10px;
+  float: left;
+}
+
+.card-body .status {
+  color: #848d95;
+}
+.card-body .status {
+  display: inline-block;
+  margin: 0 3px 0 0;
+  min-width: 44px;
+  height: auto;
+  font-size: 11px;
+  padding: 6px;
+  border: 1px solid #848d95;
+  border-radius: 3px;
+}
+.status {
+  padding: 0;
+  margin-bottom: 8px;
+  text-align: center;
+  float: left;
+  cursor: pointer;
+}
+
+.card-body .mini-counts {
+  font-size: 17px;
+  font-weight: 300;
+  color: #6a737c;
+  margin-bottom: 4px;
+}
+
+.status.answered,
+.status.answered .mini-counts,
+.status.answered strong {
+  color: #45a163;
+}
+.status.answered {
+  border-color: rgba(69, 161, 99, 0.5) !important;
+}
+
+.status.like {
+  border-color: orangered !important;
+}

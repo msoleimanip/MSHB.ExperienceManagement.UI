@@ -30,6 +30,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarOper">
           <a class="dropdown-item" [routerLink]='["/issue"]'>{{ 'Menu.IssueManagement' | translate }}</a>
+          <a class="dropdown-item" [routerLink]='["/issue/search"]'>{{ 'Menu.IssueSearch' | translate }}</a>
         </div>
       </li>
 
@@ -41,7 +42,7 @@
           {{ currentUser.fullName }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarUser" *ngIf="currentUser">
-          <a class="dropdown-item" [routerLink]='["/changePassword"]'>{{ 'Menu.ChangePassword' | translate }}</a>
+          <a class="dropdown-item" (click)="changePass()" >{{ 'Menu.ChangePassword' | translate }}</a>
         </div>
       </li>
     </ul>

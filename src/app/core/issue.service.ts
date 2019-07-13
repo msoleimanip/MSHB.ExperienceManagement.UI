@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { SearchIssueFormModel } from '../dataModels/apiModels/searchIssueFormModel';
 import { AddIssueDetailFormModel } from '../dataModels/apiModels/addIssueDetailFormModel';
 import { ActivateIssueFormModel } from '../dataModels/apiModels/activateIssueFormModel';
+import { SearchSmartIssueFormModel } from '../dataModels/apiModels/searchSmartIssueFormModel';
 
 @Injectable()
 
@@ -27,5 +28,9 @@ export class IssueService {
 
   activateIssue(activateIssueModel: ActivateIssueFormModel): Observable<any> {
     return this.http.post('api/Issue/activateIssue', activateIssueModel);
+  }
+
+  searchSmartIssue(searchSmartIssueModel: SearchSmartIssueFormModel): Observable<any> {
+    return this.http.post('api/Issue/searchSmartIssue', searchSmartIssueModel);
   }
 }

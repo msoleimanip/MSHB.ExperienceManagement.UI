@@ -10,16 +10,22 @@ import { environment } from './../../../environments/environment';
 
 export class DashboardComponent implements OnInit {
 
-  hamedList = [1, 2, 3, 4, 5, 6, 7, 8]; 
+  hamedList = [1, 2, 3, 4, 5, 6, 7, 8];
+
+  searchText = '';
 
   constructor(public translate: TranslateService) {
-    translate.setDefaultLang(environment.language);    
+    translate.setDefaultLang(environment.language);
   }
 
   ngOnInit() {
 
   }
 
+
+  search() {
+
+  }
 
 }
 

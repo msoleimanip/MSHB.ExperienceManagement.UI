@@ -9,11 +9,15 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { IssueAddComponent } from './issue-add/issue-add.component';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { IssueSearchComponent } from './issue-search/issue-search.component';
+import { IssueDisplayComponent } from './issue-display/issue-display.component';
 
 @NgModule({
   declarations: [
     IssueComponent,
-    IssueAddComponent
+    IssueAddComponent,
+    IssueSearchComponent,
+    IssueDisplayComponent
   ],
   imports: [
     CommonModule,

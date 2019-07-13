@@ -1,0 +1,126 @@
+<hr>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h4>{{'Issue.SearchTitle'| translate}}</h4>
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label class="control-label">{{'Issue.YourQuestion'| translate}}</label>
+        <div class="row">
+          <input type="text" class="form-control col-8" placeholder="{{'Issue.Question'| translate}}"
+            [(ngModel)]="searchModel.searchContent" />
+          <button class="btn btn-success btn-w col-4" (click)="loadQuestion()">{{'Issue.Search'| translate}}</button>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer card-footer-sky">
+      <button class="btn btn-default btn-search" data-toggle="collapse"
+        data-target="#filter">{{'Issue.Filter'| translate}}
+        <span class="fa fa-gear"></span>
+      </button>
+      <div id="filter" class="collapse">
+        <hr>
+        <div class="row">
+          <div class="col-md-6">
+            <!-- Begin Tree -->
+            <div class="card">
+              <div class="card-body">
+                <div class="form-group">
+                </div>
+                <div class="panel-body">
+                  <app-treeview [canSearch]="true" [hasCheckbox]="true" [titleLabel]="'Issue.Equipments' | translate"
+                    [items]="files" [id]="'equipment'" (clickByCheckbox)="treeClick($event)">
+                  </app-treeview>
+                </div>
+              </div>
+              <div class="card-footer">
+                <label class="text-success">{{'General.SelectedCount'| translate}}</label>: <label
+                  class="text-success">{{searchModel.equipmentIds.length}}</label>
+              </div>
+            </div>
+            <!-- End Tree -->
+          </div>
+          <div class="col-md-6">
+            <div class="card card-equal">
+              <div class="card-body">
+
+                <div class="form-group">
+                  <label>{{'Issue.SortBy'| translate}}</label>
+                  <select class="form-control" [(ngModel)]="searchModel.sortType">
+                    <option value="">{{ 'General.SelectItems' | translate }}</option>
+                    <option *ngFor="let type of sortTypesSelect" [value]="type.value">{{ type.title | translate }}
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>{{'Issue.FilterBy'| translate}}</label>
+                  <select class="form-control" [(ngModel)]="searchModel.filterType">
+                    <option value="">{{ 'General.SelectItems' | translate }}</option>
+                    <option *ngFor="let type of filterTypesSelect" [value]="type.value">{{ type.title | translate }}
+                  </select>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+
+  <div *ngFor="let item of issues.searchIssueViewModel" class="col-xs-12">
+
+    <div class="card place-item">
+      <div class=" row card-body">
+        <div class="col-md-3 col-12 pc">
+          <img class="img-circle pr" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
+            src="/api/File/download/{{item.fileId}}" lazy="loaded">
+        </div>
+
+        <div class="col-12 col-md-5">
+          <div class="row line-item text-blue">
+            <h5> {{item.title}}</h5>
+          </div>
+          <div class="row line-item text-green">
+            <label>{{ issueType[item.issueType]| translate}}</label>
+          </div>
+          <div class="row line-item">
+            <label class="text-orange">{{'Issue.LastUpdateDate'| translate}}:&nbsp;</label>
+            <label class="time-badge">{{timeConvert(item.lastUpdateDate)}}</label>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+
+          <div class="status" [ngClass]="{answered: item.answerCount> 0}">
+            <div class="mini-counts">
+              <span title="{{item.answerCount}} answers">{{item.answerCount}}</span>
+            </div>
+            <div>{{'Issue.Answer'| translate}}</div>
+          </div>
+
+          <div class="status like">
+            <div class="mini-counts"><span title="{{item.sumLikes}} likes">{{item.sumLikes}}</span></div>
+            <div>{{'Issue.Like'| translate}}</div>
+          </div>
+
+        </div>
+
+        <div *ngIf="item.equipments.length > 0" class="col-12">
+          <hr>
+          <button *ngFor="let tool of item.equipments" type="button" class="btn btn-sm btn-tool btn-dark mr-2"
+            placement="top" ngbTooltip="{{tool.description}}">
+            {{tool.equipmentName}}
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

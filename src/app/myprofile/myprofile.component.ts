@@ -47,7 +47,7 @@ export class MyprofileComponent implements OnInit {
     this.submitted = true;
     this.loading = true;
     if (this.changeForm.invalid) {
-      this.toastr.error(this.translate.instant('MyProfile.ModelStateError'));
+      this.toastr.error(this.translate.instant('General.ModelStateError'));
       this.loading = false;
       return;
     }
@@ -63,7 +63,7 @@ export class MyprofileComponent implements OnInit {
 
     this.usersService.changePassword(this.changePasswordModel).subscribe(res => {
       if (res.data) {
-        this.toastr.success(this.translate.instant('MyProfile.AddSuccessfully'), '100');
+        this.toastr.success(this.translate.instant('MyProfile.AddSuccessfully'));
         this.logout = true;
         this.close();
       }
