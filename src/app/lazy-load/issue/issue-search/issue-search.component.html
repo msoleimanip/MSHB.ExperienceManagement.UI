@@ -10,7 +10,9 @@
         <div class="row">
           <input type="text" class="form-control col-8" placeholder="{{'Issue.Question'| translate}}"
             [(ngModel)]="searchModel.searchContent" />
-          <button class="btn btn-success btn-w col-4" (click)="loadQuestion()">{{'Issue.Search'| translate}}</button>
+          <button class="btn btn-success btn-w col-4" (click)="loadQuestion()">{{'Issue.Search'| translate}}
+            <img *ngIf="loading" class="pl-2" src="/assets/images/wait.gif" />
+          </button>
         </div>
       </div>
     </div>
@@ -77,13 +79,17 @@
     <div class="card place-item">
       <div class=" row card-body">
         <div class="col-md-3 col-12 pc">
-          <img class="img-circle pr" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
-            src="/api/File/download/{{item.fileId}}" lazy="loaded">
+          <a [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active">
+            <img class="img-circle pr" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
+              src="/api/File/download/{{item.fileId}}" lazy="loaded">
+          </a>
         </div>
 
         <div class="col-12 col-md-5">
           <div class="row line-item text-blue">
-            <h5> {{item.title}}</h5>
+            <h5>
+              <a  class="text-blue" [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active"> {{item.title}}</a>
+            </h5>
           </div>
           <div class="row line-item text-green">
             <label>{{ issueType[item.issueType]| translate}}</label>

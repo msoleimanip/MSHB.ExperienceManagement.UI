@@ -12,7 +12,8 @@
     "BtnClose": "انصراف",
     "BtnCreate": "تایید و ایجاد",
     "BtnEdit": "تایید و ویرایش",
-    "SelectedCount": "تعداد موارد انتخابی"
+    "SelectedCount": "تعداد موارد انتخابی",
+    "PlayVideo": "نمایش فایل های ویدئویی"
   },
   "IssueType": {
     "Question": "سـوال: طرح سوال برای رفع مشکل جاری",
@@ -204,7 +205,11 @@
     "FilterBy": "فیلتر براساس",
     "Answer": "پاسخ",
     "Like": "لایک",
-    "LastUpdateDate": "زمان آخرین تغییر"
+    "LastUpdateDate": "زمان آخرین تغییر",
+    "JustImage": "تنها ویدئو قابلیت اجرا دارد",
+    "AddComment": "اضافه کردن نکته",
+    "YourAnswer": "پاسخ شما",
+    "AnswerText":"متن جواب"
   },
   "Dashboard": {
     "SearchText": "چی دوست داری یاد بگیری ؟"

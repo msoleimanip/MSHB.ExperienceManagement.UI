@@ -25,6 +25,7 @@ export class IssueSearchComponent implements OnInit {
   issueType = IssueType;
   issues = new SearchIssueViewModel();
   currentUser: User;
+  loading = false;
 
   sortTypesSelect: any;
   filterTypesSelect: any;
@@ -33,18 +34,21 @@ export class IssueSearchComponent implements OnInit {
 
 
   constructor(private issueService: IssueService,
-              private equipmentService: EquipmentService,
-              private authenticationService: AuthenticationService,
-              private persianDatePickerHelper: PersianDatePickerHelper,
-              public translate: TranslateService,
-              private toastr: ToastrService) {
-            }
+    private equipmentService: EquipmentService,
+    private authenticationService: AuthenticationService,
+    private persianDatePickerHelper: PersianDatePickerHelper,
+    public translate: TranslateService,
+    private toastr: ToastrService) {
+  }
 
   ngOnInit() {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     this.loadTree();
     this.sortTypesSelect = Object.keys(SortType).filter(Number).map(key => ({ title: SortType[key], value: key }));
     this.filterTypesSelect = Object.keys(FilterType).filter(Number).map(key => ({ title: FilterType[key], value: key }));
+
+    this.loadQuestion();
+
   }
 
 
@@ -62,8 +66,12 @@ export class IssueSearchComponent implements OnInit {
 
   loadQuestion() {
     this.searchModel.userId = this.currentUser ? this.currentUser.id : null;
+    this.loading = true;
     this.issueService.searchSmartIssue(this.searchModel).subscribe((res: ServerResponseViewModel<SearchIssueViewModel>) => {
       this.issues = res.data;
+      this.loading = false;
+    }, error => {
+      this.loading = false;
     });
   }
 

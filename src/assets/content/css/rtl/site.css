@@ -1018,7 +1018,7 @@ th[sortable].desc:before {
 }
 
 .text-blue {
-  color: blue;
+  color: blue !important;
 }
 
 .text-orange {

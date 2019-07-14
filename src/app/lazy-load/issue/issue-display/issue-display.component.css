@@ -1,0 +1,8 @@
+.gallery-custom {
+  width: 100% !important;
+}
+
+ngx-gallery /deep/ .ngx-gallery-icon {
+  color: red;
+
+}

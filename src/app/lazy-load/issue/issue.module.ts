@@ -1,3 +1,4 @@
+import { NgxGalleryModule } from 'ngx-gallery';
 import { IssueRoutingModule } from './issue-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -11,13 +12,16 @@ import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { IssueSearchComponent } from './issue-search/issue-search.component';
 import { IssueDisplayComponent } from './issue-display/issue-display.component';
+import { IssuePlayerComponent } from './issue-player/issue-player.component';
+
 
 @NgModule({
   declarations: [
     IssueComponent,
     IssueAddComponent,
     IssueSearchComponent,
-    IssueDisplayComponent
+    IssueDisplayComponent,
+    IssuePlayerComponent
   ],
   imports: [
     CommonModule,
@@ -29,8 +33,10 @@ import { IssueDisplayComponent } from './issue-display/issue-display.component';
     SharedModule,
     DropzoneModule,
     AngularEditorModule,
+    NgxGalleryModule
   ],
   entryComponents: [
+    IssuePlayerComponent
   ]
 })
 export class IssueModule { }
