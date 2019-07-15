@@ -64,7 +64,7 @@ export class IssueDisplayComponent implements OnInit {
         });
       } else {
         galleryImages.push({
-          small: 'assets/images/video.png',
+          small: x.contentType.includes('video') ? 'assets/images/video.png' : 'assets/images/audio.jpg',
           big: 'assets/images/video.jpg'
         });
       }
@@ -78,10 +78,18 @@ export class IssueDisplayComponent implements OnInit {
     if (issuedet) {
       const file = issuedet.issueDetailAttachments[index];
       if (file.contentType.includes('video') || file.contentType.includes('audio')) {
-        let modalRef = this.modalService.open(IssuePlayerComponent, {
-          windowClass: '.my-modal',
-          size: file.contentType.includes('audio') ? 'sm' : 'lg'
-        });
+        let modalRef = null;
+        if (file.contentType.includes('video')) {
+          modalRef = this.modalService.open(IssuePlayerComponent, {
+            windowClass: '.my-modal',
+            size: 'lg'
+          });
+        } else {
+          modalRef = this.modalService.open(IssuePlayerComponent, {
+            windowClass: 'md-modal', size: 'md' as 'lg'
+          });
+        }
+
         modalRef.componentInstance.fileUrl = '/api/File/download/' + file.fileId;
         modalRef.componentInstance.fileType = file.fileType;
         modalRef.componentInstance.contentType = file.contentType;
