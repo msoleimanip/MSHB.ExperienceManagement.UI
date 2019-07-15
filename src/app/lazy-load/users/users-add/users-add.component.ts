@@ -1,7 +1,7 @@
+import { GroupAuthenticationService } from 'src/app/core/group-authentication.service';
 import { AddUserFormModel } from '../../../dataModels/apiModels/addUserFormModel';
 import { GroupAuthenticationViewModel } from '../../../dataModels/viewModels/groupAuthenticationViewModel';
 import { ServerResponseViewModel } from 'src/app/dataModels/viewModels/serverResponseViewModel';
-import { GroupAuthenticationService } from '../../../core/groupAuthentication.service';
 import { environment } from '../../../../environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -24,15 +24,15 @@ export class UsersAddComponent implements OnInit {
   loading = false;
   reloadTable = false;
   isActiveSelect = false;
-  groupAuthentication: Array<GroupAuthenticationViewModel>;
+  groupAuthentication = new Array<GroupAuthenticationViewModel>();
 
 
   constructor(public activeModal: NgbActiveModal,
-              private formBuilder: FormBuilder,
-              private usersService: UsersService,
-              private toastr: ToastrService,
-              public translate: TranslateService,
-              private groupAuthenticationService: GroupAuthenticationService) {
+    private formBuilder: FormBuilder,
+    private usersService: UsersService,
+    private toastr: ToastrService,
+    public translate: TranslateService,
+    private groupAuthenticationService: GroupAuthenticationService) {
     translate.setDefaultLang(environment.language);
     this.addUserModel.isActive = false;
   }

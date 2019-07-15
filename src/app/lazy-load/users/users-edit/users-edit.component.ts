@@ -48,7 +48,7 @@ export class UsersEditComponent implements OnInit {
       isActive: [this.editUserModel.isActive],
       phoneNumber: [this.editUserModel.phoneNumber],
       groupAuthId: [this.editUserModel.groupAuthId, Validators.required],
-      isPresident: [this.editUserModel.isPresident, Validators.required]
+      // isPresident: [this.editUserModel.isPresident, Validators.required]
     });
 
     this.isActiveSelect = this.editUserModel.isActive;

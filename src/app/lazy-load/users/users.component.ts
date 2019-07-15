@@ -98,6 +98,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   create() {
+    debugger;
     const modalRef = this.modalService.open(UsersAddComponent, { windowClass: '.my-modal', size: 'lg' });
     modalRef.result.then(result => {
       if (result === true) {
