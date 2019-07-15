@@ -2,7 +2,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticationService } from './../../core/authentication.service';
 import { ServerResponseViewModel } from 'src/app/dataModels/viewModels/serverResponseViewModel';
 import { IssueService } from './../../core/issue.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { SearchIssueFormModel } from 'src/app/dataModels/apiModels/searchIssueFormModel';
 import { SearchIssueViewModel } from 'src/app/dataModels/viewModels/searchIssueViewModel';
 import { IssueType } from 'src/app/dataModels/enums/issueType';
@@ -17,6 +17,16 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./issue.component.css']
 })
 export class IssueComponent implements OnInit, OnDestroy {
+
+  pondOptions = {
+    class: 'my-filepond',
+    multiple: true,
+    labelIdle: 'Drop files here',
+    acceptedFileTypes: 'image/jpeg, image/png'
+  };
+  @ViewChild('myPond') myPond: any;
+
+  pondFiles = [];
 
   files: any[];
   selectedIds = [];
@@ -36,6 +46,14 @@ export class IssueComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     private config: NgbModalConfig) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  }
+
+  pondHandleInit() {
+    console.log('FilePond has initialised', this.myPond);
+  }
+
+  pondHandleAddFile(event: any) {
+    console.log('A file was added', event);
   }
 
   ngOnInit() {

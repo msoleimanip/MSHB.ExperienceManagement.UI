@@ -14,7 +14,6 @@ import { IssueSearchComponent } from './issue-search/issue-search.component';
 import { IssueDisplayComponent } from './issue-display/issue-display.component';
 import { IssuePlayerComponent } from './issue-player/issue-player.component';
 
-
 @NgModule({
   declarations: [
     IssueComponent,
