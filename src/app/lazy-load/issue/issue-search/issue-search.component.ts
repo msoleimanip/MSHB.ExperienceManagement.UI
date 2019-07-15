@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from './../../../core/authentication.service';
 import { ServerResponseViewModel } from './../../../dataModels/viewModels/serverResponseViewModel';
 import { FilterType } from './../../../dataModels/enums/filterType';
@@ -34,12 +35,13 @@ export class IssueSearchComponent implements OnInit {
 
 
   constructor(private issueService: IssueService,
-    private equipmentService: EquipmentService,
-    private authenticationService: AuthenticationService,
-    private persianDatePickerHelper: PersianDatePickerHelper,
-    public translate: TranslateService,
-    private toastr: ToastrService) {
-  }
+              private route: ActivatedRoute,
+              private equipmentService: EquipmentService,
+              private authenticationService: AuthenticationService,
+              private persianDatePickerHelper: PersianDatePickerHelper,
+              public translate: TranslateService,
+              private toastr: ToastrService) {
+            }
 
   ngOnInit() {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
@@ -47,8 +49,11 @@ export class IssueSearchComponent implements OnInit {
     this.sortTypesSelect = Object.keys(SortType).filter(Number).map(key => ({ title: SortType[key], value: key }));
     this.filterTypesSelect = Object.keys(FilterType).filter(Number).map(key => ({ title: FilterType[key], value: key }));
 
-    this.loadQuestion();
 
+    this.route.params.subscribe(param => {
+      this.searchModel.searchContent = param.content as string;
+      this.loadQuestion();
+    });
   }
 
 

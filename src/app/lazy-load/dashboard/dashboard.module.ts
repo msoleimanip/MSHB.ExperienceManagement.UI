@@ -1,3 +1,5 @@
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { DashboardComponent } from './dashboard.component';
@@ -11,7 +13,9 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [
     DashboardRoutingModule,
     CommonModule,
-     TranslateModule
+     TranslateModule,
+     FormsModule,
+     RouterModule
   ],
   exports: [],
   providers: []

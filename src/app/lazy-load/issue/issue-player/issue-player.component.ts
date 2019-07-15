@@ -9,6 +9,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class IssuePlayerComponent implements OnInit {
 
   @Input() fileUrl: string;
+  @Input() contentType: string;
+  @Input() isVedio: boolean;
 
   constructor(public activeModal: NgbActiveModal) { }
 

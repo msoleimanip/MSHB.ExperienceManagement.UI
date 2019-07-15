@@ -31,6 +31,7 @@
     "NoAcceptedAnswer": "مواردی که جوابشان تایید نشده"
   },
   "Menu": {
+    "SiteName": "سامانه جامع انتقال تجربه",
     "SiteTitle": "سـجـات",
     "Home": "داشبورد",
     "Setting": "تنظیمات",
@@ -206,10 +207,12 @@
     "Answer": "پاسخ",
     "Like": "لایک",
     "LastUpdateDate": "زمان آخرین تغییر",
-    "JustImage": "تنها ویدئو قابلیت اجرا دارد",
+    "NotSupported": "فرمت این فایل قابل پشتیبانی نمیباشد",
     "AddComment": "اضافه کردن نکته",
     "YourAnswer": "پاسخ شما",
-    "AnswerText":"متن جواب"
+    "AnswerText": "متن جواب",
+    "BtnSearch": "جستــجو",
+    "ClickOnImage": "بر روی عکس کلیک کنید"
   },
   "Dashboard": {
     "SearchText": "چی دوست داری یاد بگیری ؟"

@@ -10,6 +10,7 @@ const issueRoutes: Routes = [
   { path: '', component: IssueComponent },
   { path: 'add', component: IssueAddComponent },
   { path: 'search', component: IssueSearchComponent },
+  { path: 'search/:content', component: IssueSearchComponent },
   { path: 'display/:id', component: IssueDisplayComponent }
 ];
 

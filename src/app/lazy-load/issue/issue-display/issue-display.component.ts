@@ -57,7 +57,7 @@ export class IssueDisplayComponent implements OnInit {
     const self = this;
     const galleryImages = new Array<NgxGalleryImage>();
     this.issueDetails.find(x => x.issueDetailId === id).issueDetailAttachments.forEach(x => {
-      if (x.fileType === 'jpg' || x.fileType === 'thumb') {
+      if (x.contentType.includes('image')) {
         galleryImages.push({
           small: '/api/File/download/' + x.fileId,
           big: '/api/File/download/' + x.fileId,
@@ -77,12 +77,19 @@ export class IssueDisplayComponent implements OnInit {
     const issuedet = this.issueDetails.find(x => x.issueDetailId === parseInt(id, 0));
     if (issuedet) {
       const file = issuedet.issueDetailAttachments[index];
-      if (file.fileType !== 'jpg' && file.fileType !== 'thumb') {
-        let modalRef = this.modalService.open(IssuePlayerComponent, { windowClass: '.my-modal', size: 'lg' });
+      if (file.contentType.includes('video') || file.contentType.includes('audio')) {
+        let modalRef = this.modalService.open(IssuePlayerComponent, {
+          windowClass: '.my-modal',
+          size: file.contentType.includes('audio') ? 'sm' : 'lg'
+        });
         modalRef.componentInstance.fileUrl = '/api/File/download/' + file.fileId;
         modalRef.componentInstance.fileType = file.fileType;
+        modalRef.componentInstance.contentType = file.contentType;
+        modalRef.componentInstance.isVedio = file.contentType.includes('video');
+      } else if (file.contentType.includes('image')) {
+        this.toastr.warning(this.translate.instant('Issue.ClickOnImage'));
       } else {
-        this.toastr.warning(this.translate.instant('Issue.JustImage'));
+        this.toastr.warning(this.translate.instant('Issue.NotSupported'));
       }
     }
   }
