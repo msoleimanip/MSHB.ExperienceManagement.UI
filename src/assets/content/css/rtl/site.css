@@ -1110,7 +1110,7 @@ th[sortable].desc:before {
   position: relative;
 
   overflow: auto;
-  height: 200px;
+  height: 215px;
   min-height: 0;
   border-radius: 4px;
 
@@ -1146,4 +1146,26 @@ th[sortable].desc:before {
 .dropzone-container {
   height: 100%;
 }
+
+.dropzone .dz-preview .dz-remove {
+  margin-top: 1px !important;
+  color: #fff !important;
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+  font-weight: 400  !important;
+  text-align: center  !important;
+  white-space: nowrap  !important;
+  vertical-align: middle  !important;
+  -webkit-user-select: none  !important;
+  -moz-user-select: none  !important;
+  -ms-user-select: none  !important;
+  user-select: none  !important;
+  border: 1px solid transparent  !important;
+  padding: .375rem .75rem  !important;
+  font-size: 11px  !important;
+  line-height: 1  !important;
+  border-radius: .25rem  !important;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out  !important;
+}
+
 /* End Uploader */

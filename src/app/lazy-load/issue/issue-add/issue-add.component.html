@@ -64,17 +64,23 @@
 
                   <div class="form-group">
                     <label class="col-form-label">{{'Issue.Icon'| translate}}</label>
-                    <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
-                      <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
-                        <dropzone class="dropzone-container" [config]="configStep1" [disabled]="false" fxLayout="row"
-                          fxLayoutAlign="start strech" fxFlex="auto" [message]="'Click or drag images here to upload'"
-                          (error)="onUploadError($event)" (success)="onUploadSuccess($event,1)"></dropzone>
-                      </div>
-                      <div [hidden]="(step1.imageId.valid || step1.imageId.untouched) && !subStepp1">
-                        <div [hidden]="!step1.imageId.hasError('required')" class="text-danger">
-                          {{'Issue.InputImageIdError'| translate}}
+                    <div *ngIf="!step1.imageId.value">
+                      <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
+                        <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+                          <dropzone class="dropzone-container" [config]="configStep1" [disabled]="false" fxLayout="row"
+                            fxLayoutAlign="start strech" fxFlex="auto" [message]="'Click or drag images here to upload'"
+                            (error)="onUploadError($event)" (success)="onUploadSuccess($event,1)"></dropzone>
+                        </div>
+                        <div [hidden]="(step1.imageId.valid || step1.imageId.untouched) && !subStepp1">
+                          <div [hidden]="!step1.imageId.hasError('required')" class="text-danger">
+                            {{'Issue.InputImageIdError'| translate}}
+                          </div>
                         </div>
                       </div>
+                    </div>
+                    <div *ngIf="step1.imageId.value" class="text-center">
+                      <img width="100px" [src]="'/api/File/download/' + step1.imageId.value" />
+                      <button (click)="removeImage()" class="btn-icon"><span class="fa fa-remove"></span></button>
                     </div>
                   </div>
 
@@ -139,9 +145,11 @@
                       <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
                         <dropzone class="dropzone-container" [config]="configStep2" [disabled]="false" fxLayout="row"
                           fxLayoutAlign="start strech" fxFlex="auto" [message]="'Click or drag images here to upload'"
-                          (error)="onUploadError($event)" (success)="onUploadSuccess($event,2)"></dropzone>
+                          (error)="onUploadError($event)" (success)="onUploadSuccess($event,2)"
+                          (removedFile)="onRemoveFile($event)" #dz></dropzone>
                       </div>
                     </div>
+                    <button (click)="resetUploader()" class="btn-reset"><span class="fa fa-refresh"></span></button>
                   </div>
 
                   <div class="form-group">

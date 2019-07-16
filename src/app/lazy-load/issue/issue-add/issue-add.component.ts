@@ -1,3 +1,4 @@
+import { ImageData } from './../../../dataModels/interfaces/imageData';
 import { AddIssueDetailFormModel } from './../../../dataModels/apiModels/addIssueDetailFormModel';
 import { ServerResponseViewModel } from 'src/app/dataModels/viewModels/serverResponseViewModel';
 import { AddIssueFormModel } from './../../../dataModels/apiModels/addIssueFormModel';
@@ -7,10 +8,10 @@ import { CustomeStepper } from './../../../dataModels/generalModels/customSteppe
 import { AuthenticationService } from './../../../core/authentication.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { environment } from './../../../../environments/environment.prod';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
-import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { DropzoneConfigInterface, DropzoneComponent } from 'ngx-dropzone-wrapper';
 import { User } from 'src/app/dataModels/viewModels/user';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { IssueService } from 'src/app/core/issue.service';
@@ -52,6 +53,9 @@ export class IssueAddComponent implements OnInit {
   files: any[];
   selectedIds = [];
 
+  @ViewChild('dz') drpzone: DropzoneComponent;
+
+
   constructor(private toastr: ToastrService,
     private authenticationService: AuthenticationService,
     private issueService: IssueService,
@@ -68,7 +72,7 @@ export class IssueAddComponent implements OnInit {
     this.issueTypesSelect = Object.keys(IssueType).filter(Number).map(key => ({ title: IssueType[key], value: key }));
 
     this.stepper = new CustomeStepper(document.querySelector('#issueStepper'), {
-      linear: true,
+      linear: false,
       animation: true
     });
 
@@ -84,7 +88,7 @@ export class IssueAddComponent implements OnInit {
     this.step2Form = this.formBuilder.group({
       caption: ['', Validators.required],
       text: ['', Validators.required],
-      uploadFiles: [new Array<string>()],
+      uploadFiles: [new Array<ImageData>()],
     });
 
     this.configStep1 = {
@@ -107,6 +111,7 @@ export class IssueAddComponent implements OnInit {
       autoReset: null,
       errorReset: null,
       cancelReset: null,
+      addRemoveLinks: true,
       url: 'api/file/upload',
       headers: {
         Authorization: `Bearer ${this.currentUser.token}`
@@ -143,7 +148,7 @@ export class IssueAddComponent implements OnInit {
         return;
       }
 
-      let addIssueModel = new AddIssueFormModel();
+      const addIssueModel = new AddIssueFormModel();
       addIssueModel.userId = this.step1Form.get('userId').value;
       addIssueModel.issueType = this.step1Form.get('issueType').value;
       addIssueModel.title = this.step1Form.get('title').value;
@@ -178,11 +183,11 @@ export class IssueAddComponent implements OnInit {
       addIssueDetailModel.issueId = this.issueId;
       addIssueDetailModel.text = this.step2Form.get('text').value;
       addIssueDetailModel.caption = this.step2Form.get('caption').value;
-      addIssueDetailModel.uploadFiles = this.step2Form.get('uploadFiles').value;
+      addIssueDetailModel.uploadFiles = (this.step2Form.get('uploadFiles').value as Array<ImageData>).map(x => x.id);
 
       this.issueService.addIssueDetails(addIssueDetailModel).subscribe((res: ServerResponseViewModel<number>) => {
         this.issueDetailsId = res.data;
-        this.toastr.success(this.translate.instant('Issue.Step2Successfully'))
+        this.toastr.success(this.translate.instant('Issue.Step2Successfully'));
         this.stepper.next();
       }, error => {
         this.stepper.to(this.stepper._currentIndex + 1);
@@ -200,12 +205,19 @@ export class IssueAddComponent implements OnInit {
         if (stp === 1) {
           this.step1Form.controls.imageId.setValue(result[1].data);
         } else {
-          const fileIds = this.step2Form.get('uploadFiles').value as Array<string>;
-          fileIds.push(result[1].data);
+          const fileIds = this.step2Form.get('uploadFiles').value as Array<ImageData>;
+          fileIds.push({ id: result[1].data, uuid: result[0].upload.uuid });
           this.step2Form.controls.uploadFiles.setValue(fileIds);
         }
       }
     }
+  }
+
+  onRemoveFile(result: any) {
+    const fileList = this.step2Form.get('uploadFiles').value as Array<ImageData>;
+    const index = fileList.findIndex(x => x.uuid === result.upload.uuid);
+    fileList.splice(index, 1);
+    this.step2Form.controls.uploadFiles.setValue(fileList);
   }
 
   activeIssue() {
@@ -228,5 +240,13 @@ export class IssueAddComponent implements OnInit {
     } else {
       this.toastr.error(this.translate.instant('Issue.retryCheck'));
     }
-  }  
+  }
+
+  resetUploader() {
+    this.drpzone.directiveRef.reset();
+  }
+
+  removeImage() {
+    this.step1Form.controls.imageId.setValue('');
+  }
 }

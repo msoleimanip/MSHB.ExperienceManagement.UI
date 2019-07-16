@@ -8,7 +8,7 @@
         <div>
           <div class="easy-autocomplete">
             <input id="main-search" type="text" name="search" placeholder="{{'Dashboard.SearchText'| translate}}"
-              autocomplete="off" style="border-radius:40px!important" [(ngModel)]="searchContent">
+              autocomplete="off" style="border-radius:40px!important" [(ngModel)]="searchContent" (keyup.enter)="search()">
             <div class="easy-autocomplete-container" id="eac-container-main-search">
               <ul style="display: none;"></ul>
             </div>
