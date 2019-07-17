@@ -1,3 +1,4 @@
+import { AddIssueDetailCommentFormModel } from './../dataModels/apiModels/addIssueDetailCommentFormModel';
 import { AddIssueFormModel } from './../dataModels/apiModels/addIssueFormModel';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -37,5 +38,9 @@ export class IssueService {
 
   getIssueDetails(searchIssueDetailModel: SearchIssueDetailFormModel): Observable<any> {
     return this.http.post('api/Issue/GetIssueDetails', searchIssueDetailModel);
+  }
+
+  addIssueDetailComment(addIssueDetailCommentModel: AddIssueDetailCommentFormModel): Observable<any> {
+    return this.http.post('api/Issue/AddIssueDetailComment', addIssueDetailCommentModel);
   }
 }

@@ -212,7 +212,9 @@
     "YourAnswer": "پاسخ شما",
     "AnswerText": "متن جواب",
     "BtnSearch": "جستــجو",
-    "ClickOnImage": "بر روی عکس کلیک کنید"
+    "ClickOnImage": "بر روی عکس کلیک کنید",
+    "BtnAddComment": "درج",
+    "AddDetails": "صفحه درج جواب"
   },
   "Dashboard": {
     "SearchText": "چی دوست داری یاد بگیری ؟"

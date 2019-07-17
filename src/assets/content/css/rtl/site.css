@@ -1075,7 +1075,79 @@ th[sortable].desc:before {
   }
 }
 
+.box-answer {
+  min-height: 150px;
+  background-color: #eff0f1;
+  padding: 10px;
+  border-radius: 25px;
+}
+
+.form-comment {
+  border-radius: 40px !important;
+  background-color: #fff;
+  border-radius: 40px !important;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  width: 100%;
+  line-height: 35px;
+  border: 0;
+  padding: 0 20px 0 60px;
+  color: #2c373b;
+  -webkit-box-shadow: 0 8px 6px -6px black;
+  -moz-box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0 8px 6px -6px black;
+}
+
+.comment-box {
+  background-color: #48a0e83b;
+  padding: 5px 10px 0px 10px;
+  border-radius: 20px;
+  margin-bottom: 5px;
+}
+
+.btn-wide {
+  width: 100%;
+}
+
 /* Begin Uploader */
+
+.btn-icon {
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #c7444494;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.btn-reset {
+  position: relative;
+  top: -185px;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #c7444494;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.dropzone .dz-preview .dz-remove {
+  font-size: 14px;
+  text-align: center;
+  display: block;
+  cursor: pointer;
+  border: none;
+  color: red;
+  border: solid;
+  padding: 2px;
+  margin-top: 4px;
+}
+
 .app-title {
   font-size: 24px;
 }
@@ -1152,20 +1224,21 @@ th[sortable].desc:before {
   color: #fff !important;
   background-color: #dc3545 !important;
   border-color: #dc3545 !important;
-  font-weight: 400  !important;
-  text-align: center  !important;
-  white-space: nowrap  !important;
-  vertical-align: middle  !important;
-  -webkit-user-select: none  !important;
-  -moz-user-select: none  !important;
-  -ms-user-select: none  !important;
-  user-select: none  !important;
-  border: 1px solid transparent  !important;
-  padding: .375rem .75rem  !important;
-  font-size: 11px  !important;
-  line-height: 1  !important;
-  border-radius: .25rem  !important;
-  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out  !important;
+  font-weight: 400 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  vertical-align: middle !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  border: 1px solid transparent !important;
+  padding: 0.375rem 0.75rem !important;
+  font-size: 11px !important;
+  line-height: 1 !important;
+  border-radius: 0.25rem !important;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
 }
 
 /* End Uploader */

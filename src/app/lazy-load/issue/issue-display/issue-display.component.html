@@ -6,33 +6,30 @@
         <h3>{{item.caption}}</h3>
       </div>
       <div class="card-body">
-        <div [innerHTML]="item.text"></div>
+        <div class="box-answer" [innerHTML]="item.text"></div>
         <hr>
         <ngx-gallery *ngIf="item.issueDetailAttachments.length !== 0" class="gallery-custom" [options]="galleryOptions"
           [images]="loadImage(item.issueDetailId)">
         </ngx-gallery>
       </div>
       <div class="card-footer">
-        <button class="btn btn-sm btn-link">{{'Issue.AddComment'| translate}}</button>
+
+        <div class="comment-box" *ngFor="let cmt of item.issueDetailComments">
+          <a class="btn-link">{{cmt.userName}}</a>: <label>{{cmt.comment}}</label>
+        </div>
+
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="{{'Issue.AddComment'| translate}}"
+            [(ngModel)]="newComment">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button"
+              (click)="addComment(item.issueDetailId)">{{'Issue.BtnAddComment'| translate}}</button>
+          </div>
+        </div>
       </div>
     </div>
     <hr>
   </div>
-  <div class="card">
-    <div class="card-header">
-      <h3>{{'Issue.YourAnswer'| translate}}</h3>
-    </div>
-    <div class="card-body">
-        <div class="form-group row">
-            <label for="cityDescription" class="col-sm-2 col-form-label">{{'Issue.AnswerText'| translate}}</label>
-            <div class="col-sm-10">
-              <angular-editor [config]="editorConfig"></angular-editor>
-            </div>
-          </div>
-    </div>
-    <div class="card-footer">
-      <button class="btn btn-success">{{'General.BtnCreate'| translate}}</button>
-    </div>
-  </div>
+  <button type="button" class="btn btn-success btn-wide" (click)="addAnswer()">{{'Issue.YourAnswer'| translate}}</button>
   <hr>
 </div>

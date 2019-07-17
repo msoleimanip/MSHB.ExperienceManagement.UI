@@ -1,0 +1,51 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{'Issue.AddDetails'| translate}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="caption" class="control-label">{{'Issue.Caption'| translate}}</label>
+          <input id="caption" type="text" class="form-control" placeholder="{{'Issue.Title'| translate}}"
+            formControlName="caption" />
+          <div [hidden]="(f.caption.valid || f.caption.untouched) && !submit">
+            <div [hidden]="!f.caption.hasError('required')" class="text-danger">
+              {{'Issue.InputCaptionError'| translate}}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-form-label">{{'Issue.Files'| translate}}</label>
+          <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
+            <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+              <dropzone class="dropzone-container" [config]="config" [disabled]="false" fxLayout="row"
+                fxLayoutAlign="start strech" fxFlex="auto" [message]="'Click or drag images here to upload'"
+                (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (removedFile)="onRemoveFile($event)"
+                #dz></dropzone>
+            </div>
+          </div>
+          <button (click)="resetUploader()" class="btn-reset"><span class="fa fa-refresh"></span></button>
+        </div>
+
+        <div class="form-group">
+          <label class="col-form-label">{{'Issue.Text'| translate}}</label>
+          <angular-editor formControlName="text" [config]="editorConfig"></angular-editor>
+          <div [hidden]="(f.text.valid || f.text.untouched) && !submit">
+            <div [hidden]="!f.text.hasError('required')" class="text-danger">
+              {{'Issue.InputTextError'| translate}}
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+    <div class="card-footer">
+      <button (click)="onSubmit()"  class="btn btn-primary">{{'General.BtnCreate'| translate}}</button>
+    </div>
+  </div>
+</div>

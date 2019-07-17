@@ -1,3 +1,4 @@
+import { IssueDetailsComponent } from './issue-details/issue-details.component';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { IssueRoutingModule } from './issue-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -20,7 +21,8 @@ import { IssuePlayerComponent } from './issue-player/issue-player.component';
     IssueAddComponent,
     IssueSearchComponent,
     IssueDisplayComponent,
-    IssuePlayerComponent
+    IssuePlayerComponent,
+    IssueDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { IssuePlayerComponent } from './issue-player/issue-player.component';
     NgxGalleryModule
   ],
   entryComponents: [
-    IssuePlayerComponent
+    IssuePlayerComponent,
+    IssueDetailsComponent
   ]
 })
 export class IssueModule { }

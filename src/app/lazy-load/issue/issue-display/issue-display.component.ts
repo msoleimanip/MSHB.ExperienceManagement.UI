@@ -1,10 +1,13 @@
+import { IssueDetailsComponent } from './../issue-details/issue-details.component';
+import { IssueDetailCommentViewModel } from './../../../dataModels/viewModels/issueDetailCommentViewModel';
+import { AddIssueDetailCommentFormModel } from './../../../dataModels/apiModels/addIssueDetailCommentFormModel';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { IssuePlayerComponent } from './../issue-player/issue-player.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { IssueDetailViewModel } from './../../../dataModels/viewModels/issueDetailViewModel';
 import { SearchIssueDetailFormModel } from './../../../dataModels/apiModels/searchIssueDetailFormModel';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IssueService } from 'src/app/core/issue.service';
 import { ServerResponseViewModel } from 'src/app/dataModels/viewModels/serverResponseViewModel';
 import { NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery';
@@ -16,7 +19,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './issue-display.component.html',
   styleUrls: ['./issue-display.component.css']
 })
-export class IssueDisplayComponent implements OnInit {
+export class IssueDisplayComponent implements OnInit, OnDestroy {
 
   searchIssueDetailModel = new SearchIssueDetailFormModel();
   issueDetails = new Array<IssueDetailViewModel>();
@@ -36,11 +39,14 @@ export class IssueDisplayComponent implements OnInit {
     translate: 'no',
   };
 
+  newComment: string;
+
   constructor(private route: ActivatedRoute,
-    private issueService: IssueService,
-    private modalService: NgbModal,
-    private toastr: ToastrService,
-    public translate: TranslateService) { }
+              private issueService: IssueService,
+              private modalService: NgbModal,
+              private toastr: ToastrService,
+              public translate: TranslateService,
+              private config: NgbModalConfig) { }
 
   ngOnInit() {
     this.route.params.subscribe(param => {
@@ -50,6 +56,14 @@ export class IssueDisplayComponent implements OnInit {
           this.issueDetails = res.data;
         });
     });
+
+    this.config.backdrop = false;
+    this.config.keyboard = false;
+  }
+
+  ngOnDestroy(): void {
+    this.config.backdrop = true;
+    this.config.keyboard = true;
   }
 
   loadImage(id: number) {
@@ -102,4 +116,25 @@ export class IssueDisplayComponent implements OnInit {
     }
   }
 
+  addComment(issueDetailId: number) {
+    const model = new AddIssueDetailCommentFormModel();
+    model.comment = this.newComment;
+    model.issueDetailId = issueDetailId;
+
+    this.issueService.addIssueDetailComment(model).subscribe((res: ServerResponseViewModel<IssueDetailCommentViewModel>) => {
+      this.toastr.success(this.translate.instant('Issue.AddCommentSuccessfully'));
+      this.newComment = '';
+      this.issueDetails.find(x => x.issueDetailId === issueDetailId).issueDetailComments.push(res.data);
+    });
+  }
+
+  addAnswer() {
+    const modalRef = this.modalService.open(IssueDetailsComponent, { windowClass: '.my-modal', size: 'lg' });
+    modalRef.componentInstance.issueId = this.searchIssueDetailModel.issueId;
+    modalRef.result.then(result => {
+      if (result) {
+        this.issueDetails.push(result);
+      }
+    });
+  }
 }

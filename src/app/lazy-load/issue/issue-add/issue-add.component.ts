@@ -1,3 +1,4 @@
+import { IssueDetailViewModel } from './../../../dataModels/viewModels/issueDetailViewModel';
 import { ImageData } from './../../../dataModels/interfaces/imageData';
 import { AddIssueDetailFormModel } from './../../../dataModels/apiModels/addIssueDetailFormModel';
 import { ServerResponseViewModel } from 'src/app/dataModels/viewModels/serverResponseViewModel';
@@ -72,7 +73,7 @@ export class IssueAddComponent implements OnInit {
     this.issueTypesSelect = Object.keys(IssueType).filter(Number).map(key => ({ title: IssueType[key], value: key }));
 
     this.stepper = new CustomeStepper(document.querySelector('#issueStepper'), {
-      linear: false,
+      linear: true,
       animation: true
     });
 
@@ -185,8 +186,8 @@ export class IssueAddComponent implements OnInit {
       addIssueDetailModel.caption = this.step2Form.get('caption').value;
       addIssueDetailModel.uploadFiles = (this.step2Form.get('uploadFiles').value as Array<ImageData>).map(x => x.id);
 
-      this.issueService.addIssueDetails(addIssueDetailModel).subscribe((res: ServerResponseViewModel<number>) => {
-        this.issueDetailsId = res.data;
+      this.issueService.addIssueDetails(addIssueDetailModel).subscribe((res: ServerResponseViewModel<IssueDetailViewModel>) => {
+        this.issueDetailsId = res.data.issueDetailId;
         this.toastr.success(this.translate.instant('Issue.Step2Successfully'));
         this.stepper.next();
       }, error => {
