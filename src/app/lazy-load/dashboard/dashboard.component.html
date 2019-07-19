@@ -1,88 +1,117 @@
-<div class="landing-layer">
+<div *ngIf="!currentUser">
+  <!-- Top Image -->
+  <div class="row">
+    <img class="w-100" src="assets/images/topImage-home.jpg" />
+  </div>
+
+  <!-- Counters -->
+  <hr>
   <div class="container">
-    <h2>(( زكـوة الـعلم نـشره ))</h2>
-    <h1>زکات دانش، نـشر آن است.</h1>
-    <h3>امير المؤمنين على بن ابيطالب عليه السّلام</h3>
-    <div class="center-layer">
-      <div class="search-form">
-        <div>
-          <div class="easy-autocomplete">
-            <input id="main-search" type="text" name="search" placeholder="{{'Dashboard.SearchText'| translate}}"
-              autocomplete="off" style="border-radius:40px!important" [(ngModel)]="searchContent" (keyup.enter)="search()">
-            <div class="easy-autocomplete-container" id="eac-container-main-search">
-              <ul style="display: none;"></ul>
-            </div>
-          </div>
-          <button (click)="search()"> <i class="fa fa-search"></i> </button>
-        </div>
-      </div>
-      <div class="row statictis hidden-div">
-        <div class="col-md-4 col-sm-4 col-xs-4 box"><i class="glyphicon glyphicon-user"></i> <span> 2 مدرس مجرب </span>
-        </div>
-        <div class="col-md-4 col-sm-4 col-xs-4 box"><i class="glyphicon glyphicon-user"></i> <span> 13 دانشجو </span>
-        </div>
-        <div class="col-md-4 col-sm-4 col-xs-4 box"><i class="glyphicon glyphicon-book"></i> <span> 25 دقیقه آموزش
-          </span>
-        </div>
-      </div>
+    <div class="form-group">
+      <h5 class="text-center">{{'Dashboard.Text1'| translate}}</h5>
+    </div>
+    <div class="form-group">
+      <h5 class="text-center">{{'Dashboard.Text2'| translate}}</h5>
+    </div>
+    <div class="form-group">
+      <h5 class="text-center">{{'Dashboard.Text2'| translate}}</h5>
+    </div>
+    <div class="form-group">
+      <h5 class="text-center font-weight-bold">{{'Dashboard.Text4'| translate}}</h5>
     </div>
   </div>
 </div>
 
-<div class="container">
-  <section class="terms-item-layer">
-    <header class="section-heading">
-      <h2>آخرین دوره های ســجات</h2><a href="/courses"> مشاهده همه دوره ها </a>
-    </header>
-    <div class="row">
-      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 term-box" *ngFor="let item of hamedList">
-        <article>
-          <div class="img-layer">
-            <img data-src="/assets/images/1.jpg" class="img" alt="دوره معماری تمیز در Asp.Net Core"
-              title="دوره معماری تمیز در Asp.Net Core" src="/assets/images/1.jpg" data-was-processed="true">
-            <div class="description">
-              <ul>
-                <li><i class="glyphicon glyphicon-comment"></i> 0</li>
-                <li><i class="glyphicon glyphicon-download-alt"></i> 17</li>
-                <li><i class="glyphicon glyphicon-eye-open"></i> 282</li>
-              </ul><a href="#" title="دوره معماری تمیز در Asp.Net Core" class="more"> مشاهده جزییات این دوره </a>
+<div *ngIf="currentUser">
+  <div class="landing-layer">
+    <div class="container">
+      <h2>(( زكـوة الـعلم نـشره ))</h2>
+      <h1>زکات دانش، نـشر آن است.</h1>
+      <h3>امير المؤمنين على بن ابيطالب عليه السّلام</h3>
+      <div class="center-layer">
+        <div class="search-form">
+          <div>
+            <div class="easy-autocomplete">
+              <input id="main-search" type="text" name="search" placeholder="{{'Dashboard.SearchText'| translate}}"
+                autocomplete="off" style="border-radius:40px!important" [(ngModel)]="searchContent"
+                (keyup.enter)="search()">
+              <div class="easy-autocomplete-container" id="eac-container-main-search">
+                <ul style="display: none;"></ul>
+              </div>
             </div>
+            <button (click)="search()"> <i class="fa fa-search"></i> </button>
           </div>
-          <h2><a href="#" title="دوره معماری تمیز در Asp.Net Core"> دوره معماری تمیز در Asp.Net Core </a></h2>
-          <div class="footer"><span class="time"> <i class="glyphicon glyphicon-time"></i> 00:16:00 </span> <label>
-              300,000
-              تومان </label></div>
-        </article>
+        </div>
+        <div class="row statictis hidden-div">
+          <div class="col-md-4 col-sm-4 col-xs-4 box"><i class="glyphicon glyphicon-user"></i> <span> 2 مدرس مجرب
+            </span>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-4 box"><i class="glyphicon glyphicon-user"></i> <span> 13 دانشجو </span>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-4 box"><i class="glyphicon glyphicon-book"></i> <span> 25 دقیقه آموزش
+            </span>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
-</div>
+  </div>
 
-<div class="container">
-  <section class="terms-item-layer">
-    <header class="section-heading">
-      <h2>محبوب ترین ها</h2><a href="/courses"> مشاهده </a>
-    </header>
-    <div class="row">
-      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 term-box" *ngFor="let item of hamedList">
-        <article>
-          <div class="img-layer">
-            <img data-src="/assets/images/2.jpg" class="img" alt="دوره معماری تمیز در Asp.Net Core"
-              title="دوره معماری تمیز در Asp.Net Core" src="/assets/images/2.jpg" data-was-processed="true">
-            <div class="description">
-              <ul>
-                <li><i class="glyphicon glyphicon-comment"></i> 0</li>
-                <li><i class="glyphicon glyphicon-download-alt"></i> 17</li>
-                <li><i class="glyphicon glyphicon-eye-open"></i> 282</li>
-              </ul><a href="#" title="دوره معماری تمیز در Asp.Net Core" class="more"> مشاهده جزییات این دوره </a>
+  <div class="container">
+    <section class="terms-item-layer">
+      <header class="section-heading">
+        <h2>آخرین دوره های ســجات</h2><a href="/courses"> مشاهده همه دوره ها </a>
+      </header>
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 term-box" *ngFor="let item of hamedList">
+          <article>
+            <div class="img-layer">
+              <img data-src="/assets/images/1.jpg" class="img" alt="دوره معماری تمیز در Asp.Net Core"
+                title="دوره معماری تمیز در Asp.Net Core" src="/assets/images/1.jpg" data-was-processed="true">
+              <div class="description">
+                <ul>
+                  <li><i class="glyphicon glyphicon-comment"></i> 0</li>
+                  <li><i class="glyphicon glyphicon-download-alt"></i> 17</li>
+                  <li><i class="glyphicon glyphicon-eye-open"></i> 282</li>
+                </ul><a href="#" title="دوره معماری تمیز در Asp.Net Core" class="more"> مشاهده جزییات این دوره </a>
+              </div>
             </div>
-          </div>
-          <h2><a href="#" title="دوره معماری تمیز در Asp.Net Core"> دوره معماری تمیز در Asp.Net Core </a></h2>
-          <div class="footer"><span class="time"> <i class="glyphicon glyphicon-time"></i> 00:16:00 </span> <label>
-              300,000
-              تومان </label></div>
-        </article>
+            <h2><a href="#" title="دوره معماری تمیز در Asp.Net Core"> دوره معماری تمیز در Asp.Net Core </a></h2>
+            <div class="footer"><span class="time"> <i class="glyphicon glyphicon-time"></i> 00:16:00 </span> <label>
+                300,000
+                تومان </label></div>
+          </article>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
+
+  <div class="container">
+    <section class="terms-item-layer">
+      <header class="section-heading">
+        <h2>محبوب ترین ها</h2><a href="/courses"> مشاهده </a>
+      </header>
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 term-box" *ngFor="let item of hamedList">
+          <article>
+            <div class="img-layer">
+              <img data-src="/assets/images/2.jpg" class="img" alt="دوره معماری تمیز در Asp.Net Core"
+                title="دوره معماری تمیز در Asp.Net Core" src="/assets/images/2.jpg" data-was-processed="true">
+              <div class="description">
+                <ul>
+                  <li><i class="glyphicon glyphicon-comment"></i> 0</li>
+                  <li><i class="glyphicon glyphicon-download-alt"></i> 17</li>
+                  <li><i class="glyphicon glyphicon-eye-open"></i> 282</li>
+                </ul><a href="#" title="دوره معماری تمیز در Asp.Net Core" class="more"> مشاهده جزییات این دوره </a>
+              </div>
+            </div>
+            <h2><a href="#" title="دوره معماری تمیز در Asp.Net Core"> دوره معماری تمیز در Asp.Net Core </a></h2>
+            <div class="footer"><span class="time"> <i class="glyphicon glyphicon-time"></i> 00:16:00 </span> <label>
+                300,000
+                تومان </label></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+
 </div>
