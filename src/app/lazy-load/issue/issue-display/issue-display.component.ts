@@ -26,7 +26,7 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
 
   galleryOptions: NgxGalleryOptions[] = [{
     thumbnailActions: [{
-      icon: 'fa fa-play-circle-o', onClick: this.playVideo.bind(this),
+      icon: 'fa fa-play-circle-o text-danger', onClick: this.playVideo.bind(this),
       titleText: 'play'
     }], image: false, height: '100px'
   }, { breakpoint: 500, width: '100%' }];

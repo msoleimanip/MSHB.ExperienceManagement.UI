@@ -2,7 +2,10 @@
   width: 100% !important;
 }
 
-ngx-gallery /deep/ .ngx-gallery-icon {
-  color: red;
+.card-header {
+  background-color: transparent;
+}
 
+.card-footer {
+  background-color: transparent;
 }

@@ -10,6 +10,7 @@ import { EquipmentService } from 'src/app/core/equipment.service';
 import { User } from 'src/app/dataModels/viewModels/user';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { IssueChangeComponent } from './issue-change/issue-change.component';
 
 @Component({
   selector: 'app-issue',
@@ -46,7 +47,10 @@ export class IssueComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     private config: NgbModalConfig) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    config.backdrop = 'static';
+    config.keyboard = false;
   }
+
 
   pondHandleInit() {
     console.log('FilePond has initialised', this.myPond);
@@ -59,6 +63,7 @@ export class IssueComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.loadTree();
     this.issueTypesSelect = Object.keys(IssueType).filter(Number).map(key => ({ title: IssueType[key], value: key }));
+    this.loadIssue();
   }
 
   ngOnDestroy() {
@@ -91,8 +96,19 @@ export class IssueComponent implements OnInit, OnDestroy {
       this.loading = false;
     });
   }
+
+  change(issueId: number, isActive: boolean) {
+    const modalRef = this.modalService.open(IssueChangeComponent, { windowClass: '.my-modal', size: 'sm' });
+    modalRef.componentInstance.isuueId = issueId;
+    modalRef.componentInstance.isActive = isActive;
+
+    modalRef.result.then(result => {
+      if (result === true) {
+        try {
+          this.issues.searchIssueViewModel.find(x => x.id === issueId).isActive = !isActive;
+        } catch { }
+      }
+    });
+  }
 }
 
-
-
-// http://angular-multi-step-wizard.azurewebsites.net/#/address

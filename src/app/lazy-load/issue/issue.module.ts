@@ -14,6 +14,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { IssueSearchComponent } from './issue-search/issue-search.component';
 import { IssueDisplayComponent } from './issue-display/issue-display.component';
 import { IssuePlayerComponent } from './issue-player/issue-player.component';
+import { IssueChangeComponent } from './issue-change/issue-change.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { IssuePlayerComponent } from './issue-player/issue-player.component';
     IssueSearchComponent,
     IssueDisplayComponent,
     IssuePlayerComponent,
-    IssueDetailsComponent
+    IssueDetailsComponent,
+    IssueChangeComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { IssuePlayerComponent } from './issue-player/issue-player.component';
   ],
   entryComponents: [
     IssuePlayerComponent,
-    IssueDetailsComponent
+    IssueDetailsComponent,
+    IssueChangeComponent
   ]
 })
 export class IssueModule { }

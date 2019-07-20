@@ -1099,10 +1099,20 @@ th[sortable].desc:before {
 }
 
 .comment-box {
-  background-color: #48a0e83b;
+  background-color: #eff0f1;
   padding: 5px 10px 0px 10px;
   border-radius: 20px;
   margin-bottom: 5px;
+}
+
+.text-question {
+  color: red;
+  font-size: 17px;
+}
+
+.text-answer {
+  color: green;
+  font-size: 17px;
 }
 
 .btn-wide {
