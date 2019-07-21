@@ -1,3 +1,5 @@
+import { ChangeActivationFormModel } from './../../dataModels/apiModels/changeActivationFormModel';
+import { UserActivationComponent } from './user-activation/user-activation.component';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { UsersEditComponent } from './users-edit/users-edit.component';
 import { EditUserFormModel } from './../../dataModels/apiModels/editUserFormModel';
@@ -73,7 +75,6 @@ export class UsersComponent implements OnInit, OnDestroy {
 
 
   edit(userId: string) {
-    debugger;
     this.usersService.getUserById(userId).subscribe((res: ServerResponseViewModel<UserViewModel>) => {
       const model = new EditUserFormModel();
       model.userId = res.data.id;
@@ -98,7 +99,6 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   create() {
-    debugger;
     const modalRef = this.modalService.open(UsersAddComponent, { windowClass: '.my-modal', size: 'lg' });
     modalRef.result.then(result => {
       if (result === true) {
@@ -111,6 +111,22 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.searchModel.sortModel.sort = direction;
     this.searchModel.sortModel.col = column;
     this.loadUsers();
+  }
+
+  changeActivation(userId: string, isActive: boolean) {
+    const modalRef = this.modalService.open(UserActivationComponent, { windowClass: '.my-modal', size: 'lg' });
+    const changeActivationModel = new ChangeActivationFormModel();
+    changeActivationModel.userId = userId;
+    changeActivationModel.isActive = isActive;
+    modalRef.componentInstance.changeActivationModel = changeActivationModel;
+    modalRef.result.then(result => {
+      if (result.updateButton === true) {
+        const ur = this.users.searchUserViewModel.find(x => x.id === userId);
+        if (ur) {
+          ur.isActive = result.isActive;
+        }
+      }
+    });
   }
 }
 

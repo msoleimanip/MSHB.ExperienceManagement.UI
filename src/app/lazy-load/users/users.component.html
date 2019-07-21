@@ -90,9 +90,11 @@
                   <button type="button" class="btn btn-sm btn-info"
                     [title]="'Users.BtnChangePermissionTitle'| translate" (click)="changeEquiomentPermission(item.id)"><i
                       class="fa fa-eye"></i></button>&nbsp;
-                  <button type="button" class="btn btn-sm btn-success" [title]="'Users.BtnActiveTitle'| translate"><i
-                      class="fa"
-                      [ngClass]=" {'fa-unlock': !item.isActive, 'fa-lock': item.isActive}"></i></button>&nbsp;
+                      <button type="button" class="btn btn-sm btn-success" [title]="'Users.BtnActiveTitle'| translate"
+                      (click)="changeActivation(item.id,item.isActive)">
+                      <i class="fa"
+                        [ngClass]="{'fa-lock':item.isActive.toString() === 'true', 'fa-unlock':item.isActive.toString() === 'false'}"></i>
+                    </button>&nbsp;
                   <button type="button" class="btn btn-sm btn-primary" [title]="'Users.BtnEditTitle'| translate"
                     (click)="edit(item.id)"><i class="fa fa-pencil"></i></button>&nbsp;
                 </td>
@@ -110,9 +112,9 @@
             <div class="col-md-6">
               <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="searchModel.pageSize"
                 (change)="loadUsers()">
-                <option [ngValue]="10">10 items per page</option>
-                <option [ngValue]="15">15 items per page</option>
-                <option [ngValue]="20">20 items per page</option>
+                <option [ngValue]="10">{{'General.10ItemsPerPage'| translate}}</option>
+                <option [ngValue]="15">{{'General.15ItemsPerPage'| translate}}</option>
+                <option [ngValue]="20">{{'General.20ItemsPerPage'| translate}}</option>
               </select>
             </div>
           </div>

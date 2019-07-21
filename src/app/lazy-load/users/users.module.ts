@@ -10,6 +10,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { UsersEditComponent } from './users-edit/users-edit.component';
 import { UsersAddComponent } from './users-add/users-add.component';
 import { UserEquipmentPermissionComponent } from './users-equipment-permission/users-equipment-permission.component';
+import { UserActivationComponent } from './user-activation/user-activation.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { UserEquipmentPermissionComponent } from './users-equipment-permission/u
     UserOrganizationPermissionComponent,
     UserEquipmentPermissionComponent,
     UsersEditComponent,
-    UsersAddComponent
+    UsersAddComponent,
+    UserActivationComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,9 @@ import { UserEquipmentPermissionComponent } from './users-equipment-permission/u
     UserOrganizationPermissionComponent,
     UsersEditComponent,
     UsersAddComponent,
-    UserEquipmentPermissionComponent],
+    UserEquipmentPermissionComponent,
+    UserActivationComponent
+  ],
   exports: [],
   providers: []
 })

@@ -16,7 +16,11 @@
     "PlayFile": "اجرای فایل ها",
     "DeleteConfirm": "آیا از حذف این مورد اطمینان دارید؟",
     "BtnYes": "بـــلـی",
-    "BtnNo": "خـــیـر"
+    "BtnNo": "خـــیـر",
+    "10ItemsPerPage": "10 تایی",
+    "15ItemsPerPage": "15 تایی",
+    "20ItemsPerPage": "20 تایی",
+    "DashboardRedirect": "بازگشت به صفحه اصلی"
   },
   "IssueType": {
     "Question": "سـوال: طرح سوال برای رفع مشکل جاری",
@@ -54,7 +58,8 @@
     "Username": "نام کاربری",
     "Password": "کلمه عبور",
     "FormTitle": "صفحه ورود کاربران",
-    "BtnLogin": "ورود به سامانه"
+    "BtnLogin": "ورود به سامانه",
+    "LoginError": "عدم داشتن مجوز ورود"
   },
   "MyProfile": {
     "ChangeTitle": "صفحه تغییر رمز عبور",
@@ -219,10 +224,10 @@
     "BtnAddComment": "درج",
     "AddDetails": "صفحه درج جواب",
     "DeleteTitle": "صفحه تائید حذف",
-    "DeActiveTitle":"صفحه تغییر وضعیت",
+    "DeActiveTitle": "صفحه تغییر وضعیت",
     "DeActiveConfirm": "آیا از غیر فعالسازی این مورد اطمینان دارید؟",
-    "ActiveConfirm":"آیا از فعالسازی این مورد اطمینان دارید؟",
-    "ChangeSuccessfully":"تغییر با موفقیت انجام شد."
+    "ActiveConfirm": "آیا از فعالسازی این مورد اطمینان دارید؟",
+    "ChangeSuccessfully": "تغییر با موفقیت انجام شد."
   },
   "Dashboard": {
     "SearchText": "چی دوست داری یاد بگیری ؟",

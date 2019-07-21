@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../core/authentication.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   templateUrl: './login.component.html',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
-  error = '';
+  hasError = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     public activeModal: NgbActiveModal,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private toastr: ToastrService
   ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
@@ -41,7 +43,7 @@ export class LoginComponent implements OnInit {
     });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
   }
 
   // convenience getter for easy access to form fields
@@ -49,9 +51,11 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    this.hasError = false;
 
     // stop here if form is invalid
     if (this.loginForm.invalid) {
+      this.toastr.error(this.translate.instant('General.ModelStateError'));
       return;
     }
 
@@ -62,7 +66,7 @@ export class LoginComponent implements OnInit {
         this.loading = false;
         this.activeModal.close();
       }, error => {
-        this.error = error;
+        this.hasError = true;
         this.loading = false;
       });
   }
