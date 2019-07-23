@@ -1,3 +1,5 @@
+import { NgxGalleryModule } from 'ngx-gallery';
+import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { EquipmentCreateComponent } from './equipment-create/equipment-create.component';
 import { EquipmentEditComponent } from './equipment-edit/equipment-edit.component';
 import { SharedModule } from './../../shared/shared.module';
@@ -8,13 +10,15 @@ import { EquipmentRoutingModule } from './equipment-routing.module';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EquipmentAttachmentComponent } from './equipment-attachment/equipment-attachment.component';
 
 
 @NgModule({
   declarations: [
     EquipmentComponent,
     EquipmentEditComponent,
-    EquipmentCreateComponent
+    EquipmentCreateComponent,
+    EquipmentAttachmentComponent
   ],
   imports: [
     CommonModule,
@@ -24,9 +28,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TranslateModule,
     ReactiveFormsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    DropzoneModule,
+    NgxGalleryModule
   ],
-  entryComponents: [EquipmentEditComponent, EquipmentCreateComponent],
+  entryComponents: [EquipmentEditComponent, EquipmentCreateComponent, EquipmentAttachmentComponent],
   exports: [],
   providers: []
 })

@@ -1,3 +1,5 @@
+import { EquipmentAttachmentViewModel } from './../../../dataModels/viewModels/equipmentAttachmentViewModel';
+import { EquipmentAttachmentUserFormModel } from './../../../dataModels/apiModels/equipmentAttachmentUserFormModel';
 import { IssueDetailViewModel } from './../../../dataModels/viewModels/issueDetailViewModel';
 import { ImageData } from './../../../dataModels/interfaces/imageData';
 import { AddIssueDetailFormModel } from './../../../dataModels/apiModels/addIssueDetailFormModel';
@@ -47,17 +49,26 @@ export class IssueAddComponent implements OnInit {
     placeholder: 'Enter text here...',
     translate: 'no',
   };
+
+  dropdownSettings = {
+    singleSelection: false, idField: 'equipmentAttachmentId', textField: 'equipmentAttachmentName',
+    selectAllText: this.translate.instant('General.SelectAllText'),
+    unSelectAllText: this.translate.instant('General.UnSelectAllText'), itemsShowLimit: 3, allowSearchFilter: true
+  };
+
   currentUser: User;
   issueTypesSelect: any;
   issueType = IssueType;
 
   files: any[];
   selectedIds = [];
+  equipmentAttachments = [];
 
   @ViewChild('dz') drpzone: DropzoneComponent;
 
 
-  constructor(private toastr: ToastrService,
+  constructor(
+    private toastr: ToastrService,
     private authenticationService: AuthenticationService,
     private issueService: IssueService,
     private equipmentService: EquipmentService,
@@ -69,7 +80,6 @@ export class IssueAddComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.issueTypesSelect = Object.keys(IssueType).filter(Number).map(key => ({ title: IssueType[key], value: key }));
 
     this.stepper = new CustomeStepper(document.querySelector('#issueStepper'), {
@@ -83,13 +93,14 @@ export class IssueAddComponent implements OnInit {
       imageId: ['', Validators.required],
       issueType: ['', Validators.required],
       userId: [this.currentUser.id, Validators.required],
-      equipmentIds: ['', Validators.required]
+      equipmentIds: [new Array<number>(), Validators.required]
     });
 
     this.step2Form = this.formBuilder.group({
       caption: ['', Validators.required],
       text: ['', Validators.required],
       uploadFiles: [new Array<ImageData>()],
+      equipmentAttachmentIds: [new Array<number>()]
     });
 
     this.configStep1 = {
@@ -159,7 +170,16 @@ export class IssueAddComponent implements OnInit {
 
       this.issueService.addIssue(addIssueModel).subscribe((res: ServerResponseViewModel<number>) => {
         this.issueId = res.data;
-        this.toastr.success(this.translate.instant('Issue.Step1Successfully'))
+        this.toastr.success(this.translate.instant('Issue.Step1Successfully'));
+
+        // load EquipmentAttachment for Step 2
+        const model = new EquipmentAttachmentUserFormModel();
+        model.equipmentIds = addIssueModel.equipmentIds;
+        this.equipmentService.getEquipmentAttachmentForUser(model)
+          .subscribe((arg: ServerResponseViewModel<Array<EquipmentAttachmentViewModel>>) => {
+            this.equipmentAttachments = arg.data;
+          });
+
         this.stepper.next();
       }, error => {
         this.stepper.to(this.stepper._currentIndex);
@@ -185,6 +205,9 @@ export class IssueAddComponent implements OnInit {
       addIssueDetailModel.text = this.step2Form.get('text').value;
       addIssueDetailModel.caption = this.step2Form.get('caption').value;
       addIssueDetailModel.uploadFiles = (this.step2Form.get('uploadFiles').value as Array<ImageData>).map(x => x.id);
+
+      const eqAttachmentIds = this.step2Form.get('equipmentAttachmentIds').value;
+      addIssueDetailModel.equipmentAttachmentIds = eqAttachmentIds.map(item => item.equipmentAttachmentId);
 
       this.issueService.addIssueDetails(addIssueDetailModel).subscribe((res: ServerResponseViewModel<IssueDetailViewModel>) => {
         this.issueDetailsId = res.data.issueDetailId;

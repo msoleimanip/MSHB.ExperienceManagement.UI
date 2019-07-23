@@ -4,5 +4,5 @@ export class AddIssueDetailFormModel {
   caption: string;
   text: string;
   uploadFiles: Array<string>;
-
+  equipmentAttachmentIds: Array<number>;
 }

@@ -1,3 +1,4 @@
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { IssueDetailsComponent } from './issue-details/issue-details.component';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { IssueRoutingModule } from './issue-routing.module';
@@ -36,7 +37,8 @@ import { IssueChangeComponent } from './issue-change/issue-change.component';
     SharedModule,
     DropzoneModule,
     AngularEditorModule,
-    NgxGalleryModule
+    NgxGalleryModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   entryComponents: [
     IssuePlayerComponent,

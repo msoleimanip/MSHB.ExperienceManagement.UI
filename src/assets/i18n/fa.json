@@ -20,7 +20,11 @@
     "10ItemsPerPage": "10 تایی",
     "15ItemsPerPage": "15 تایی",
     "20ItemsPerPage": "20 تایی",
-    "DashboardRedirect": "بازگشت به صفحه اصلی"
+    "DashboardRedirect": "بازگشت به صفحه اصلی",
+    "EquipmentAttachmentType": "نوع افزونه",
+    "UploadError": "در هنگام باگذاری خطایی رخ داده است",
+    "AddSuccessfully": "با موفقیت اضافه شد",
+    "BtnAccept": "تائید اطـلاعات"
   },
   "IssueType": {
     "Question": "سـوال: طرح سوال برای رفع مشکل جاری",
@@ -36,6 +40,11 @@
   "FilterType": {
     "NoAnswers": "بدون جواب ها",
     "NoAcceptedAnswer": "مواردی که جوابشان تایید نشده"
+  },
+  "EquipmentAttachmentType": {
+    "Document": "اسناد",
+    "Tool": "ابزار",
+    "Position": "محیط و موقعیت"
   },
   "Menu": {
     "SiteName": "سامانه جامع انتقال تجربه",
@@ -109,11 +118,23 @@
     "BtnAddNew": "ایجاد تجهیز جدید",
     "CreateTitle": "صفحه ایجاد تجهیز جدید",
     "BtnCreate": "ثبت اطلاعات",
+    "Attachment": "افزونه ها",
+    "BtnAttachment": "افزونه جدید",
     "InputEquipmentNameError": "نام تجهیز می باسیتی وارد شود",
     "TreeNotSelectedError": "از نمودار تجهیزات موردی انتخاب نشده است",
     "ModelStateError": "لطفا مقادیر را به درستی وارد کنید",
     "AddSuccessfully": "تجهیز مورد نظر با موفقیت ثبت شد",
-    "EditSuccessfully": "تجهیز مورد نظر با موفقیت ویرایش شد"
+    "EditSuccessfully": "تجهیز مورد نظر با موفقیت ویرایش شد",
+    "AddAttachmentTitle": "صفحه افزونه ها",
+    "EquipmentAttachmentName": "نام یا عنوان",
+    "File": "فایل",
+    "Description": "توضیحات",
+    "InputEquipmentAttachmentTypeError": "نوع افزونه را انتخاب کنید",
+    "InputEquipmentAttachmentNameError": "نام یا عنوان میبایستی وارد گردد",
+    "Row": "ردیف",
+    "FileType": "نوع فایل",
+    "EquipmentAttachmentType": "نوع افزونه",
+    "EquipmentAtachment": "افزونه ها"
   },
   "Users": {
     "Title": "مدیریت کاربران",

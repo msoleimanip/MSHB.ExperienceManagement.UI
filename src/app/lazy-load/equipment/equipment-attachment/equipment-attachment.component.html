@@ -1,0 +1,83 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{'Equipment.AddAttachmentTitle'| translate}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group row">
+      <label for="equipmentParentCaption"
+        class="col-md-2 col-form-label">{{'Equipment.EquipmentParentCaption'| translate}}</label>
+      <div class="col-md-10">
+        <input id="equipmentParentCaption" type="text" class="form-control-plaintext" value="{{parentsTitle}}">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-md-2 control-label"
+        for="equipmentAttachmentType">{{'General.EquipmentAttachmentType'| translate}}</label>
+      <div class="col-md-10">
+        <select class="form-control" formControlName="equipmentAttachmentType">
+          <option value="">{{ 'General.SelectItems' | translate }}</option>
+          <option *ngFor="let type of equipmentAttachmentTypesSelect" [value]="type.value">{{ type.title | translate }}
+          </option>
+        </select>
+        <div [hidden]="(f.equipmentAttachmentType.valid || f.equipmentAttachmentType.untouched) && !submitted">
+          <div [hidden]="!f.equipmentAttachmentType.hasError('required')" class="text-danger">
+            {{'Equipment.InputEquipmentAttachmentTypeError'| translate}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="equipmentAttachmentName"
+        class="col-md-2 col-form-label">{{'Equipment.EquipmentAttachmentName'| translate}}</label>
+      <div class="col-md-10">
+        <input id="equipmentAttachmentName" type="text" class="form-control" formControlName="equipmentAttachmentName"
+          placeholder="{{'Equipment.EquipmentAttachmentName'| translate}}">
+        <div [hidden]="(f.equipmentAttachmentName.valid || f.equipmentAttachmentName.untouched) && !submitted">
+          <div [hidden]="!f.equipmentAttachmentName.hasError('required')" class="text-danger">
+            {{'Equipment.InputEquipmentAttachmentNameError'| translate}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">{{'Equipment.File'| translate}}</label>
+      <div class="col-md-10">
+        <div *ngIf="!f.uploadFileId.value">
+          <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
+            <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+              <dropzone class="dropzone-container" [config]="config" [disabled]="false" fxLayout="row"
+                fxLayoutAlign="start strech" fxFlex="auto" [message]="'Click or drag images here to upload'"
+                (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="f.uploadFileId.value" class="text-center">
+          <img width="100px" [src]="'/api/File/download/' + f.uploadFileId.value" />
+          <button (click)="removeImage()" class="btn-icon"><span class="fa fa-remove"></span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="description" class="col-md-2 col-form-label">{{'Equipment.Description'| translate}}</label>
+      <div class="col-md-10">
+        <input id="description" type="text" class="form-control" formControlName="description"
+          placeholder="{{'Equipment.Description'| translate}}">
+      </div>
+    </div>
+
+
+  </form>
+</div>
+<div class="modal-footer">
+  <img *ngIf="loading" class="pl-2" src="/assets/images/wait.gif" />
+  <button type="button" class="btn btn-outline-success" (click)="onSubmit()">{{'General.BtnAccept'| translate}}</button>
+  <button type="button" class="btn btn-outline-danger" (click)="close()">{{'General.BtnClose'| translate}}</button>
+</div>

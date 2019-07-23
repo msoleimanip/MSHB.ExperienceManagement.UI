@@ -1,0 +1,4 @@
+.btn-group-sm > .btn,
+.btn-sm {
+  line-height: 0.3 !important;
+}
