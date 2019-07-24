@@ -17,6 +17,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
 import { MyprofileComponent } from './myprofile/myprofile.component';
+import { HomeComponent } from './home/home.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -27,7 +28,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     MenuComponent,
     LoginComponent,
-    MyprofileComponent
+    MyprofileComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

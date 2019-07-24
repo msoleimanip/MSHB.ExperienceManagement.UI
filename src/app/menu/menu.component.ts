@@ -20,7 +20,8 @@ export class MenuComponent implements OnInit {
   currentUser: User;
   isExpanded = false;
 
-  constructor(private authenticationService: AuthenticationService,
+  constructor(
+    private authenticationService: AuthenticationService,
     private router: Router,
     private modalService: NgbModal,
     public translate: TranslateService) {
@@ -38,7 +39,7 @@ export class MenuComponent implements OnInit {
 
   logout() {
     this.authenticationService.logout();
-    this.router.navigate(['']);
+    this.router.navigate(['home']);
   }
 
   loginModal() {

@@ -1,27 +1,3 @@
-<div *ngIf="!currentUser">
-  <!-- Top Image -->
-  <div class="row">
-    <img class="w-100" src="assets/images/topImage-home.jpg" />
-  </div>
-
-  <!-- Counters -->
-  <hr>
-  <div class="container">
-    <div class="form-group">
-      <h5 class="text-center">{{'Dashboard.Text1'| translate}}</h5>
-    </div>
-    <div class="form-group">
-      <h5 class="text-center">{{'Dashboard.Text2'| translate}}</h5>
-    </div>
-    <div class="form-group">
-      <h5 class="text-center">{{'Dashboard.Text2'| translate}}</h5>
-    </div>
-    <div class="form-group">
-      <h5 class="text-center font-weight-bold">{{'Dashboard.Text4'| translate}}</h5>
-    </div>
-  </div>
-</div>
-
 <div *ngIf="currentUser">
   <div class="landing-layer">
     <div class="container">
@@ -65,22 +41,24 @@
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 term-box" *ngFor="let item of issueViewModel">
           <article>
             <div class="img-layer">
-                <img class="img" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
+              <img class="img" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
                 src="/api/File/download/{{item.fileId}}" lazy="loaded" data-was-processed="true">
 
-              
+
 
               <div class="description">
                 <ul>
-                  <li><i class="fa fa-comment"></i> {{item.answerCount}}</li>            
+                  <li><i class="fa fa-comment"></i> {{item.answerCount}}</li>
                   <li><i class="fa fa-thumbs-up"></i> {{item.sumLikes}}</li>
-                </ul><a [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active" title="{{item.title| slice:0:10}}" class="more">{{'Dashboard.ShowDetails'| translate}}</a>
-                
-          
+                </ul><a [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active"
+                  title="{{item.title| slice:0:10}}" class="more">{{'Dashboard.ShowDetails'| translate}}</a>
+
+
               </div>
             </div>
             <h2><a href="#" title="{{item.title| slice:0:10}}"> {{item.title| slice:0:30}} </a></h2>
-            <div class="footer"><span class="time"> <i class="glyphicon glyphicon-time"></i> {{timeConvert(item.creationDate)}} </span> <label>
+            <div class="footer"><span class="time"> <i class="glyphicon glyphicon-time"></i>
+                {{timeConvert(item.creationDate)}} </span> <label>
                 {{ issueType[item.issueType]| translate}}</label></div>
           </article>
         </div>
@@ -94,29 +72,31 @@
         <h2>محبوب ترین ها</h2>
       </header>
       <div class="row">
-          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 term-box" *ngFor="let item of issueLikesViewModel">
-            <article>
-              <div class="img-layer">
-                  <img class="img" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
-                  src="/api/File/download/{{item.fileId}}" lazy="loaded" data-was-processed="true">
-  
-                
-  
-                <div class="description">
-                  <ul>
-                    <li><i class="fa fa-comment"></i> {{item.answerCount}}</li>            
-                    <li><i class="fa fa-thumbs-up"></i> {{item.sumLikes}}</li>
-                  </ul><a [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active" title="{{item.title| slice:0:10}}" class="more">{{'Dashboard.ShowDetails'| translate}}</a>
-                  
-            
-                </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 term-box" *ngFor="let item of issueLikesViewModel">
+          <article>
+            <div class="img-layer">
+              <img class="img" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
+                src="/api/File/download/{{item.fileId}}" lazy="loaded" data-was-processed="true">
+
+
+
+              <div class="description">
+                <ul>
+                  <li><i class="fa fa-comment"></i> {{item.answerCount}}</li>
+                  <li><i class="fa fa-thumbs-up"></i> {{item.sumLikes}}</li>
+                </ul><a [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active"
+                  title="{{item.title| slice:0:10}}" class="more">{{'Dashboard.ShowDetails'| translate}}</a>
+
+
               </div>
-              <h2><a href="#" title="{{item.title| slice:0:10}}"> {{item.title| slice:0:30}} </a></h2>
-              <div class="footer"><span class="time"> <i class="glyphicon glyphicon-time"></i> {{timeConvert(item.creationDate)}} </span> <label>
-                  {{ issueType[item.issueType]| translate}}</label></div>
-            </article>
-          </div>
+            </div>
+            <h2><a href="#" title="{{item.title| slice:0:10}}"> {{item.title| slice:0:30}} </a></h2>
+            <div class="footer"><span class="time"> <i class="glyphicon glyphicon-time"></i>
+                {{timeConvert(item.creationDate)}} </span> <label>
+                {{ issueType[item.issueType]| translate}}</label></div>
+          </article>
         </div>
+      </div>
     </section>
   </div>
 

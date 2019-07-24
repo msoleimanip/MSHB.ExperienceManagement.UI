@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit {
       .subscribe(() => {
         this.loading = false;
         this.activeModal.close();
+        this.router.navigate(['']);
       }, error => {
         this.hasError = true;
         this.loading = false;

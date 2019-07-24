@@ -1,3 +1,4 @@
+import { HomeComponent } from './home/home.component';
 import { PresidentType } from './dataModels/enums/presidentType';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
@@ -5,8 +6,13 @@ import { AuthGuard } from './_gaurds/auth.guard';
 
 const routes: Routes = [
   {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
     path: '',
-    loadChildren: './lazy-load/dashboardModule/dashboardModule.module#DashboardModule'
+    loadChildren: './lazy-load/dashboard/dashboard.module#DashboardModule',
+    canActivate: [AuthGuard]
   },
   {
     path: 'organization',
@@ -42,7 +48,7 @@ const routes: Routes = [
     path: 'shared',
     loadChildren: './shared/shared.module#SharedModule',
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: 'dashboard' }
 ];
 
 @NgModule({
