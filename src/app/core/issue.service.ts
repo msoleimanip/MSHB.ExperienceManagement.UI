@@ -43,4 +43,12 @@ export class IssueService {
   addIssueDetailComment(addIssueDetailCommentModel: AddIssueDetailCommentFormModel): Observable<any> {
     return this.http.post('api/Issue/AddIssueDetailComment', addIssueDetailCommentModel);
   }
+
+  getUserIssueDashboard(): Observable<any> {
+    return this.http.get('api/Dashboard/GetUserIssueDashboard');
+  }
+  getUserLikesDashboard(): Observable<any> {
+    return this.http.get('api/Dashboard/GetUserLikesDashboard');
+  }
+  
 }

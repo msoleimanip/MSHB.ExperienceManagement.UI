@@ -42,7 +42,7 @@
             <button (click)="search()"> <i class="fa fa-search"></i> </button>
           </div>
         </div>
-        <div class="row statictis hidden-div">
+        <!-- <div class="row statictis hidden-div">
           <div class="col-md-4 col-sm-4 col-xs-4 box"><i class="glyphicon glyphicon-user"></i> <span> 2 مدرس مجرب
             </span>
           </div>
@@ -51,7 +51,7 @@
           <div class="col-md-4 col-sm-4 col-xs-4 box"><i class="glyphicon glyphicon-book"></i> <span> 25 دقیقه آموزش
             </span>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -59,26 +59,29 @@
   <div class="container">
     <section class="terms-item-layer">
       <header class="section-heading">
-        <h2>آخرین دوره های ســجات</h2><a href="/courses"> مشاهده همه دوره ها </a>
+        <h2>آخرین دوره های ســجات</h2>
       </header>
       <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 term-box" *ngFor="let item of hamedList">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 term-box" *ngFor="let item of issueViewModel">
           <article>
             <div class="img-layer">
-              <img data-src="/assets/images/1.jpg" class="img" alt="دوره معماری تمیز در Asp.Net Core"
-                title="دوره معماری تمیز در Asp.Net Core" src="/assets/images/1.jpg" data-was-processed="true">
+                <img class="img" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
+                src="/api/File/download/{{item.fileId}}" lazy="loaded" data-was-processed="true">
+
+              
+
               <div class="description">
                 <ul>
-                  <li><i class="glyphicon glyphicon-comment"></i> 0</li>
-                  <li><i class="glyphicon glyphicon-download-alt"></i> 17</li>
-                  <li><i class="glyphicon glyphicon-eye-open"></i> 282</li>
-                </ul><a href="#" title="دوره معماری تمیز در Asp.Net Core" class="more"> مشاهده جزییات این دوره </a>
+                  <li><i class="fa fa-comment"></i> {{item.answerCount}}</li>            
+                  <li><i class="fa fa-thumbs-up"></i> {{item.sumLikes}}</li>
+                </ul><a [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active" title="{{item.title| slice:0:10}}" class="more">{{'Dashboard.ShowDetails'| translate}}</a>
+                
+          
               </div>
             </div>
-            <h2><a href="#" title="دوره معماری تمیز در Asp.Net Core"> دوره معماری تمیز در Asp.Net Core </a></h2>
-            <div class="footer"><span class="time"> <i class="glyphicon glyphicon-time"></i> 00:16:00 </span> <label>
-                300,000
-                تومان </label></div>
+            <h2><a href="#" title="{{item.title| slice:0:10}}"> {{item.title| slice:0:30}} </a></h2>
+            <div class="footer"><span class="time"> <i class="glyphicon glyphicon-time"></i> {{timeConvert(item.creationDate)}} </span> <label>
+                {{ issueType[item.issueType]| translate}}</label></div>
           </article>
         </div>
       </div>
@@ -88,29 +91,32 @@
   <div class="container">
     <section class="terms-item-layer">
       <header class="section-heading">
-        <h2>محبوب ترین ها</h2><a href="/courses"> مشاهده </a>
+        <h2>محبوب ترین ها</h2>
       </header>
       <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 term-box" *ngFor="let item of hamedList">
-          <article>
-            <div class="img-layer">
-              <img data-src="/assets/images/2.jpg" class="img" alt="دوره معماری تمیز در Asp.Net Core"
-                title="دوره معماری تمیز در Asp.Net Core" src="/assets/images/2.jpg" data-was-processed="true">
-              <div class="description">
-                <ul>
-                  <li><i class="glyphicon glyphicon-comment"></i> 0</li>
-                  <li><i class="glyphicon glyphicon-download-alt"></i> 17</li>
-                  <li><i class="glyphicon glyphicon-eye-open"></i> 282</li>
-                </ul><a href="#" title="دوره معماری تمیز در Asp.Net Core" class="more"> مشاهده جزییات این دوره </a>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 term-box" *ngFor="let item of issueLikesViewModel">
+            <article>
+              <div class="img-layer">
+                  <img class="img" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
+                  src="/api/File/download/{{item.fileId}}" lazy="loaded" data-was-processed="true">
+  
+                
+  
+                <div class="description">
+                  <ul>
+                    <li><i class="fa fa-comment"></i> {{item.answerCount}}</li>            
+                    <li><i class="fa fa-thumbs-up"></i> {{item.sumLikes}}</li>
+                  </ul><a [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active" title="{{item.title| slice:0:10}}" class="more">{{'Dashboard.ShowDetails'| translate}}</a>
+                  
+            
+                </div>
               </div>
-            </div>
-            <h2><a href="#" title="دوره معماری تمیز در Asp.Net Core"> دوره معماری تمیز در Asp.Net Core </a></h2>
-            <div class="footer"><span class="time"> <i class="glyphicon glyphicon-time"></i> 00:16:00 </span> <label>
-                300,000
-                تومان </label></div>
-          </article>
+              <h2><a href="#" title="{{item.title| slice:0:10}}"> {{item.title| slice:0:30}} </a></h2>
+              <div class="footer"><span class="time"> <i class="glyphicon glyphicon-time"></i> {{timeConvert(item.creationDate)}} </span> <label>
+                  {{ issueType[item.issueType]| translate}}</label></div>
+            </article>
+          </div>
         </div>
-      </div>
     </section>
   </div>
 

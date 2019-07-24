@@ -306,6 +306,7 @@ body {
   position: relative;
   padding-bottom: 1px;
   border-bottom: 1px solid #dfdfdf;
+  text-align: center;
 }
 
 .term-box article .img-layer:before {
@@ -359,7 +360,7 @@ body {
 }
 
 .term-box article .img-layer .description ul {
-  width: 90%;
+ 
   display: table;
   margin: 45px auto 30px;
 }
