@@ -1,19 +1,12 @@
 import { PresidentType } from './dataModels/enums/presidentType';
-import { IssueModule } from './lazy-load/issue/issue.module';
-import { EquipmentModule } from './lazy-load/equipment/equipment.module';
-import { AccessDeniedComponent } from './shared/access-denied/access-denied.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { OrganizationModule } from './lazy-load/organization/organization.module';
-import { DashboardModule } from './lazy-load/dashboard/dashboard.module';
-import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_gaurds/auth.guard';
-import { UsersModule } from './lazy-load/users/users.module';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => DashboardModule
+    loadChildren: './lazy-load/dashboardModule/dashboardModule.module#DashboardModule'
   },
   {
     path: 'organization',

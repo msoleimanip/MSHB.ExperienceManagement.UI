@@ -248,7 +248,8 @@
     "DeActiveTitle": "صفحه تغییر وضعیت",
     "DeActiveConfirm": "آیا از غیر فعالسازی این مورد اطمینان دارید؟",
     "ActiveConfirm": "آیا از فعالسازی این مورد اطمینان دارید؟",
-    "ChangeSuccessfully": "تغییر با موفقیت انجام شد."
+    "ChangeSuccessfully": "تغییر با موفقیت انجام شد.",
+    "equipmentAttachmentsCount": "تعداد افزونه ها"
   },
   "Dashboard": {
     "SearchText": "چی دوست داری یاد بگیری ؟",

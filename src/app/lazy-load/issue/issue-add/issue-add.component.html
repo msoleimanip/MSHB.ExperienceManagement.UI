@@ -239,6 +239,13 @@
 
                           </div>
                           <div class="col-md-6">
+
+                            <div class="form-group row">
+                              <label class="label-control col-md-3">{{'Issue.equipmentAttachmentsCount'| translate}}</label>
+                              <input type="text" class="form-control col-md-9" readonly
+                                [value]="step2.equipmentAttachmentIds.value.length" />
+                            </div>
+
                             <div class="form-group row">
                               <label class="label-control col-md-3">{{'Issue.Text'| translate}}</label>
                               <div class="col-md-9" [innerHtml]="step2.text.value"></div>

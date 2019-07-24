@@ -1,3 +1,4 @@
+import { EquipmentAttachmentViewModel } from './equipmentAttachmentViewModel';
 import { IssueDetailCommentViewModel } from './issueDetailCommentViewModel';
 import { IssueDetailAttachmentViewModel } from './issueDetailAttachmentViewModel';
 
@@ -15,4 +16,5 @@ export class IssueDetailViewModel {
   likes?: number;
   issueDetailAttachments = new Array<IssueDetailAttachmentViewModel>();
   issueDetailComments = new Array<IssueDetailCommentViewModel>();
+  equipmentAttachmentViewModels = new Array<EquipmentAttachmentViewModel>();
 }
