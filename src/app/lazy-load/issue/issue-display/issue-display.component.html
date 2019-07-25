@@ -21,13 +21,10 @@
 
         <div class="form-group">
           <button *ngFor="let attach of item.equipmentAttachmentViewModels" type="button"
-            class="btn btn-sm btn-tool mr-2" placement="top" ngbTooltip="{{attach.description}}" [ngClass]="{'btn-warning': attach.equipmentAttachmentType === 1,
+            ngbTooltip="{{attach.description}}" class="btn btn-sm btn-tool mr-2" placement="top" [ngClass]="{'btn-warning': attach.equipmentAttachmentType === 1,
                   'btn-info': attach.equipmentAttachmentType === 2,
-                  'btn-primary': attach.equipmentAttachmentType === 3 }">
+                  'btn-primary': attach.equipmentAttachmentType === 3 }" (click)="downloadFile(attach)">
             {{attach.equipmentAttachmentName}}
-            <div *ngIf="attach.fileId">
-              <a [href]="'api/file/download/'+attach.fileId" target="_blank"></a>
-            </div>
           </button>
         </div>
 

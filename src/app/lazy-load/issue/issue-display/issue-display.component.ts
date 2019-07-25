@@ -1,3 +1,4 @@
+import { EquipmentAttachmentViewModel } from './../../../dataModels/viewModels/equipmentAttachmentViewModel';
 import { IssueViewModel } from './../../../dataModels/viewModels/issueViewModel';
 import { IssueDetailsComponent } from './../issue-details/issue-details.component';
 import { IssueDetailCommentViewModel } from './../../../dataModels/viewModels/issueDetailCommentViewModel';
@@ -142,5 +143,9 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
         this.issueDetails.push(result);
       }
     });
+  }
+
+  downloadFile(param: EquipmentAttachmentViewModel) {
+    window.open('api/file/download' + param.fileId, '_blank');
   }
 }

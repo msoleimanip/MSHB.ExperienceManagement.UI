@@ -150,7 +150,7 @@ export class EquipmentComponent implements OnInit, OnDestroy {
         modalRef.componentInstance.equipmentAttachmentTypesSelect = this.equipmentAttachmentTypesSelect;
         modalRef.result.then(result => {
           if (result === true) {
-            // this.loadAttachment();
+            this.loadAttachment();
           }
         });
       });

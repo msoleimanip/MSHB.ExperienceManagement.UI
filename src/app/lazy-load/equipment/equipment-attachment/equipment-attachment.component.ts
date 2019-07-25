@@ -49,7 +49,7 @@ export class EquipmentAttachmentComponent implements OnInit {
 
     this.config = {
       clickable: true,
-      maxFiles: 2,
+      maxFiles: 1,
       autoReset: null,
       errorReset: null,
       cancelReset: null,
