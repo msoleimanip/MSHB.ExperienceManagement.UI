@@ -25,8 +25,8 @@
     "UploadError": "در هنگام باگذاری خطایی رخ داده است",
     "AddSuccessfully": "با موفقیت اضافه شد",
     "BtnAccept": "تائید اطـلاعات",
-    "UnSelectAllText": "عدم انتخاب همه",
-    "SelectAllText": "انتخاب همه"
+    "UnSelectAllText":"عدم انتخاب همه",
+    "SelectAllText":"انتخاب همه"
   },
   "IssueType": {
     "Question": "سـوال: طرح سوال برای رفع مشکل جاری",
