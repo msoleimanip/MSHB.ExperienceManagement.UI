@@ -20,6 +20,13 @@
         </div>
 
         <div class="form-group">
+          <label for="equipmentAttachmentIds" class="col-form-label">{{'Issue.EquipmentAtachment'| translate}}</label>
+          <ng-multiselect-dropdown [placeholder]="'Issue.EquipmentAtachment'| translate" [data]="equipmentAttachments"
+            formControlName="equipmentAttachmentIds" [settings]="dropdownSettings">
+          </ng-multiselect-dropdown>
+        </div>
+
+        <div class="form-group">
           <label class="col-form-label">{{'Issue.Files'| translate}}</label>
           <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
             <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
@@ -45,7 +52,7 @@
 
     </div>
     <div class="card-footer">
-      <button (click)="onSubmit()"  class="btn btn-primary">{{'General.BtnCreate'| translate}}</button>
+      <button (click)="onSubmit()" class="btn btn-primary">{{'General.BtnCreate'| translate}}</button>
     </div>
   </div>
 </div>

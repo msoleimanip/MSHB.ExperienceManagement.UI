@@ -85,7 +85,7 @@
         <div class=" row card-body">
           <div class="col-md-3 col-12 pc">
             <img class="img-circle pr" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
-              src="/api/File/download/{{item.fileId}}" lazy="loaded">
+              src="/api/File/download/{{item.fileId}}" lazy="loaded"  onerror="this.onerror=null; this.src='assets/images/default.thumb'">
           </div>
 
           <div class="col-12 col-md-5">

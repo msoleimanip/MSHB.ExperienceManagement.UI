@@ -1,3 +1,6 @@
+import { EquipmentService } from 'src/app/core/equipment.service';
+import { EquipmentAttachmentViewModel } from './../../../dataModels/viewModels/equipmentAttachmentViewModel';
+import { EquipmentAttachmentUserFormModel } from './../../../dataModels/apiModels/equipmentAttachmentUserFormModel';
 import { IssueDetailViewModel } from './../../../dataModels/viewModels/issueDetailViewModel';
 import { IssueService } from 'src/app/core/issue.service';
 import { AuthenticationService } from './../../../core/authentication.service';
@@ -22,6 +25,7 @@ import { User } from 'src/app/dataModels/viewModels/user';
 export class IssueDetailsComponent implements OnInit {
 
   @Input() issueId: number;
+  @Input() equipmentIds: Array<number>;
   addForm: FormGroup;
   @ViewChild('dz') drpzone: DropzoneComponent;
   currentUser: User;
@@ -38,12 +42,22 @@ export class IssueDetailsComponent implements OnInit {
     translate: 'no',
   };
 
-  constructor(public activeModal: NgbActiveModal,
+  dropdownSettings = {
+    singleSelection: false, idField: 'equipmentAttachmentId', textField: 'equipmentAttachmentName',
+    selectAllText: this.translate.instant('General.SelectAllText'),
+    unSelectAllText: this.translate.instant('General.UnSelectAllText'), itemsShowLimit: 3, allowSearchFilter: true
+  };
+
+  equipmentAttachments = [];
+
+  constructor(
+    public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private translate: TranslateService,
     private authenticationService: AuthenticationService,
-    private issueService: IssueService) {
+    private issueService: IssueService,
+    private equipmentService: EquipmentService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     translate.setDefaultLang(environment.language);
   }
@@ -53,7 +67,16 @@ export class IssueDetailsComponent implements OnInit {
       caption: ['', Validators.required],
       text: ['', Validators.required],
       uploadFiles: [new Array<ImageData>()],
+      equipmentAttachmentIds: [new Array<number>()]
     });
+
+    // load EquipmentAttachment for Step 2
+    const model = new EquipmentAttachmentUserFormModel();
+    model.equipmentIds = this.equipmentIds;
+    this.equipmentService.getEquipmentAttachmentForUser(model)
+      .subscribe((arg: ServerResponseViewModel<Array<EquipmentAttachmentViewModel>>) => {
+        this.equipmentAttachments = arg.data;
+      });
 
     this.config = {
       clickable: true,
@@ -121,7 +144,11 @@ export class IssueDetailsComponent implements OnInit {
     addIssueDetailModel.caption = this.addForm.get('caption').value;
     addIssueDetailModel.uploadFiles = (this.addForm.get('uploadFiles').value as Array<ImageData>).map(x => x.id);
 
+    const eqAttachmentIds = this.addForm.get('equipmentAttachmentIds').value;
+    addIssueDetailModel.equipmentAttachmentIds = eqAttachmentIds.map(item => item.equipmentAttachmentId);
+
     this.issueService.addIssueDetails(addIssueDetailModel).subscribe((res: ServerResponseViewModel<IssueDetailViewModel>) => {
+      debugger;
       this.loading = false;
       this.toastr.success(this.translate.instant('Issue.AddSuccessfully'));
       this.activeModal.close(res.data);

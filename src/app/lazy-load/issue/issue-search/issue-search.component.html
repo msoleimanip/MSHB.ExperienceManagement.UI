@@ -81,6 +81,7 @@
         <div class="col-md-3 col-12 pc">
           <a [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active">
             <img class="img-circle pr" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
+              onerror="this.onerror=null; this.src='assets/images/default.thumb'"
               src="/api/File/download/{{item.fileId}}" lazy="loaded">
           </a>
         </div>
@@ -88,7 +89,8 @@
         <div class="col-12 col-md-5">
           <div class="row line-item text-blue">
             <h5>
-              <a  class="text-blue" [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active"> {{item.title}}</a>
+              <a class="text-blue" [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active">
+                {{item.title}}</a>
             </h5>
           </div>
           <div class="row line-item text-green">

@@ -49,16 +49,14 @@ export class EquipmentAttachmentComponent implements OnInit {
 
     this.config = {
       clickable: true,
-      maxFiles: 1,
+      maxFiles: 2,
       autoReset: null,
       errorReset: null,
       cancelReset: null,
       url: 'api/file/upload',
       headers: {
         Authorization: `Bearer ${this.currentUser.token}`
-      },
-      acceptedFiles: 'image/*',
-      createImageThumbnails: true
+      }
     };
   }
 

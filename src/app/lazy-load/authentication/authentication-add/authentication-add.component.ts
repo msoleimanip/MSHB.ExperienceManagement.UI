@@ -22,11 +22,12 @@ export class AuthenticationAddComponent implements OnInit {
   reloadGroups = false;
   loading = false;
   dropdownSettings = {
-    singleSelection: false, idField: 'roleId', textField: 'title', selectAllText: this.translate.instant('Authentication.SelectAllText'),
-    unSelectAllText: this.translate.instant('Authentication.UnSelectAllText'), itemsShowLimit: 3, allowSearchFilter: true
+    singleSelection: false, idField: 'roleId', textField: 'title', selectAllText: this.translate.instant('General.SelectAllText'),
+    unSelectAllText: this.translate.instant('General.UnSelectAllText'), itemsShowLimit: 3, allowSearchFilter: true
   };
 
-  constructor(public activeModal: NgbActiveModal,
+  constructor(
+    public activeModal: NgbActiveModal,
     private authGroupService: GroupAuthenticationService,
     private formBuilder: FormBuilder,
     private toastr: ToastrService,

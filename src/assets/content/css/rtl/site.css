@@ -307,6 +307,7 @@ body {
   padding-bottom: 1px;
   border-bottom: 1px solid #dfdfdf;
   text-align: center;
+  min-height: 175px;
 }
 
 .term-box article .img-layer:before {
@@ -360,7 +361,7 @@ body {
 }
 
 .term-box article .img-layer .description ul {
- 
+
   display: table;
   margin: 45px auto 30px;
 }
@@ -420,7 +421,7 @@ body {
 }
 
 .term-box article .footer {
-  padding: 15px;
+  padding: 0px 15px 10px 15px;
   position: relative;
 }
 
@@ -444,7 +445,7 @@ body {
 }
 
 .term-box article .footer .time i {
-  font-size: 21px;
+  font-size: 15px;
   color: #99a3a5;
   margin-left: 3px;
   top: 3px;
@@ -463,6 +464,8 @@ body {
   -moz-border-radius: 20px;
   -webkit-border-radius: 20px;
   margin: 0;
+  width: 100%;
+  text-align: center;
 }
 
 .term-box article .footer a:hover {
@@ -511,7 +514,7 @@ body {
 }
 
 .term-box article .footer .time i {
-  font-size: 21px;
+  font-size: 15px;
   color: #99a3a5;
   margin-left: 3px;
   top: 3px;

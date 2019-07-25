@@ -1,3 +1,4 @@
+import { IssueViewModel } from './../../../dataModels/viewModels/issueViewModel';
 import { IssueDetailsComponent } from './../issue-details/issue-details.component';
 import { IssueDetailCommentViewModel } from './../../../dataModels/viewModels/issueDetailCommentViewModel';
 import { AddIssueDetailCommentFormModel } from './../../../dataModels/apiModels/addIssueDetailCommentFormModel';
@@ -13,6 +14,7 @@ import { ServerResponseViewModel } from 'src/app/dataModels/viewModels/serverRes
 import { NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { SearchIssueDetailsViewModel } from 'src/app/dataModels/viewModels/searchIssueDetailsViewModel';
 
 @Component({
   selector: 'app-issue-display',
@@ -23,6 +25,7 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
 
   searchIssueDetailModel = new SearchIssueDetailFormModel();
   issueDetails = new Array<IssueDetailViewModel>();
+  issue = new IssueViewModel();
 
   galleryOptions: NgxGalleryOptions[] = [{
     thumbnailActions: [{
@@ -41,19 +44,21 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
 
   newComment: string;
 
-  constructor(private route: ActivatedRoute,
-              private issueService: IssueService,
-              private modalService: NgbModal,
-              private toastr: ToastrService,
-              public translate: TranslateService,
-              private config: NgbModalConfig) { }
+  constructor(
+    private route: ActivatedRoute,
+    private issueService: IssueService,
+    private modalService: NgbModal,
+    private toastr: ToastrService,
+    public translate: TranslateService,
+    private config: NgbModalConfig) { }
 
   ngOnInit() {
     this.route.params.subscribe(param => {
       this.searchIssueDetailModel.issueId = param.id as number;
       this.issueService.getIssueDetails(this.searchIssueDetailModel)
-        .subscribe((res: ServerResponseViewModel<Array<IssueDetailViewModel>>) => {
-          this.issueDetails = res.data;
+        .subscribe((res: ServerResponseViewModel<SearchIssueDetailsViewModel>) => {
+          this.issueDetails = res.data.issueDetailViewModel;
+          this.issue = res.data.issueViewModel;
         });
     });
 
@@ -131,6 +136,7 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
   addAnswer() {
     const modalRef = this.modalService.open(IssueDetailsComponent, { windowClass: '.my-modal', size: 'lg' });
     modalRef.componentInstance.issueId = this.searchIssueDetailModel.issueId;
+    modalRef.componentInstance.equipmentIds = this.issue.equipments.map(x => x.id);
     modalRef.result.then(result => {
       if (result) {
         this.issueDetails.push(result);

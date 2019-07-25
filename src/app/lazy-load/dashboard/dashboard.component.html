@@ -18,16 +18,6 @@
             <button (click)="search()"> <i class="fa fa-search"></i> </button>
           </div>
         </div>
-        <!-- <div class="row statictis hidden-div">
-          <div class="col-md-4 col-sm-4 col-xs-4 box"><i class="glyphicon glyphicon-user"></i> <span> 2 مدرس مجرب
-            </span>
-          </div>
-          <div class="col-md-4 col-sm-4 col-xs-4 box"><i class="glyphicon glyphicon-user"></i> <span> 13 دانشجو </span>
-          </div>
-          <div class="col-md-4 col-sm-4 col-xs-4 box"><i class="glyphicon glyphicon-book"></i> <span> 25 دقیقه آموزش
-            </span>
-          </div>
-        </div> -->
       </div>
     </div>
   </div>
@@ -42,7 +32,8 @@
           <article>
             <div class="img-layer">
               <img class="img" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
-                src="/api/File/download/{{item.fileId}}" lazy="loaded" data-was-processed="true">
+                src="/api/File/download/{{item.fileId}}" lazy="loaded" data-was-processed="true"
+                onerror="this.onerror=null; this.src='assets/images/default.jpg'">
 
 
 
@@ -50,16 +41,25 @@
                 <ul>
                   <li><i class="fa fa-comment"></i> {{item.answerCount}}</li>
                   <li><i class="fa fa-thumbs-up"></i> {{item.sumLikes}}</li>
-                </ul><a [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active"
-                  title="{{item.title| slice:0:10}}" class="more">{{'Dashboard.ShowDetails'| translate}}</a>
-
+                </ul>
+                <a [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active"
+                  class="more">{{'Dashboard.ShowDetails'| translate}}
+                </a>
 
               </div>
             </div>
-            <h2><a href="#" title="{{item.title| slice:0:10}}"> {{item.title| slice:0:30}} </a></h2>
-            <div class="footer"><span class="time"> <i class="glyphicon glyphicon-time"></i>
-                {{timeConvert(item.creationDate)}} </span> <label>
-                {{ issueType[item.issueType]| translate}}</label></div>
+            <h2><a [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active">
+                {{item.title| slice:0:30}} </a></h2>
+            <div class="footer">
+              <span class="time">
+                <i class="glyphicon glyphicon-time"></i>
+                {{timeConvert(item.creationDate)}}
+              </span>
+              <label>
+                {{ issueType[item.issueType]| translate}}
+              </label>
+            </div>
+
           </article>
         </div>
       </div>
@@ -76,7 +76,8 @@
           <article>
             <div class="img-layer">
               <img class="img" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
-                src="/api/File/download/{{item.fileId}}" lazy="loaded" data-was-processed="true">
+                src="/api/File/download/{{item.fileId}}" lazy="loaded" data-was-processed="true"
+                onerror="this.onerror=null; this.src='assets/images/default.jpg'">
 
 
 
