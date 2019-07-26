@@ -1,5 +1,4 @@
 import { environment } from 'src/environments/environment.prod';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
@@ -29,8 +28,7 @@ export class ReportComponent implements OnInit, OnDestroy {
   }
 
 
-  generateReport() {
-    //this.reportQuery.sIds = this.reportsService.subjectDetails.map(m => m.sId);
+  generateReport() {    
     this.loading = true;
     this.reportsService.getUsersReport()
       .subscribe((res: ServerResponseViewModel<any>) => {
@@ -47,7 +45,7 @@ export class ReportComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.reportsService.getUsersReport().subscribe((res: ServerResponseViewModel<any>) => {
       this.reportsService.getReportStructureById('UserReport').subscribe((item: ServerResponseViewModel<any>) => {
-        this.reportsService.loadDesignReport(item.data.configuration, res.data, 'CallReport');
+        this.reportsService.loadDesignReport(item.data.configuration, res.data, 'UserReport');
       })
     },
     );

@@ -39,14 +39,13 @@ export class ReportsService implements OnInit {
 
         this.report.dictionary.synchronize();
         this.designer.report = this.report;
-        let tempService = this;
-        let notif = this.toastr;
+        let self = this;
         this.designer.onSaveReport = function (arg) {
             let reportDesign = new ReportDesignFormModel();
             reportDesign.ReportId = reportId;
             reportDesign.Configuration = arg.report.saveToJsonString();
-            tempService.updateReportStructureById(reportDesign).subscribe((res: ServerResponseViewModel<boolean>) => {
-                notif.success('' + res.data);
+            self.updateReportStructureById(reportDesign).subscribe((res: ServerResponseViewModel<boolean>) => {
+                self.toastr.success('' + res.data);
             });
         };
         this.designer.renderHtml('reportsViewer');
