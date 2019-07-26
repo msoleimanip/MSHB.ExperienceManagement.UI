@@ -15,6 +15,12 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'report',
+    loadChildren: './lazy-load/report/report.module#ReportModule',
+    canActivate: [AuthGuard],
+    data: { roles: [PresidentType.Admin] }
+  },
+  {
     path: 'organization',
     loadChildren: './lazy-load/organization/organization.module#OrganizationModule',
     canActivate: [AuthGuard],

@@ -3,7 +3,8 @@ import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
-import { ReportRedesignComponent } from './report-redesign/report-redesign.component';
+import { ReportsService } from 'src/app/core/reports.service ';
+import { ServerResponseViewModel } from 'src/app/dataModels/viewModels/serverResponseViewModel';
 
 @Component({
   selector: 'app-report',
@@ -12,35 +13,45 @@ import { ReportRedesignComponent } from './report-redesign/report-redesign.compo
 })
 export class ReportComponent implements OnInit, OnDestroy {
 
-  reports = [{
-    id: 1,
-    title: 'رسید تایید رزرو',
-    createDate: '1398/04/14'
-  }, {
-    id: 2,
-    title: 'رسید پرداخت هزینه',
-    createDate: '1398/04/14'
-  }];
+  loading = false;
 
-  constructor(private modalService: NgbModal,
+  constructor(
+    private reportsService: ReportsService,
     public translate: TranslateService,
-    private toastr: ToastrService,
-    private config: NgbModalConfig) {
+    private toastr: ToastrService) {
     translate.setDefaultLang(environment.language);
-    config.backdrop = 'static';
-    config.keyboard = false;
   }
 
   ngOnInit() {
   }
 
   ngOnDestroy(): void {
-    this.config.backdrop = true;
-    this.config.keyboard = true;
   }
 
-  loadDesign(id: number) {
-    let modalRef = this.modalService.open(ReportRedesignComponent, { windowClass: 'xl-modal', size: 'xl' as 'lg' });
+
+  generateReport() {
+    //this.reportQuery.sIds = this.reportsService.subjectDetails.map(m => m.sId);
+    this.loading = true;
+    this.reportsService.getUsersReport()
+      .subscribe((res: ServerResponseViewModel<any>) => {
+        this.reportsService.getReportStructureById('UserReport').subscribe((item: ServerResponseViewModel<any>) => {
+          this.reportsService.generateReport(item.data.configuration, res.data);
+        })
+      },
+      );
+
+  }
+
+
+  designReport() {
+    this.loading = true;
+    this.reportsService.getUsersReport().subscribe((res: ServerResponseViewModel<any>) => {
+      this.reportsService.getReportStructureById('UserReport').subscribe((item: ServerResponseViewModel<any>) => {
+        this.reportsService.loadDesignReport(item.data.configuration, res.data, 'CallReport');
+      })
+    },
+    );
+
   }
 
 }

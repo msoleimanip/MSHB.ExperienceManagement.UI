@@ -7,6 +7,7 @@ import { FileService } from './upload.service';
 import { PersianDatePickerHelper } from './persianDatePickerHelper';
 import { UsersService } from './users.service';
 import { NgModule } from '@angular/core';
+import { ReportsService } from './reports.service ';
 
 @NgModule({
   declarations: [],
@@ -19,7 +20,8 @@ import { NgModule } from '@angular/core';
     ReportService,
     EquipmentService,
     OrganizationService,
-    IssueService
+    IssueService,
+    ReportsService
   ]
 })
 

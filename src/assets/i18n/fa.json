@@ -25,8 +25,8 @@
     "UploadError": "در هنگام باگذاری خطایی رخ داده است",
     "AddSuccessfully": "با موفقیت اضافه شد",
     "BtnAccept": "تائید اطـلاعات",
-    "UnSelectAllText":"عدم انتخاب همه",
-    "SelectAllText":"انتخاب همه"
+    "UnSelectAllText": "عدم انتخاب همه",
+    "SelectAllText": "انتخاب همه"
   },
   "IssueType": {
     "Question": "سـوال: طرح سوال برای رفع مشکل جاری",
@@ -63,7 +63,9 @@
     "CurrentOperations": "عملیات جاری",
     "IssueManagement": "مسائل من",
     "IssueSearch": "جستجو مسائل",
-    "Authentication": "مدیریت دسترسی ها"
+    "Authentication": "مدیریت دسترسی ها",
+    "Reports": "گـزارشات",
+    "UserReports": "گزارش کاربران"
   },
   "Login": {
     "Username": "نام کاربری",
@@ -250,7 +252,7 @@
     "ActiveConfirm": "آیا از فعالسازی این مورد اطمینان دارید؟",
     "ChangeSuccessfully": "تغییر با موفقیت انجام شد.",
     "equipmentAttachmentsCount": "تعداد افزونه ها",
-    "EquipmentAtachment":"افزونه ها"
+    "EquipmentAtachment": "افزونه ها"
   },
   "Dashboard": {
     "SearchText": "چی دوست داری پیدا کنی ؟",

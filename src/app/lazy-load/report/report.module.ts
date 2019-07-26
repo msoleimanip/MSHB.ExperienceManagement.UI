@@ -5,10 +5,9 @@ import { ReportRoutingModule } from './report-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { ReportRedesignComponent } from './report-redesign/report-redesign.component';
 
 @NgModule({
-  declarations: [ReportComponent, ReportRedesignComponent],
+  declarations: [ReportComponent],
   imports: [
     CommonModule,
     ReportRoutingModule,
@@ -17,6 +16,6 @@ import { ReportRedesignComponent } from './report-redesign/report-redesign.compo
     ReactiveFormsModule,
     FormsModule,
   ],
-  entryComponents: [ReportRedesignComponent]
+  entryComponents: []
 })
 export class ReportModule { }

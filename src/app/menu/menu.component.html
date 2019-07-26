@@ -34,6 +34,16 @@
         </div>
       </li>
 
+      <li class="nav-item dropdown" *ngIf="currentUser">
+        <a class="nav-link dropdown-toggle" id="navbarReports" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          {{ 'Menu.Reports' | translate }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarReports">
+          <a class="dropdown-item" [routerLink]='["/report"]'>{{ 'Menu.UserReports' | translate }}</a>          
+        </div>
+      </li>
+
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown" *ngIf="currentUser">
