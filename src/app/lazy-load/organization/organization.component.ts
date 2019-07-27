@@ -22,11 +22,12 @@ export class OrganizationComponent implements OnInit, OnDestroy {
   files: any[];
   parentOrg = new OrganizationViewModel();
 
-  constructor(private modalService: NgbModal,
-              public translate: TranslateService,
-              private orgService: OrganizationService,
-              private toastr: ToastrService,
-              private config: NgbModalConfig) {
+  constructor(
+    private modalService: NgbModal,
+    public translate: TranslateService,
+    private orgService: OrganizationService,
+    private toastr: ToastrService,
+    private config: NgbModalConfig) {
     translate.setDefaultLang(environment.language);
     config.backdrop = 'static';
     config.keyboard = false;

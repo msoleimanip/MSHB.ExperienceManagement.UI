@@ -5,6 +5,11 @@
 </div>
 
 <div class="container" *ngIf="issueDetails.length !== 0">
+
+  <h3 class="text-green"> {{issue.title}}</h3>
+
+  <hr>
+
   <div *ngFor="let item of issueDetails; let row = index">
     <div class="card card-red" id="{{item.issueDetailId}}">
       <div class="card-header">
@@ -34,13 +39,9 @@
           <a class="btn-link">{{cmt.userName}}</a>: <label>{{cmt.comment}}</label>
         </div>
 
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="{{'Issue.AddComment'| translate}}"
-            [(ngModel)]="newComment">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button"
-              (click)="addComment(item.issueDetailId)">{{'Issue.BtnAddComment'| translate}}</button>
-          </div>
+        <div class="form-group">
+          <input #input type="text" class="form-control comment-input" placeholder="{{'Issue.AddComment'| translate}}"
+            (keydown.Enter)="addComment(item.issueDetailId,input)">
         </div>
       </div>
     </div>

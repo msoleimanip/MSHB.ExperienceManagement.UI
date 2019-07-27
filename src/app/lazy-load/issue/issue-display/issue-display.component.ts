@@ -16,6 +16,7 @@ import { NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { SearchIssueDetailsViewModel } from 'src/app/dataModels/viewModels/searchIssueDetailsViewModel';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-issue-display',
@@ -122,15 +123,15 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
     }
   }
 
-  addComment(issueDetailId: number) {
+  addComment(issueDetailId: number, input: HTMLInputElement) {
     const model = new AddIssueDetailCommentFormModel();
-    model.comment = this.newComment;
+    model.comment = input.value;
     model.issueDetailId = issueDetailId;
 
     this.issueService.addIssueDetailComment(model).subscribe((res: ServerResponseViewModel<IssueDetailCommentViewModel>) => {
       this.toastr.success(this.translate.instant('Issue.AddCommentSuccessfully'));
-      this.newComment = '';
       this.issueDetails.find(x => x.issueDetailId === issueDetailId).issueDetailComments.push(res.data);
+      input.value = '';
     });
   }
 

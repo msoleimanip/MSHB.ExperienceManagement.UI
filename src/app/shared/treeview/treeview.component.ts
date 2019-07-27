@@ -17,6 +17,7 @@ export class TreeviewComponent implements OnInit, OnChanges {
   @Input() id = '';
   @Input() items: any[];
   @Input() hasCheckbox = false;
+  @Input() byParentIds = false;
   @Input() canSearch = false;
   @Input() selectItem: string;
   @Output() dblClick: EventEmitter<any> = new EventEmitter();
@@ -65,14 +66,17 @@ export class TreeviewComponent implements OnInit, OnChanges {
         },
       });
 
+      // tslint:disable-next-line: only-arrow-functions
       $('#tr' + self.id).bind('loaded.jstree', function (event, data) {
         self.loaded.emit();
       });
 
+      // tslint:disable-next-line: only-arrow-functions
       $('#txtSearchTree' + self.id).keyup(function () {
         $('#tr' + self.id).jstree(true).search($('#txtSearchTree' + self.id).val());
       });
 
+      // tslint:disable-next-line: only-arrow-functions
       $('#tr' + self.id).click(function () {
         if (!self.hasCheckbox) {
           self.click.emit(GetNode());
@@ -82,8 +86,9 @@ export class TreeviewComponent implements OnInit, OnChanges {
 
       });
 
+      // tslint:disable-next-line: only-arrow-functions
       $('#tr' + self.id).dblclick(function () {
-        let temp = GetNode();
+        const temp = GetNode();
         if (temp) {
           self.dblClick.emit(temp);
         }
@@ -93,10 +98,10 @@ export class TreeviewComponent implements OnInit, OnChanges {
     }
 
     function GetNode() {
-      let selectedNode = $('#tr' + self.id).jstree('get_selected', true)[0];
+      const selectedNode = $('#tr' + self.id).jstree('get_selected', true)[0];
       if (selectedNode) {
         let rootTitle = selectedNode.text;
-        let hasChild = selectedNode.children.length === 0 ? false : true;
+        const hasChild = selectedNode.children.length === 0 ? false : true;
 
         selectedNode.parents.forEach(element => {
           if (element !== '#') {
@@ -109,13 +114,17 @@ export class TreeviewComponent implements OnInit, OnChanges {
     }
 
     function GetNodeByHasChange() {
-      let selectedNodes = $('#tr' + self.id).jstree('get_selected', true);
-      let nodes = [];
+      const selectedNodes = $('#tr' + self.id).jstree('get_selected', true);
+      const nodes = [];
       if (selectedNodes && selectedNodes.length > 0) {
 
         selectedNodes.forEach(element => {
-          let temp = $('#tr' + self.id).jstree().get_node(element);
-          if (temp.children.length === 0) {
+          const temp = $('#tr' + self.id).jstree().get_node(element);
+          if (!self.byParentIds) {
+            if (temp.children.length === 0) {
+              nodes.push(element.id);
+            }
+          } else {
             nodes.push(element.id);
           }
         });

@@ -39,7 +39,8 @@ export class IssueComponent implements OnInit, OnDestroy {
   issues = new SearchIssueViewModel();
   currentUser: User;
 
-  constructor(private modalService: NgbModal,
+  constructor(
+    private modalService: NgbModal,
     private issueService: IssueService,
     private equipmentService: EquipmentService,
     private authenticationService: AuthenticationService,
@@ -84,7 +85,6 @@ export class IssueComponent implements OnInit, OnDestroy {
   }
 
   loadIssue() {
-
     this.searchModel.userId = this.currentUser.id;
     this.searchModel.equipmentIds = this.selectedIds;
 

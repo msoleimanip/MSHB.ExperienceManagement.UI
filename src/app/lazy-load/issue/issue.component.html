@@ -85,7 +85,8 @@
         <div class=" row card-body">
           <div class="col-md-3 col-12 pc">
             <img class="img-circle pr" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
-              src="/api/File/download/{{item.fileId}}" lazy="loaded"  onerror="this.onerror=null; this.src='assets/images/default.thumb'">
+              src="/api/File/download/{{item.fileId}}" lazy="loaded"
+              onerror="this.onerror=null; this.src='assets/images/default.thumb'">
           </div>
 
           <div class="col-12 col-md-5">
@@ -104,8 +105,9 @@
           <div class="col-12 col-md-4">
             <button class="btn btn-sm btn-warning pl" [title]="'Issue.Edit'| translate"><span
                 class="fa fa-pencil"></span></button>
-            <button class="btn btn-sm pl btn-space" [ngClass]="{'btn-danger': item.isActive, 'btn-success': !item.isActive}" [title]="'Issue.Delete'| translate"
-              (click)="change(item.id,item.isActive)">
+            <button class="btn btn-sm pl btn-space"
+              [ngClass]="{'btn-danger': item.isActive, 'btn-success': !item.isActive}"
+              [title]="'Issue.Delete'| translate" (click)="change(item.id,item.isActive)">
               <span class="fa" [ngClass]="{'fa-eye-slash': item.isActive, 'fa-refresh': !item.isActive}"></span>
             </button>
             <button [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active"
@@ -116,7 +118,11 @@
       </div>
 
     </div>
-    <hr *ngIf="issues.searchIssueViewModel.length > 0">
 
+    <div *ngIf="issues.searchIssueViewModel.length > 0" class="row paging-space">
+      <ngb-pagination [collectionSize]="issues.totalCount" [(page)]="searchModel.pageIndex" (pageChange)="loadIssue()"
+        [maxSize]="5" [boundaryLinks]="true">
+      </ngb-pagination>
+    </div>
   </div>
 </div>

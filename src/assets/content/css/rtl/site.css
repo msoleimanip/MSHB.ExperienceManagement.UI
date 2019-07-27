@@ -361,7 +361,6 @@ body {
 }
 
 .term-box article .img-layer .description ul {
-
   display: table;
   margin: 45px auto 30px;
 }
@@ -1121,6 +1120,26 @@ th[sortable].desc:before {
 
 .btn-wide {
   width: 100%;
+}
+
+.custom-select {
+  height: auto !important;
+}
+
+.paging-space {
+  margin: 10px 0px 20px 0px;
+  float: left;
+}
+
+.comment-input {
+  background-color: #ffffff;
+  padding: 0px 10px 0px 10px;
+  border-radius: 20px;
+  margin-bottom: 5px;
+}
+
+.dir-ltr {
+  direction: ltr !important;
 }
 
 /* Begin Uploader */

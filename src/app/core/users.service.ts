@@ -44,7 +44,11 @@ export class UsersService {
     return this.http.post('/api/Account/changeActivateUser', changeActivationModel);
   }
 
-  changePassword(changePasswordModel: ChangePasswordFormModel): Observable<any>{
+  changePassword(changePasswordModel: ChangePasswordFormModel): Observable<any> {
     return this.http.post('/api/Account/changePassword', changePasswordModel);
+  }
+
+  getOrganizationUsers(ids: Array<number>): Observable<any> {
+    return this.http.post('/api/Account/getOrganizationUsers', ids);
   }
 }

@@ -131,4 +131,9 @@
 
   </div>
 
+  <div *ngIf="issues.searchIssueViewModel.length > 0" class="row paging-space">
+    <ngb-pagination [collectionSize]="issues.totalCount" [(page)]="searchModel.pageIndex" (pageChange)="loadQuestion()"
+      [maxSize]="5" [boundaryLinks]="true">
+    </ngb-pagination>
+  </div>
 </div>

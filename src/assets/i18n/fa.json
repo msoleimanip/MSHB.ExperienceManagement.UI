@@ -252,7 +252,8 @@
     "ActiveConfirm": "آیا از فعالسازی این مورد اطمینان دارید؟",
     "ChangeSuccessfully": "تغییر با موفقیت انجام شد.",
     "equipmentAttachmentsCount": "تعداد افزونه ها",
-    "EquipmentAtachment": "افزونه ها"
+    "EquipmentAtachment": "افزونه ها",
+    "AddCommentSuccessfully": "نکته جدید با موفقیت ثبت شد"
   },
   "Dashboard": {
     "SearchText": "چی دوست داری پیدا کنی ؟",
@@ -261,5 +262,12 @@
     "Text3": "تکست سوم",
     "Text4": "سامانه انتقال تجریبات (سجــات)",
     "ShowDetails": "مشاهده جزییات"
+  },
+  "Report": {
+    "View": "تهیه گزارش",
+    "Design": "طراحی گزارش",
+    "Users": "لیست کاربران",
+    "Search": "جـستجـو",
+    "UsersCountIsZero": "کاربری انتخاب نشده است"
   }
 }
