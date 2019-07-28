@@ -522,6 +522,9 @@ body {
 
 .img-layer .img {
   max-width: 100%;
+  margin-top: 10px;
+  border-radius: 25%;
+  max-height: 120px;
 }
 
 ul {
@@ -1031,6 +1034,8 @@ th[sortable].desc:before {
 .img-circle {
   border-radius: 50%;
   box-shadow: -0.5px 0 0 0 #e1e1e1, -0.5px 0 0 1px #e1e1e1;
+  height: 120px;
+  width: 120px;
 }
 
 .issue-badge {
@@ -1149,7 +1154,6 @@ th[sortable].desc:before {
   background-size: 23px;
   background-position: center;
 }
-
 
 /* Begin Uploader */
 

@@ -81,7 +81,7 @@
         <div class="col-md-3 col-12 pc">
           <a [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active">
             <img class="img-circle pr" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
-              onerror="this.onerror=null; this.src='assets/images/default.thumb'"
+              onerror="this.onerror=null; this.src='assets/images/small.jpg'"
               src="/api/File/download/{{item.fileId}}" lazy="loaded">
           </a>
         </div>
