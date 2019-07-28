@@ -40,7 +40,16 @@
           {{ 'Menu.Reports' | translate }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarReports">
-          <a class="dropdown-item" [routerLink]='["/report/usersIssue"]'>{{ 'Menu.UserReports' | translate }}</a>
+          <a class="dropdown-item" [routerLink]='["/report/usersIssue"]'>{{ 'Menu.UserIssueReports' | translate }}</a>
+          <a class="dropdown-item"
+            [routerLink]='["/report/equipmentsIssue"]'>{{ 'Menu.EquipmentIssueReports' | translate }}
+          </a>
+          <a class="dropdown-item"
+            [routerLink]='["/report/userLikes"]'>{{ 'Menu.IssueOfUserLikesReport' | translate }}</a>
+          <a class="dropdown-item"
+            [routerLink]='["/report/totalIssues"]'>{{ 'Menu.TotalIssueReport' | translate }}</a>
+            <a class="dropdown-item"
+            [routerLink]='["/report/organizationsIssue"]'>{{ 'Menu.IssuesOfOrganizationReport' | translate }}</a>
         </div>
       </li>
 
@@ -52,7 +61,7 @@
           {{ currentUser.fullName }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarUser" *ngIf="currentUser">
-          <a class="dropdown-item" (click)="changePass()" >{{ 'Menu.ChangePassword' | translate }}</a>
+          <a class="dropdown-item" (click)="changePass()">{{ 'Menu.ChangePassword' | translate }}</a>
         </div>
       </li>
     </ul>

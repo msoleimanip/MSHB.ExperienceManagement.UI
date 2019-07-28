@@ -1,3 +1,5 @@
+import { IssueOfOrganizationFormModel } from './../dataModels/apiModels/issueOfOrganizationFormModel';
+import { IssueOfEquipmentFormModel } from './../dataModels/apiModels/issueOfEquipmentFormModel';
 import { IssueOfUsersFormModel } from './../dataModels/apiModels/issueOfUsersFormModel';
 import { Injectable, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -6,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { ServerResponseViewModel } from '../dataModels/viewModels/serverResponseViewModel';
 import { Observable } from 'rxjs';
 import { UpdateReportStructureFormModel } from '../dataModels/apiModels/updateReportStructureFormModel';
+import { TotalIssueFormModel } from '../dataModels/apiModels/totalIssueFormModel';
 
 declare var Stimulsoft: any;
 
@@ -94,5 +97,21 @@ export class ReportsService implements OnInit {
 
   issueOfUsersReport(issueOfUsersModel: IssueOfUsersFormModel): Observable<any> {
     return this.http.post('/api/Report/IssueOfUsersReport', issueOfUsersModel);
+  }
+
+  issueOfEquipmentsReport(issueOfEquipmentModel: IssueOfEquipmentFormModel): Observable<any> {
+    return this.http.post('/api/Report/issueOfEquipmentsReport', issueOfEquipmentModel);
+  }
+
+  issueOfUserLikesReport(issueOfUsersModel: IssueOfUsersFormModel): Observable<any> {
+    return this.http.post('/api/Report/issueOfUserLikesReport', issueOfUsersModel);
+  }
+
+  totalIssueReport(totalIssueModel: TotalIssueFormModel): Observable<any> {
+    return this.http.post('/api/Report/totalIssueReport', totalIssueModel);
+  }
+
+  issuesOfOrganizationReport(issueOfOrganizationModel: IssueOfOrganizationFormModel): Observable<any> {
+    return this.http.post('/api/Report/issuesOfOrganizationReport', issueOfOrganizationModel);
   }
 }

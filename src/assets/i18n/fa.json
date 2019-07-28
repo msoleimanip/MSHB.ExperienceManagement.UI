@@ -65,7 +65,11 @@
     "IssueSearch": "جستجو مسائل",
     "Authentication": "مدیریت دسترسی ها",
     "Reports": "گـزارشات",
-    "UserReports": "گزارش کاربران"
+    "UserIssueReports": "مسائل کاربران",
+    "EquipmentIssueReports": "مسائل مربوط به تجهیزات",
+    "IssueOfUserLikesReport": "لایک ها مربوط به کاربران",
+    "TotalIssueReport": "جزییات تمامی مسائل",
+    "IssuesOfOrganizationReport": "مسائل بر اساس رده ها"
   },
   "Login": {
     "Username": "نام کاربری",
@@ -268,6 +272,10 @@
     "Design": "طراحی گزارش",
     "Users": "لیست کاربران",
     "Search": "جـستجـو",
-    "UsersCountIsZero": "کاربری انتخاب نشده است"
+    "UsersCountIsZero": "کاربری انتخاب نشده است",
+    "StartTime": "تاریخ شروع",
+    "EndTime": "تاریخ پایان",
+    "SelectIssueType": "نوع مسئله میبایستی انتخاب شود",
+    "IdsCountIsZero": "از نمودار موردی انتخاب نشده است"
   }
 }

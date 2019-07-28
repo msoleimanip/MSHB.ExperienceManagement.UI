@@ -1,26 +1,26 @@
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { OrganizationService } from './../../../core/organization.service';
-import { PresidentType } from './../../../dataModels/enums/presidentType';
-import { AuthenticationService } from 'src/app/core/authentication.service';
 import { IssueOfUsersFormModel } from './../../../dataModels/apiModels/issueOfUsersFormModel';
-import { environment } from 'src/environments/environment.prod';
+import { OrganizationService } from 'src/app/core/organization.service';
+import { AuthenticationService } from 'src/app/core/authentication.service';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { PresidentType } from './../../../dataModels/enums/presidentType';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { ToastrService } from 'ngx-toastr';
-import { ReportsService } from 'src/app/core/reports.service ';
-import { ServerResponseViewModel } from 'src/app/dataModels/viewModels/serverResponseViewModel';
 import { User } from 'src/app/dataModels/viewModels/user';
-import { UsersService } from 'src/app/core/users.service';
-import { UserOrgViewModel } from 'src/app/dataModels/apiModels/userOrgViewModel';
-import { ReportStructureViewModel } from 'src/app/dataModels/viewModels/reportStructureViewModel';
+import { ReportsService } from 'src/app/core/reports.service ';
+import { TranslateService } from '@ngx-translate/core';
 import { PersianDatePickerHelper } from 'src/app/core/persianDatePickerHelper';
+import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
+import { UserOrgViewModel } from 'src/app/dataModels/apiModels/userOrgViewModel';
+import { UsersService } from 'src/app/core/users.service';
+import { ServerResponseViewModel } from 'src/app/dataModels/viewModels/serverResponseViewModel';
+import { ReportStructureViewModel } from 'src/app/dataModels/viewModels/reportStructureViewModel';
 
 @Component({
-  selector: 'app-users-issue-report',
-  templateUrl: './users-issue-report.component.html',
-  styleUrls: ['./users-issue-report.component.css']
+  selector: 'app-user-likes-report',
+  templateUrl: './user-likes-report.component.html',
+  styleUrls: ['./user-likes-report.component.css']
 })
-export class UsersIssueReportComponent implements OnInit, OnDestroy {
+export class UserLikesReportComponent implements OnInit, OnDestroy {
 
   loading = false;
   currentUser: User;
@@ -94,8 +94,8 @@ export class UsersIssueReportComponent implements OnInit, OnDestroy {
     }
 
     this.loading = true;
-    this.reportsService.issueOfUsersReport(issueOfUsersModel).subscribe((res: ServerResponseViewModel<any>) => {
-      this.reportsService.getReportStructure('IssueOfUsers').subscribe((item: ServerResponseViewModel<ReportStructureViewModel>) => {
+    this.reportsService.issueOfUserLikesReport(issueOfUsersModel).subscribe((res: ServerResponseViewModel<any>) => {
+      this.reportsService.getReportStructure('IssueOfUserLikes').subscribe((item: ServerResponseViewModel<ReportStructureViewModel>) => {
         this.reportsService.generateReport(item.data.configuration, res.data);
         this.loading = false;
       }, error => {
@@ -121,13 +121,12 @@ export class UsersIssueReportComponent implements OnInit, OnDestroy {
     }
 
     this.loading = true;
-    this.reportsService.issueOfUsersReport(issueOfUsersModel).subscribe((res: ServerResponseViewModel<any>) => {
-      this.reportsService.getReportStructure('IssueOfUsers').subscribe((item: ServerResponseViewModel<ReportStructureViewModel>) => {
-        this.reportsService.loadDesignReport(item.data.configuration, res.data, 'IssueOfUsers');
+    this.reportsService.issueOfUserLikesReport(issueOfUsersModel).subscribe((res: ServerResponseViewModel<any>) => {
+      this.reportsService.getReportStructure('IssueOfUserLikes').subscribe((item: ServerResponseViewModel<ReportStructureViewModel>) => {
+        this.reportsService.loadDesignReport(item.data.configuration, res.data, 'IssueOfUserLikes');
       });
     });
 
   }
-
 
 }
