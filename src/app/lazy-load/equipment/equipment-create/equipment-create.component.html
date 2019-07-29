@@ -10,7 +10,7 @@
       <label for="equName" class="col-sm-2 col-form-label">{{'Equipment.EquipmentName'| translate}}</label>
       <div class="col-sm-10">
         <input id="equName" type="text" class="form-control" formControlName="equipmentName"
-          placeholder="{{'Organization.OrgName'| translate}}">
+          placeholder="{{'Equipment.EquipmentName'| translate}}">
         <div [hidden]="(f.equipmentName.valid || f.equipmentName.untouched) && !submitted">
           <div [hidden]="!f.equipmentName.hasError('required')" class="text-danger">
             {{'Equipment.InputEquipmentNameError'| translate}}
