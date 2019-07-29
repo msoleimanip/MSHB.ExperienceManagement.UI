@@ -16,7 +16,7 @@ import { NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { SearchIssueDetailsViewModel } from 'src/app/dataModels/viewModels/searchIssueDetailsViewModel';
-import { Observable } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-issue-display',
@@ -47,6 +47,7 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
   newComment: string;
 
   constructor(
+    private location: Location,
     private route: ActivatedRoute,
     private issueService: IssueService,
     private modalService: NgbModal,
@@ -59,6 +60,10 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
       this.searchIssueDetailModel.issueId = param.id as number;
       this.issueService.getIssueDetails(this.searchIssueDetailModel)
         .subscribe((res: ServerResponseViewModel<SearchIssueDetailsViewModel>) => {
+          if (res.data.issueDetailViewModel.length === 0) {
+            this.toastr.error(this.translate.instant('Issue.IssueNotCompeleted'));
+            this.location.back();
+          }
           this.issueDetails = res.data.issueDetailViewModel;
           this.issue = res.data.issueViewModel;
         });

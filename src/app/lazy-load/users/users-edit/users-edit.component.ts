@@ -28,7 +28,8 @@ export class UsersEditComponent implements OnInit {
   groupAuthentication: Array<GroupAuthenticationViewModel>;
 
 
-  constructor(public activeModal: NgbActiveModal,
+  constructor(
+    public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
     private usersService: UsersService,
     private toastr: ToastrService,
@@ -48,7 +49,7 @@ export class UsersEditComponent implements OnInit {
       isActive: [this.editUserModel.isActive],
       phoneNumber: [this.editUserModel.phoneNumber],
       groupAuthId: [this.editUserModel.groupAuthId, Validators.required],
-      // isPresident: [this.editUserModel.isPresident, Validators.required]
+      isPresident: [this.editUserModel.isPresident, Validators.required]
     });
 
     this.isActiveSelect = this.editUserModel.isActive;
@@ -65,7 +66,7 @@ export class UsersEditComponent implements OnInit {
     this.submitted = true;
     this.loading = true;
     if (this.editForm.invalid) {
-      this.toastr.error(this.translate.instant('Users.ModelStateError'));
+      this.toastr.error(this.translate.instant('General.ModelStateError'));
       this.loading = false;
       return;
     }
@@ -79,10 +80,11 @@ export class UsersEditComponent implements OnInit {
     this.editUserModel.isActive = this.editForm.get('isActive').value;
     this.editUserModel.phoneNumber = this.editForm.get('phoneNumber').value;
     this.editUserModel.groupAuthId = this.editForm.get('groupAuthId').value;
+    this.editUserModel.isPresident = this.editForm.get('isPresident').value;
 
     this.usersService.editUser(this.editUserModel).subscribe(res => {
       if (res.data) {
-        this.toastr.success(this.translate.instant('Users.EditSuccessfully'), '200');
+        this.toastr.success(this.translate.instant('Users.EditSuccessfully'));
         this.loading = false;
         this.reloadTable = true;
         this.close();

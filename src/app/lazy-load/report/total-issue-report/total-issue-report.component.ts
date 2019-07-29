@@ -3,7 +3,7 @@ import { environment } from './../../../../environments/environment.prod';
 import { AuthenticationService } from './../../../core/authentication.service';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ReportsService } from 'src/app/core/reports.service ';
+import { ReportService } from 'src/app/core/report.service';
 import { TranslateService } from '@ngx-translate/core';
 import { PersianDatePickerHelper } from 'src/app/core/persianDatePickerHelper';
 import { ToastrService } from 'ngx-toastr';
@@ -30,7 +30,7 @@ export class TotalIssueReportComponent implements OnInit, OnDestroy {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private reportsService: ReportsService,
+    private reportService: ReportService,
     public translate: TranslateService,
     private persianDatePickerHelper: PersianDatePickerHelper,
     private toastr: ToastrService) {
@@ -43,7 +43,7 @@ export class TotalIssueReportComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.reportsService.disposeDesignReport();
+    this.reportService.disposeDesignReport();
   }
 
 
@@ -58,9 +58,9 @@ export class TotalIssueReportComponent implements OnInit, OnDestroy {
     this.totalIssueModel.startTime = this.persianDatePickerHelper.getDate(this.startDateTemplate, environment.language === 'fa');
 
     this.loading = true;
-    this.reportsService.totalIssueReport(this.totalIssueModel).subscribe((res: ServerResponseViewModel<any>) => {
-      this.reportsService.getReportStructure('TotalIssue').subscribe((item: ServerResponseViewModel<ReportStructureViewModel>) => {
-        this.reportsService.generateReport(item.data.configuration, res.data);
+    this.reportService.totalIssueReport(this.totalIssueModel).subscribe((res: ServerResponseViewModel<any>) => {
+      this.reportService.getReportStructure('TotalIssue').subscribe((item: ServerResponseViewModel<ReportStructureViewModel>) => {
+        this.reportService.generateReport(item.data.configuration, res.data);
         this.loading = false;
       }, error => {
         this.loading = false;
@@ -77,9 +77,9 @@ export class TotalIssueReportComponent implements OnInit, OnDestroy {
     this.totalIssueModel.startTime = this.persianDatePickerHelper.getDate(this.startDateTemplate, environment.language === 'fa');
 
     this.loading = true;
-    this.reportsService.totalIssueReport(this.totalIssueModel).subscribe((res: ServerResponseViewModel<any>) => {
-      this.reportsService.getReportStructure('TotalIssue').subscribe((item: ServerResponseViewModel<ReportStructureViewModel>) => {
-        this.reportsService.loadDesignReport(item.data.configuration, res.data, 'TotalIssue');
+    this.reportService.totalIssueReport(this.totalIssueModel).subscribe((res: ServerResponseViewModel<any>) => {
+      this.reportService.getReportStructure('TotalIssue').subscribe((item: ServerResponseViewModel<ReportStructureViewModel>) => {
+        this.reportService.loadDesignReport(item.data.configuration, res.data, 'TotalIssue');
       });
     });
 

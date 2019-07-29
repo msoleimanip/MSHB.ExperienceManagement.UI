@@ -18,6 +18,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 export class UsersAddComponent implements OnInit {
 
+  @Input() presidentTypesSelect: any;
   addUserModel = new AddUserFormModel();
   addForm: FormGroup;
   submitted = false;
@@ -27,7 +28,8 @@ export class UsersAddComponent implements OnInit {
   groupAuthentication = new Array<GroupAuthenticationViewModel>();
 
 
-  constructor(public activeModal: NgbActiveModal,
+  constructor(
+    public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
     private usersService: UsersService,
     private toastr: ToastrService,
@@ -47,7 +49,8 @@ export class UsersAddComponent implements OnInit {
       location: [''],
       isActive: [this.addUserModel.isActive],
       phoneNumber: [''],
-      groupAuthId: ['', Validators.required]
+      groupAuthId: ['', Validators.required],
+      isPresident: ['', Validators.required]
     });
 
     this.groupAuthenticationService.getGroupAuthentication()
@@ -62,7 +65,7 @@ export class UsersAddComponent implements OnInit {
     this.submitted = true;
     this.loading = true;
     if (this.addForm.invalid) {
-      this.toastr.error(this.translate.instant('Users.ModelStateError'));
+      this.toastr.error(this.translate.instant('General.ModelStateError'));
       this.loading = false;
       return;
     }
@@ -76,10 +79,11 @@ export class UsersAddComponent implements OnInit {
     this.addUserModel.isActive = this.addForm.get('isActive').value;
     this.addUserModel.phoneNumber = this.addForm.get('phoneNumber').value;
     this.addUserModel.groupAuthId = this.addForm.get('groupAuthId').value;
+    this.addUserModel.isPresident = this.addForm.get('isPresident').value;
 
     this.usersService.addUser(this.addUserModel).subscribe(res => {
       if (res.data) {
-        this.toastr.success(this.translate.instant('Users.AddSuccessfully'), '100');
+        this.toastr.success(this.translate.instant('Users.AddSuccessfully'));
         this.addForm.reset();
         this.submitted = false;
         this.loading = false;

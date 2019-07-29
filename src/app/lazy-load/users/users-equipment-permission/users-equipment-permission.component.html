@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">{{'Users.OrgPermissionTitle'| translate}}</h4>
+  <h4 class="modal-title">{{'Users.EquipmentPermissionTitle'| translate}}</h4>
   <button type="button" class="close" aria-label="Close" (click)="close()">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -9,7 +9,7 @@
     <div class="form-group">
       <div class="panel panel-primary">
         <div class="panel-heading">
-        <label>{{'Users.OrgazinationList' | translate}}</label>
+        <label>{{'Users.EquipmentList' | translate}}</label>
         </div>
         <div class="panel-body">
           <app-treeview [canSearch]="true" [hasCheckbox]="true" [titleLabel]="'Users.TreeTitle' | translate"
@@ -27,5 +27,5 @@
   <img *ngIf="loading" class="pl-2" src="/assets/images/wait.gif" />
   <button type="button" class="btn btn-outline-success"
     (click)="onSubmit()">{{'Users.BtnChangePermission'| translate}}</button>
-  <button type="button" class="btn btn-outline-danger" (click)="close()">{{'Users.BtnClose'| translate}}</button>
+  <button type="button" class="btn btn-outline-danger" (click)="close()">{{'General.BtnClose'| translate}}</button>
 </div>

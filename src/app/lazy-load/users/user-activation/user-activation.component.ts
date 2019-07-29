@@ -21,7 +21,8 @@ export class UserActivationComponent implements OnInit {
   updateButton = false;
   isActiveSelect = false;
 
-  constructor(public activeModal: NgbActiveModal,
+  constructor(
+    public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
     private usersService: UsersService,
     private toastr: ToastrService,
@@ -43,7 +44,7 @@ export class UserActivationComponent implements OnInit {
     this.submitted = true;
     this.loading = true;
     if (this.activationForm.invalid && !this.changeActivationModel.userId) {
-      this.toastr.error(this.translate.instant('Users.ModelStateError'));
+      this.toastr.error(this.translate.instant('General.ModelStateError'));
       this.loading = false;
       return;
     }
@@ -52,7 +53,7 @@ export class UserActivationComponent implements OnInit {
 
     this.usersService.changeActivateUser(this.changeActivationModel).subscribe(res => {
       if (res.data) {
-        this.toastr.success(this.translate.instant('Users.ChangeActivationSuccessfully'), '100');
+        this.toastr.success(this.translate.instant('Users.ChangeActivationSuccessfully'));
         this.loading = false;
         this.updateButton = true;
         this.close();

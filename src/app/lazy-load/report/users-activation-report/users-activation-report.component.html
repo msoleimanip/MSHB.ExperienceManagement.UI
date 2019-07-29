@@ -1,0 +1,76 @@
+<div class="container-fluid">
+
+  <hr>
+  <div class="row">
+    <div class="col-md-4">
+
+      <div class="card">
+        <div class="card-header">
+          {{'Menu.UsersActivationReport'| translate}}
+        </div>
+        <div class="card-body">
+
+          <div class="form-group">
+            <button class="btn btn-success" (click)="generateReport()">{{'Report.View'| translate}}</button> &nbsp;
+            <button *ngIf="currentUser.isPresident === presidentType.Admin" class="btn btn-primary"
+              (click)="designReport()">{{'Report.Design'| translate}}</button>
+          </div>
+
+          <div class="form-group">
+            <!-- Begin Tree -->
+            <div class="card">
+              <div class="card-body">
+                <div class="panel-body">
+                  <app-treeview [canSearch]="true" [hasCheckbox]="true" [byParentIds]="true"
+                    [titleLabel]="'Equipment.TreeTitle' | translate" [items]="files" [id]="'equipment'"
+                    (clickByCheckbox)="treeClick($event)">
+                  </app-treeview>
+                </div>
+              </div>
+              <div class="card-footer">
+                <label class="text-success">{{'General.SelectedCount'| translate}}</label>: <label
+                  class="text-success">{{issueOfEquipmentModel.equipmentIds.length}}</label>
+              </div>
+            </div>
+            <!-- End Tree -->
+            <hr>
+          </div>
+
+          <hr>
+
+          <div class="form-group row">
+            <label class="col-md-3">{{ 'Report.StartTime' | translate }}</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd" name="startDate" [(ngModel)]="startDateTemplate"
+                  ngbDatepicker #s="ngbDatepicker" placeholder="{{'Report.StartTime'| translate}}">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary btn-calendar" (click)="s.toggle()" type="button"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3">{{ 'Report.EndTime' | translate }}</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd" name="endTime" [(ngModel)]="endDateTemplate"
+                  ngbDatepicker #e="ngbDatepicker" placeholder="{{'Report.EndTime'| translate}}">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary btn-calendar" (click)="e.toggle()" type="button"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="form-group dir-ltr" id="reportsViewer"></div>
+    </div>
+  </div>
+
+</div>

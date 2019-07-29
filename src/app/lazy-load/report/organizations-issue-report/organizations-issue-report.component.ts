@@ -5,7 +5,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from 'src/app/dataModels/viewModels/user';
 import { PresidentType } from 'src/app/dataModels/enums/presidentType';
-import { ReportsService } from 'src/app/core/reports.service ';
+import { ReportService } from 'src/app/core/report.service';
 import { TranslateService } from '@ngx-translate/core';
 import { PersianDatePickerHelper } from 'src/app/core/persianDatePickerHelper';
 import { ToastrService } from 'ngx-toastr';
@@ -33,7 +33,7 @@ export class OrganizationsIssueReportComponent implements OnInit, OnDestroy {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private reportsService: ReportsService,
+    private reportService: ReportService,
     public translate: TranslateService,
     private orgService: OrganizationService,
     private persianDatePickerHelper: PersianDatePickerHelper,
@@ -47,7 +47,7 @@ export class OrganizationsIssueReportComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.reportsService.disposeDesignReport();
+    this.reportService.disposeDesignReport();
   }
 
 
@@ -73,10 +73,10 @@ export class OrganizationsIssueReportComponent implements OnInit, OnDestroy {
     }
 
     this.loading = true;
-    this.reportsService.issuesOfOrganizationReport(this.issueOfOrganizationModel).subscribe((res: ServerResponseViewModel<any>) => {
-      this.reportsService.getReportStructure('IssuesOfOrganization')
+    this.reportService.issuesOfOrganizationReport(this.issueOfOrganizationModel).subscribe((res: ServerResponseViewModel<any>) => {
+      this.reportService.getReportStructure('IssuesOfOrganization')
         .subscribe((item: ServerResponseViewModel<ReportStructureViewModel>) => {
-          this.reportsService.generateReport(item.data.configuration, res.data);
+          this.reportService.generateReport(item.data.configuration, res.data);
           this.loading = false;
         }, error => {
           this.loading = false;
@@ -98,10 +98,10 @@ export class OrganizationsIssueReportComponent implements OnInit, OnDestroy {
     }
 
     this.loading = true;
-    this.reportsService.issuesOfOrganizationReport(this.issueOfOrganizationModel).subscribe((res: ServerResponseViewModel<any>) => {
-      this.reportsService.getReportStructure('IssuesOfOrganization')
+    this.reportService.issuesOfOrganizationReport(this.issueOfOrganizationModel).subscribe((res: ServerResponseViewModel<any>) => {
+      this.reportService.getReportStructure('IssuesOfOrganization')
         .subscribe((item: ServerResponseViewModel<ReportStructureViewModel>) => {
-          this.reportsService.loadDesignReport(item.data.configuration, res.data, 'IssuesOfOrganization');
+          this.reportService.loadDesignReport(item.data.configuration, res.data, 'IssuesOfOrganization');
         });
     });
 

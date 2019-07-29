@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment.prod';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
-import { ReportsService } from 'src/app/core/reports.service ';
+import { ReportService } from 'src/app/core/report.service';
 import { ServerResponseViewModel } from 'src/app/dataModels/viewModels/serverResponseViewModel';
 import { User } from 'src/app/dataModels/viewModels/user';
 import { UsersService } from 'src/app/core/users.service';
@@ -42,7 +42,7 @@ export class UsersIssueReportComponent implements OnInit, OnDestroy {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private reportsService: ReportsService,
+    private reportService: ReportService,
     public translate: TranslateService,
     private orgService: OrganizationService,
     private userService: UsersService,
@@ -58,7 +58,7 @@ export class UsersIssueReportComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.reportsService.disposeDesignReport();
+    this.reportService.disposeDesignReport();
   }
 
 
@@ -94,9 +94,9 @@ export class UsersIssueReportComponent implements OnInit, OnDestroy {
     }
 
     this.loading = true;
-    this.reportsService.issueOfUsersReport(issueOfUsersModel).subscribe((res: ServerResponseViewModel<any>) => {
-      this.reportsService.getReportStructure('IssueOfUsers').subscribe((item: ServerResponseViewModel<ReportStructureViewModel>) => {
-        this.reportsService.generateReport(item.data.configuration, res.data);
+    this.reportService.issueOfUsersReport(issueOfUsersModel).subscribe((res: ServerResponseViewModel<any>) => {
+      this.reportService.getReportStructure('IssueOfUsers').subscribe((item: ServerResponseViewModel<ReportStructureViewModel>) => {
+        this.reportService.generateReport(item.data.configuration, res.data);
         this.loading = false;
       }, error => {
         this.loading = false;
@@ -121,9 +121,9 @@ export class UsersIssueReportComponent implements OnInit, OnDestroy {
     }
 
     this.loading = true;
-    this.reportsService.issueOfUsersReport(issueOfUsersModel).subscribe((res: ServerResponseViewModel<any>) => {
-      this.reportsService.getReportStructure('IssueOfUsers').subscribe((item: ServerResponseViewModel<ReportStructureViewModel>) => {
-        this.reportsService.loadDesignReport(item.data.configuration, res.data, 'IssueOfUsers');
+    this.reportService.issueOfUsersReport(issueOfUsersModel).subscribe((res: ServerResponseViewModel<any>) => {
+      this.reportService.getReportStructure('IssueOfUsers').subscribe((item: ServerResponseViewModel<ReportStructureViewModel>) => {
+        this.reportService.loadDesignReport(item.data.configuration, res.data, 'IssueOfUsers');
       });
     });
 

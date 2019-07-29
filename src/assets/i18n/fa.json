@@ -65,11 +65,12 @@
     "IssueSearch": "جستجو مسائل",
     "Authentication": "مدیریت دسترسی ها",
     "Reports": "گـزارشات",
-    "UserIssueReports": "مسائل کاربران",
+    "UserIssueReports": "مسائل به تفکیک کاربر",
     "EquipmentIssueReports": "مسائل مربوط به تجهیزات",
     "IssueOfUserLikesReport": "لایک ها مربوط به کاربران",
     "TotalIssueReport": "جزییات تمامی مسائل",
-    "IssuesOfOrganizationReport": "مسائل بر اساس رده ها"
+    "IssuesOfOrganizationReport": "مسائل بر اساس رده ها",
+    "UsersActivationReport": "فعالیت های ثبت مسائل"
   },
   "Login": {
     "Username": "نام کاربری",
@@ -159,11 +160,13 @@
     "Location": "استان",
     "GroupAuthId": "گروه دسترسی",
     "OrgPermissionTitle": "صفحه تغییر دسترسی رده ای",
+    "EquipmentPermissionTitle": "صفحه تغییر دسترسی تجهیزات",
     "UserCreateTitle": "صفحه ایجاد کاربر جدید",
     "UserEditTitle": "صفحه ویرایش اطلاعات",
     "BtnChangePermission": "تایید و ثبت تغییرات",
     "BtnClose": "انصراف",
     "OrgazinationList": "نمودار تمامی رده ها ",
+    "EquipmentList": "نمودار تمامی تجهیزات ",
     "TreeTitle": "رده ها",
     "InputUsernameError": "نام کاربری می باسیتی وارد شود",
     "InputPasswordError": "رمز عبور می باسیتی وارد شود",
@@ -176,7 +179,11 @@
     "BtnActiveTitle": "تغییر وضعیت کاربر",
     "AddSuccessfully": "کاربر با موفقیت اضافه شد",
     "EditSuccessfully": "کاربر با موفقیت یرایش شد",
-    "ModelStateError": "لطفا مقادیر را به درستی وارد کنید"
+    "ModelStateError": "لطفا مقادیر را به درستی وارد کنید",
+    "IsPresident": "نوع کاربر",
+    "InputIsPresidentError": "نوع کاربر میبایستی انتخاب شود",
+    "UserActivationTitle": "صفحه تغییر وضعیت کاربر",
+    "ChangeActivationSuccessfully": "تغییر وضعیت کاربر با موفقیت انجام شد"
   },
   "Authentication": {
     "Title": "مدیریت گروه ها",
@@ -257,7 +264,8 @@
     "ChangeSuccessfully": "تغییر با موفقیت انجام شد.",
     "equipmentAttachmentsCount": "تعداد افزونه ها",
     "EquipmentAtachment": "افزونه ها",
-    "AddCommentSuccessfully": "نکته جدید با موفقیت ثبت شد"
+    "AddCommentSuccessfully": "نکته جدید با موفقیت ثبت شد",
+    "IssueNotCompeleted": "مسئله مورد نظر بصورت ناقص پیاده سازی شده است"
   },
   "Dashboard": {
     "SearchText": "چی دوست داری پیدا کنی ؟",

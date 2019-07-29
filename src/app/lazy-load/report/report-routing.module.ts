@@ -1,3 +1,4 @@
+import { UsersActivationReportComponent } from './users-activation-report/users-activation-report.component';
 import { EquipmentsIssueReportComponent } from './equipments-issue-report/equipments-issue-report.component';
 import { UsersIssueReportComponent } from './users-issue-report/users-issue-report.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -13,7 +14,8 @@ const reportRoutes: Routes = [
   { path: 'equipmentsIssue', component: EquipmentsIssueReportComponent },
   { path: 'userLikes', component: UserLikesReportComponent },
   { path: 'totalIssues', component: TotalIssueReportComponent },
-  { path: 'organizationsIssue', component: OrganizationsIssueReportComponent }
+  { path: 'organizationsIssue', component: OrganizationsIssueReportComponent },
+  { path: 'usersActivation', component: UsersActivationReportComponent }
 ];
 
 @NgModule({

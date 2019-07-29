@@ -1,24 +1,24 @@
+import { EquipmentService } from './../../../core/equipment.service';
+import { AuthenticationService } from 'src/app/core/authentication.service';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { IssueOfEquipmentFormModel } from './../../../dataModels/apiModels/issueOfEquipmentFormModel';
-import { AuthenticationService } from './../../../core/authentication.service';
-import { EquipmentService } from 'src/app/core/equipment.service';
-import { PresidentType } from './../../../dataModels/enums/presidentType';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from 'src/app/dataModels/viewModels/user';
+import { PresidentType } from 'src/app/dataModels/enums/presidentType';
+import { ReportService } from 'src/app/core/report.service';
 import { TranslateService } from '@ngx-translate/core';
+import { PersianDatePickerHelper } from 'src/app/core/persianDatePickerHelper';
 import { ToastrService } from 'ngx-toastr';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { ServerResponseViewModel } from 'src/app/dataModels/viewModels/serverResponseViewModel';
 import { ReportStructureViewModel } from 'src/app/dataModels/viewModels/reportStructureViewModel';
-import { PersianDatePickerHelper } from 'src/app/core/persianDatePickerHelper';
-import { ReportService } from 'src/app/core/report.service';
 
 @Component({
-  selector: 'app-equipments-issue-report',
-  templateUrl: './equipments-issue-report.component.html',
-  styleUrls: ['./equipments-issue-report.component.css']
+  selector: 'app-users-activation-report',
+  templateUrl: './users-activation-report.component.html',
+  styleUrls: ['./users-activation-report.component.css']
 })
-export class EquipmentsIssueReportComponent implements OnInit, OnDestroy {
+export class UsersActivationReportComponent implements OnInit, OnDestroy {
 
   loading = false;
   currentUser: User;
@@ -75,8 +75,8 @@ export class EquipmentsIssueReportComponent implements OnInit, OnDestroy {
     this.issueOfEquipmentModel.startTime = this.persianDatePickerHelper.getDate(this.startDateTemplate, environment.language === 'fa');
 
     this.loading = true;
-    this.reportService.issueOfEquipmentsReport(this.issueOfEquipmentModel).subscribe((res: ServerResponseViewModel<any>) => {
-      this.reportService.getReportStructure('IssueOfEquipments').subscribe((item: ServerResponseViewModel<ReportStructureViewModel>) => {
+    this.reportService.usersActivationReport(this.issueOfEquipmentModel).subscribe((res: ServerResponseViewModel<any>) => {
+      this.reportService.getReportStructure('UsersActivation').subscribe((item: ServerResponseViewModel<ReportStructureViewModel>) => {
         this.reportService.generateReport(item.data.configuration, res.data);
         this.loading = false;
       }, error => {
@@ -101,9 +101,9 @@ export class EquipmentsIssueReportComponent implements OnInit, OnDestroy {
     this.issueOfEquipmentModel.startTime = this.persianDatePickerHelper.getDate(this.startDateTemplate, environment.language === 'fa');
 
     this.loading = true;
-    this.reportService.issueOfEquipmentsReport(this.issueOfEquipmentModel).subscribe((res: ServerResponseViewModel<any>) => {
-      this.reportService.getReportStructure('IssueOfEquipments').subscribe((item: ServerResponseViewModel<ReportStructureViewModel>) => {
-        this.reportService.loadDesignReport(item.data.configuration, res.data, 'IssueOfEquipments');
+    this.reportService.usersActivationReport(this.issueOfEquipmentModel).subscribe((res: ServerResponseViewModel<any>) => {
+      this.reportService.getReportStructure('UsersActivation').subscribe((item: ServerResponseViewModel<ReportStructureViewModel>) => {
+        this.reportService.loadDesignReport(item.data.configuration, res.data, 'UsersActivation');
       });
     });
   }

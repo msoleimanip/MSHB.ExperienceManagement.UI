@@ -11,6 +11,7 @@ import { EquipmentsIssueReportComponent } from './equipments-issue-report/equipm
 import { UserLikesReportComponent } from './user-likes-report/user-likes-report.component';
 import { TotalIssueReportComponent } from './total-issue-report/total-issue-report.component';
 import { OrganizationsIssueReportComponent } from './organizations-issue-report/organizations-issue-report.component';
+import { UsersActivationReportComponent } from './users-activation-report/users-activation-report.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { OrganizationsIssueReportComponent } from './organizations-issue-report/
     EquipmentsIssueReportComponent,
     UserLikesReportComponent,
     TotalIssueReportComponent,
-    OrganizationsIssueReportComponent
+    OrganizationsIssueReportComponent,
+    UsersActivationReportComponent
   ],
   imports: [
     CommonModule,

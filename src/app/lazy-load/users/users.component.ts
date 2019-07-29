@@ -1,3 +1,4 @@
+import { PresidentType } from './../../dataModels/enums/presidentType';
 import { ChangeActivationFormModel } from './../../dataModels/apiModels/changeActivationFormModel';
 import { UserActivationComponent } from './user-activation/user-activation.component';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -31,7 +32,11 @@ export class UsersComponent implements OnInit, OnDestroy {
   users = new SearchUserViewModel();
   loading = false;
 
-  constructor(public translate: TranslateService,
+  presidentType = PresidentType;
+  presidentTypesSelect: any;
+
+  constructor(
+    public translate: TranslateService,
     private usersService: UsersService,
     private modalService: NgbModal,
     private toastr: ToastrService,
@@ -43,6 +48,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadUsers();
+    this.presidentTypesSelect = Object.keys(PresidentType).filter(Number).map(key => ({ title: PresidentType[key], value: key }));
   }
 
   ngOnDestroy(): void {
@@ -86,9 +92,11 @@ export class UsersComponent implements OnInit, OnDestroy {
       model.location = res.data.location;
       model.phoneNumber = res.data.phoneNumber;
       model.username = res.data.username;
+      model.isPresident = res.data.isPresident;
 
       const modalRef = this.modalService.open(UsersEditComponent, { windowClass: '.my-modal', size: 'lg' });
       modalRef.componentInstance.editUserModel = model;
+      modalRef.componentInstance.presidentTypesSelect = this.presidentTypesSelect;
 
       modalRef.result.then(result => {
         if (result === true) {
@@ -100,6 +108,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   create() {
     const modalRef = this.modalService.open(UsersAddComponent, { windowClass: '.my-modal', size: 'lg' });
+    modalRef.componentInstance.presidentTypesSelect = this.presidentTypesSelect;
     modalRef.result.then(result => {
       if (result === true) {
         this.loadUsers();
