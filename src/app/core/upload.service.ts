@@ -11,6 +11,6 @@ export class FileService {
   }
 
   download(fileId: string): Observable<any> {
-    return this.http.get('/api/File/download?fileId=' + fileId);
+    return this.http.get('/api/File/download/' + fileId);
   }
 }

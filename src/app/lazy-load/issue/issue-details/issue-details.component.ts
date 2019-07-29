@@ -98,7 +98,7 @@ export class IssueDetailsComponent implements OnInit {
 
 
   public onUploadError(args: any): void {
-    this.toastr.error('در هنگام باگذاری خطایی رخ داده است');
+    this.toastr.error(this.translate.instant('General.UploadError'));
   }
 
   public onUploadSuccess(result: any): void {
@@ -148,9 +148,8 @@ export class IssueDetailsComponent implements OnInit {
     addIssueDetailModel.equipmentAttachmentIds = eqAttachmentIds.map(item => item.equipmentAttachmentId);
 
     this.issueService.addIssueDetails(addIssueDetailModel).subscribe((res: ServerResponseViewModel<IssueDetailViewModel>) => {
-      debugger;
       this.loading = false;
-      this.toastr.success(this.translate.instant('Issue.AddSuccessfully'));
+      this.toastr.success(this.translate.instant('General.AddSuccessfully'));
       this.activeModal.close(res.data);
     }, error => {
       this.loading = false;

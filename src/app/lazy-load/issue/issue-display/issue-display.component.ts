@@ -1,3 +1,5 @@
+import { DownloadViewModel } from './../../../dataModels/viewModels/downloadViewModel';
+import { FileService } from './../../../core/upload.service';
 import { EquipmentAttachmentViewModel } from './../../../dataModels/viewModels/equipmentAttachmentViewModel';
 import { IssueViewModel } from './../../../dataModels/viewModels/issueViewModel';
 import { IssueDetailsComponent } from './../issue-details/issue-details.component';
@@ -53,6 +55,7 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
     private modalService: NgbModal,
     private toastr: ToastrService,
     public translate: TranslateService,
+    private fileService: FileService,
     private config: NgbModalConfig) { }
 
   ngOnInit() {
@@ -152,6 +155,24 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
   }
 
   downloadFile(param: EquipmentAttachmentViewModel) {
-    window.open('api/file/download' + param.fileId, '_blank');
+    this.fileService.download(param.fileId).subscribe((x: DownloadViewModel) => {
+      debugger;
+      const newBlob = new Blob([x.memory], { type: x.contentType });
+      if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveOrOpenBlob(newBlob);
+        return;
+      }
+
+      const data = window.URL.createObjectURL(newBlob);
+      const link = document.createElement('a');
+      link.href = data;
+      link.download = x.fileName + '.' + param.fileType;
+      link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+
+      setTimeout(function () {
+        window.URL.revokeObjectURL(data);
+        link.remove();
+      }, 100);
+    });
   }
 }
