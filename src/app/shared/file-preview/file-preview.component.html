@@ -1,0 +1,12 @@
+<div class="container text-center">
+  <img *ngIf="contentType.indexOf('image')>=0" [src]="url" />
+
+  <video *ngIf="contentType.indexOf('video')>=0" width="100%" controls autoplay>
+    <source [src]="url">
+    Your browser does not support HTML5 video.
+  </video>
+
+  <div *ngIf="contentType.indexOf('application')>=0">
+    <!-- <embed src="assets/5412.pdf" type="{{contentType}}"> -->
+  </div>
+</div>

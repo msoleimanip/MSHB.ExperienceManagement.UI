@@ -26,7 +26,8 @@
     "AddSuccessfully": "با موفقیت اضافه شد",
     "BtnAccept": "تائید اطـلاعات",
     "UnSelectAllText": "عدم انتخاب همه",
-    "SelectAllText": "انتخاب همه"
+    "SelectAllText": "انتخاب همه",
+    "Unauthorized": "شما از سیستم خارج شده اید"
   },
   "IssueType": {
     "Question": "سـوال: طرح سوال برای رفع مشکل جاری",

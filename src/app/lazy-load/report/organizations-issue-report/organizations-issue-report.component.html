@@ -41,7 +41,7 @@
             <div class="col-md-9">
               <div class="input-group">
                 <input class="form-control" placeholder="yyyy-mm-dd" name="startDate" [(ngModel)]="startDateTemplate"
-                  ngbDatepicker #s="ngbDatepicker" placeholder="{{'Report.StartTime'| translate}}">
+                  ngbDatepicker #s="ngbDatepicker" placeholder="{{'Report.StartTime'| translate}}" autocomplete="off">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary btn-calendar" (click)="s.toggle()" type="button"></button>
                 </div>
@@ -54,7 +54,7 @@
             <div class="col-md-9">
               <div class="input-group">
                 <input class="form-control" placeholder="yyyy-mm-dd" name="endTime" [(ngModel)]="endDateTemplate"
-                  ngbDatepicker #e="ngbDatepicker" placeholder="{{'Report.EndTime'| translate}}">
+                  ngbDatepicker #e="ngbDatepicker" placeholder="{{'Report.EndTime'| translate}}" autocomplete="off">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary btn-calendar" (click)="e.toggle()" type="button"></button>
                 </div>

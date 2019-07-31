@@ -1,3 +1,5 @@
+import { IssueDetailBestAnswerFormModel } from './../dataModels/apiModels/issueDetailBestAnswerFormModel';
+import { IssueDetailsLikeFormModel } from './../dataModels/apiModels/issueDetailsLikeFormModel';
 import { AddIssueDetailCommentFormModel } from './../dataModels/apiModels/addIssueDetailCommentFormModel';
 import { AddIssueFormModel } from './../dataModels/apiModels/addIssueFormModel';
 import { HttpClient } from '@angular/common/http';
@@ -44,11 +46,18 @@ export class IssueService {
     return this.http.post('api/Issue/AddIssueDetailComment', addIssueDetailCommentModel);
   }
 
+  issueDetailsLike(issueDetailsLikeModel: IssueDetailsLikeFormModel): Observable<any> {
+    return this.http.post('api/Issue/issueDetailsLike', issueDetailsLikeModel);
+  }
+
+  issueDetailsBestAnswer(issueDetailBestAnswerModel: IssueDetailBestAnswerFormModel): Observable<any> {
+    return this.http.post('api/Issue/issueDetailsBestAnswer', issueDetailBestAnswerModel);
+  }
+
   getUserIssueDashboard(): Observable<any> {
     return this.http.get('api/Dashboard/GetUserIssueDashboard');
   }
   getUserLikesDashboard(): Observable<any> {
     return this.http.get('api/Dashboard/GetUserLikesDashboard');
   }
-  
 }

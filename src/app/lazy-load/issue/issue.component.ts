@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticationService } from './../../core/authentication.service';
 import { ServerResponseViewModel } from 'src/app/dataModels/viewModels/serverResponseViewModel';
@@ -48,6 +49,7 @@ export class IssueComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     private config: NgbModalConfig) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    translate.setDefaultLang(environment.language);
     config.backdrop = 'static';
     config.keyboard = false;
   }

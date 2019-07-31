@@ -12,10 +12,28 @@
 
   <div *ngFor="let item of issueDetails; let row = index">
     <div class="card card-red" id="{{item.issueDetailId}}">
-      <div class="card-header">
-        <h3 class="text-blue">{{row+ 1}}-&nbsp;{{item.caption}}</h3>
+      <div class="card-header container-fluid">
+        <div class="row">
+          <div class="col-9">
+            <h3 class="text-blue txt-header">{{row+ 1}}-&nbsp;{{item.caption}}</h3>
+          </div>
+          <div class="col-3">
+
+            <img #imgIsAnswer *ngIf="item.isCorrectAnswer" src="/assets/images/isAnswer.png" class="img-answer" />
+            <img #imgAnswer *ngIf="!item.isCorrectAnswer && issue.userId === currentUser.id"
+              src="/assets/images/answer.png" class="img-answer"
+              (click)="answerChange(item.issueDetailId, imgIsAnswer, imgAnswer, imgAnswerLoading)" />
+            <img #imgAnswerLoading src="/assets/images/wait.gif" style="display: none;" class="img-answer-loading" />
+
+            <button class="btn btn-sm btn-success btn-like" (click)="like(item.issueDetailId, false, img, btn);">
+              <label>{{item.likes}}</label>
+              <img #img src="/assets/images/wait.gif" style="display: none;" />
+              <span #btn class="fa fa-thumbs-o-up"></span>
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="card-body">
+      <div class=" card-body">
         <div class="box-answer" [innerHTML]="item.text"></div>
         <hr>
         <ngx-gallery *ngIf="item.issueDetailAttachments.length !== 0" class="gallery-custom" [options]="galleryOptions"
@@ -28,7 +46,7 @@
           <button *ngFor="let attach of item.equipmentAttachmentViewModels" type="button"
             ngbTooltip="{{attach.description}}" class="btn btn-sm btn-tool mr-2" placement="top" [ngClass]="{'btn-warning': attach.equipmentAttachmentType === 1,
                   'btn-info': attach.equipmentAttachmentType === 2,
-                  'btn-primary': attach.equipmentAttachmentType === 3 }" (click)="downloadFile(attach)">
+                  'btn-primary': attach.equipmentAttachmentType === 3 }" (click)="filePreview(attach)">
             {{attach.equipmentAttachmentName}}
           </button>
         </div>

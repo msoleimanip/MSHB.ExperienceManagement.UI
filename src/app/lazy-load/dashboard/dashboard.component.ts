@@ -1,3 +1,4 @@
+import { ServerResponseViewModel } from 'src/app/dataModels/viewModels/serverResponseViewModel';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -53,11 +54,13 @@ export class DashboardComponent implements OnInit {
 
   loadDashboardData() {
     if (this.currentUser) {
-      this.issueService.getUserIssueDashboard().subscribe(res => {
+      this.issueService.getUserIssueDashboard().subscribe((res: ServerResponseViewModel<Array<IssueViewModel>>) => {
         this.issueViewModel = res.data;
-      });
-      this.issueService.getUserLikesDashboard().subscribe(res => {
-        this.issueLikesViewModel = res.data;
+
+        this.issueService.getUserLikesDashboard().subscribe((result: ServerResponseViewModel<Array<IssueViewModel>>) => {
+          this.issueLikesViewModel = result.data;
+        });
+
       });
     }
   }

@@ -1,5 +1,7 @@
-import { DownloadViewModel } from './../../../dataModels/viewModels/downloadViewModel';
-import { FileService } from './../../../core/upload.service';
+import { IssueDetailBestAnswerFormModel } from './../../../dataModels/apiModels/issueDetailBestAnswerFormModel';
+import { AuthenticationService } from './../../../core/authentication.service';
+import { IssueDetailsLikeFormModel } from './../../../dataModels/apiModels/issueDetailsLikeFormModel';
+import { FileService } from '../../../core/file.service';
 import { EquipmentAttachmentViewModel } from './../../../dataModels/viewModels/equipmentAttachmentViewModel';
 import { IssueViewModel } from './../../../dataModels/viewModels/issueViewModel';
 import { IssueDetailsComponent } from './../issue-details/issue-details.component';
@@ -19,6 +21,8 @@ import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { SearchIssueDetailsViewModel } from 'src/app/dataModels/viewModels/searchIssueDetailsViewModel';
 import { Location } from '@angular/common';
+import { environment } from 'src/environments/environment.prod';
+import { User } from 'src/app/dataModels/viewModels/user';
 
 @Component({
   selector: 'app-issue-display',
@@ -30,6 +34,7 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
   searchIssueDetailModel = new SearchIssueDetailFormModel();
   issueDetails = new Array<IssueDetailViewModel>();
   issue = new IssueViewModel();
+  currentUser: User;
 
   galleryOptions: NgxGalleryOptions[] = [{
     thumbnailActions: [{
@@ -46,9 +51,8 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
     translate: 'no',
   };
 
-  newComment: string;
-
   constructor(
+    private authenticationService: AuthenticationService,
     private location: Location,
     private route: ActivatedRoute,
     private issueService: IssueService,
@@ -56,9 +60,13 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     public translate: TranslateService,
     private fileService: FileService,
-    private config: NgbModalConfig) { }
+    private config: NgbModalConfig) {
+    translate.setDefaultLang(environment.language);
+  }
 
   ngOnInit() {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+
     this.route.params.subscribe(param => {
       this.searchIssueDetailModel.issueId = param.id as number;
       this.issueService.getIssueDetails(this.searchIssueDetailModel)
@@ -154,25 +162,49 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
     });
   }
 
-  downloadFile(param: EquipmentAttachmentViewModel) {
-    this.fileService.download(param.fileId).subscribe((x: DownloadViewModel) => {
-      debugger;
-      const newBlob = new Blob([x.memory], { type: x.contentType });
-      if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-        window.navigator.msSaveOrOpenBlob(newBlob);
-        return;
-      }
+  like(id: number, isLike: boolean, img: HTMLImageElement, btn: HTMLButtonElement) {
 
-      const data = window.URL.createObjectURL(newBlob);
-      const link = document.createElement('a');
-      link.href = data;
-      link.download = x.fileName + '.' + param.fileType;
-      link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+    img.style.display = '';
+    btn.style.display = 'none';
 
-      setTimeout(function () {
-        window.URL.revokeObjectURL(data);
-        link.remove();
-      }, 100);
+    const issueDetailsLikeModel = new IssueDetailsLikeFormModel();
+    issueDetailsLikeModel.issueDetailId = id;
+    issueDetailsLikeModel.isLike = !isLike;
+    this.issueService.issueDetailsLike(issueDetailsLikeModel).subscribe((res: ServerResponseViewModel<number>) => {
+      this.issueDetails.find(x => x.issueDetailId === id).likes = res.data;
+
+      img.style.display = 'none';
+      btn.style.display = '';
+    }, error => {
+      img.style.display = 'none';
+      btn.style.display = '';
     });
+  }
+
+  answerChange(id: number, isAnswer: HTMLImageElement, answer: HTMLImageElement, answerLoading: HTMLImageElement) {
+
+    answerLoading.style.display = '';
+    if (isAnswer) { isAnswer.style.display = 'none'; }
+    if (answer) { answer.style.display = 'none'; }
+
+    const issueDetailBestAnswerModel = new IssueDetailBestAnswerFormModel();
+    issueDetailBestAnswerModel.issueDetailId = id;
+    issueDetailBestAnswerModel.isAnswer = true;
+    this.issueService.issueDetailsBestAnswer(issueDetailBestAnswerModel).subscribe((res: ServerResponseViewModel<boolean>) => {
+
+      answerLoading.style.display = 'none';
+      if (isAnswer) { isAnswer.style.display = ''; }
+      if (answer) { answer.style.display = ''; }
+
+      this.issueDetails.find(x => x.issueDetailId === id).isCorrectAnswer = true;
+    }, error => {
+      answerLoading.style.display = 'none';
+      if (isAnswer) { isAnswer.style.display = ''; }
+      if (answer) { answer.style.display = ''; }
+    });
+  }
+
+  filePreview(param: EquipmentAttachmentViewModel) {
+    window.open('#/shared/filePreview/' + param.fileId + '/' + param.contentType.replace('/', '-') + '/' + param.fileType, '_blank');
   }
 }

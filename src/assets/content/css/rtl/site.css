@@ -1081,6 +1081,26 @@ th[sortable].desc:before {
   .pl {
     float: left;
   }
+
+  .txt-header {
+    font-size: 1rem !important;
+  }
+
+  .box-answer {
+    font-size: 0.7rem !important;
+  }
+
+  .btn-like {
+    float: left !important;
+    width: 56px !important;
+    height: 25px !important;
+    margin-top: -4px !important;
+  }
+
+  .img-answer-loading {
+    margin: 0px 0px 8px 0px !important;
+    width: 20px !important;
+  }
 }
 
 .box-answer {
@@ -1153,6 +1173,36 @@ th[sortable].desc:before {
   background-repeat: no-repeat;
   background-size: 23px;
   background-position: center;
+}
+
+.btn-like {
+  float: left;
+  width: 65px;
+  height: 25px;
+  margin-top: 5px;
+}
+
+.btn-like > span {
+  float: left;
+}
+
+.btn-like > img {
+  float: left;
+}
+
+.btn-like > label {
+  float: right;
+  margin: -2px 0px 0px 0px;
+}
+
+.img-answer {
+  float: left;
+  border-radius: 50%;
+}
+
+.img-answer-loading {
+  margin: 11px 1px 0px 0px;
+  float: left;
 }
 
 /* Begin Uploader */

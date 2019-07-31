@@ -10,4 +10,5 @@ export class EquipmentAttachmentViewModel {
   fileType: string;
   fileSize?: number;
   fileId?: string;
+  contentType: string;
 }

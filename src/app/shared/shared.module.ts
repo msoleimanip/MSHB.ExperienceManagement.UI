@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment.prod';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { SharedRoutingModule } from './shared-routing.module';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { FilePreviewComponent } from './file-preview/file-preview.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { NgxGalleryModule } from 'ngx-gallery';
     AccessDeniedComponent,
     NotFoundComponent,
     NgbdSortableHeader,
-    ContactUsComponent
+    ContactUsComponent,
+    FilePreviewComponent
   ],
   exports: [
     TreeviewComponent,
