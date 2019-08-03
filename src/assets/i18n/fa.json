@@ -266,7 +266,8 @@
     "equipmentAttachmentsCount": "تعداد افزونه ها",
     "EquipmentAtachment": "افزونه ها",
     "AddCommentSuccessfully": "نکته جدید با موفقیت ثبت شد",
-    "IssueNotCompeleted": "مسئله مورد نظر بصورت ناقص پیاده سازی شده است"
+    "IssueNotCompeleted": "مسئله مورد نظر بصورت ناقص پیاده سازی شده است",
+    "IsYourAnswer": "این پاسخ متعلق به شماست"
   },
   "Dashboard": {
     "SearchText": "چی دوست داری پیدا کنی ؟",

@@ -181,7 +181,11 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
     });
   }
 
-  answerChange(id: number, isAnswer: HTMLImageElement, answer: HTMLImageElement, answerLoading: HTMLImageElement) {
+  answerChange(value: boolean, id: number, isAnswer: HTMLImageElement, answer: HTMLImageElement, answerLoading: HTMLImageElement) {
+
+    if (this.currentUser.id !== this.issue.userId) {
+      return;
+    }
 
     answerLoading.style.display = '';
     if (isAnswer) { isAnswer.style.display = 'none'; }
@@ -189,19 +193,27 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
 
     const issueDetailBestAnswerModel = new IssueDetailBestAnswerFormModel();
     issueDetailBestAnswerModel.issueDetailId = id;
-    issueDetailBestAnswerModel.isAnswer = true;
+    issueDetailBestAnswerModel.isAnswer = value;
     this.issueService.issueDetailsBestAnswer(issueDetailBestAnswerModel).subscribe((res: ServerResponseViewModel<boolean>) => {
 
       answerLoading.style.display = 'none';
       if (isAnswer) { isAnswer.style.display = ''; }
       if (answer) { answer.style.display = ''; }
 
-      this.issueDetails.find(x => x.issueDetailId === id).isCorrectAnswer = true;
+      this.issueDetails.find(x => x.issueDetailId === id).isCorrectAnswer = value;
     }, error => {
       answerLoading.style.display = 'none';
       if (isAnswer) { isAnswer.style.display = ''; }
       if (answer) { answer.style.display = ''; }
     });
+  }
+
+  fetchTranslation(userId: string): string {
+    if (userId === this.currentUser.id) {
+      return this.translate.instant('Issue.IsYourAnswer');
+    } else {
+      return '';
+    }
   }
 
   filePreview(param: EquipmentAttachmentViewModel) {

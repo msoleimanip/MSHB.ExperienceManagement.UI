@@ -14,6 +14,7 @@ export class IssueDetailViewModel {
   answerUseful: number;
   isCorrectAnswer: boolean;
   likes?: number;
+  isUserLike: boolean;
   issueDetailAttachments = new Array<IssueDetailAttachmentViewModel>();
   issueDetailComments = new Array<IssueDetailCommentViewModel>();
   equipmentAttachmentViewModels = new Array<EquipmentAttachmentViewModel>();

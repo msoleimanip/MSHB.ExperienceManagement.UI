@@ -19,16 +19,19 @@
           </div>
           <div class="col-3">
 
-            <img #imgIsAnswer *ngIf="item.isCorrectAnswer" src="/assets/images/isAnswer.png" class="img-answer" />
+            <img #imgIsAnswer *ngIf="item.isCorrectAnswer" src="/assets/images/isAnswer.png" class="img-answer"
+              (click)="answerChange(false,item.issueDetailId,imgIsAnswer, imgAnswer, imgAnswerLoading)" />
             <img #imgAnswer *ngIf="!item.isCorrectAnswer && issue.userId === currentUser.id"
               src="/assets/images/answer.png" class="img-answer"
-              (click)="answerChange(item.issueDetailId, imgIsAnswer, imgAnswer, imgAnswerLoading)" />
+              (click)="answerChange(true,item.issueDetailId,imgIsAnswer, imgAnswer, imgAnswerLoading)" />
             <img #imgAnswerLoading src="/assets/images/wait.gif" style="display: none;" class="img-answer-loading" />
 
-            <button class="btn btn-sm btn-success btn-like" (click)="like(item.issueDetailId, false, img, btn);">
+            <button [disabled]="item.userId === currentUser.id" class="btn btn-sm btn-success btn-like"
+              [title]="fetchTranslation(item.userId)" (click)="like(item.issueDetailId, false, img, btn);">
               <label>{{item.likes}}</label>
               <img #img src="/assets/images/wait.gif" style="display: none;" />
-              <span #btn class="fa fa-thumbs-o-up"></span>
+              <span #btn class="fa" [ngClass]="{'fa-thumbs-o-up': item.isUserLike, 'fa-thumbs-up': !item.isUserLike}"
+                aria-hidden="true"></span>
             </button>
           </div>
         </div>
