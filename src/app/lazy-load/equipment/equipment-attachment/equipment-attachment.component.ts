@@ -42,7 +42,8 @@ export class EquipmentAttachmentComponent implements OnInit {
   ngOnInit(): void {
     this.addForm = this.formBuilder.group({
       equipmentAttachmentName: [this.attachment.equipmentAttachmentName, Validators.required],
-      equipmentAttachmentType: [this.attachment.equipmentAttachmentType, Validators.required],
+      equipmentAttachmentType: [this.attachment.equipmentAttachmentType ? this.attachment.equipmentAttachmentType : '',
+      Validators.required],
       description: [this.attachment.description],
       uploadFileId: [this.attachment.uploadFileId]
     });

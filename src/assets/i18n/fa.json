@@ -47,7 +47,10 @@
   "EquipmentAttachmentType": {
     "Document": "اسناد",
     "Tool": "ابزار",
-    "Position": "محیط و موقعیت"
+    "Position": "محیط و موقعیت",
+    "Catalog": "کاتالوگ",
+    "Materials": "مواد",
+    "Accessory": "لوازم جانبی"
   },
   "Menu": {
     "SiteName": "سامانه جامع انتقال تجربه",
