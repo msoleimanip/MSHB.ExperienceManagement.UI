@@ -23,6 +23,8 @@ import { SearchIssueDetailsViewModel } from 'src/app/dataModels/viewModels/searc
 import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment.prod';
 import { User } from 'src/app/dataModels/viewModels/user';
+import { saveAs } from 'file-saver';
+import { Guid } from "guid-typescript";
 
 @Component({
   selector: 'app-issue-display',
@@ -216,7 +218,23 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
     }
   }
 
-  filePreview(param: EquipmentAttachmentViewModel) {
-    window.open('#/shared/filePreview/' + param.fileId + '/' + param.contentType.replace('/', '-') + '/' + param.fileType, '_blank');
+
+
+  filePreview(param: EquipmentAttachmentViewModel){  
+
+    this.issueService.DownloadFile(param.fileId)
+    .subscribe(
+              success => {
+                try {
+                  saveAs(success,Guid.create()+"."+param.fileType ); 
+                } catch {
+                  
+                }
+                
+              },
+              err => {
+                  alert("Server error while downloading file.");
+              }
+          );
   }
 }

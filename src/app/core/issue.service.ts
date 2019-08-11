@@ -60,4 +60,12 @@ export class IssueService {
   getUserLikesDashboard(): Observable<any> {
     return this.http.get('api/Dashboard/GetUserLikesDashboard');
   }
+
+
+  DownloadFile(fileId: string): Observable<any>{
+    
+    return this.http.post<Blob>("/api/File/download/" + fileId, '',
+    { responseType: 'blob' as 'json'});
+  
+  }
 }

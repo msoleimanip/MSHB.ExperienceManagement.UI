@@ -17,6 +17,7 @@ import { IssueDisplayComponent } from './issue-display/issue-display.component';
 import { IssuePlayerComponent } from './issue-player/issue-player.component';
 import { IssueChangeComponent } from './issue-change/issue-change.component';
 
+
 @NgModule({
   declarations: [
     IssueComponent,
