@@ -96,7 +96,7 @@
 
                   <div class="card">
                     <div class="card-body">
-                      <app-treeview [canSearch]="true" [hasCheckbox]="true"
+                      <app-treeview [canSearch]="true" [hasCheckbox]="true" [byParentIds]="true"
                         [titleLabel]="'Issue.Equipments' | translate" [items]="files" [id]="'equipment'"
                         (clickByCheckbox)="treeClick($event)">
                       </app-treeview>

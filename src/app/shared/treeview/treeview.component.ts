@@ -115,9 +115,9 @@ export class TreeviewComponent implements OnInit, OnChanges {
 
     function GetNodeByHasChange() {
       const selectedNodes = $('#tr' + self.id).jstree('get_selected', true);
-      const nodes = [];
+      let nodes = [];
       if (selectedNodes && selectedNodes.length > 0) {
-
+        
         selectedNodes.forEach(element => {
           const temp = $('#tr' + self.id).jstree().get_node(element);
           if (!self.byParentIds) {
@@ -126,6 +126,11 @@ export class TreeviewComponent implements OnInit, OnChanges {
             }
           } else {
             nodes.push(element.id);
+            element.parents.forEach(parent => {
+              if (!nodes.contains(parent) && parent !== '#') {
+                nodes.push(parent);
+              }
+            });
           }
         });
       }
