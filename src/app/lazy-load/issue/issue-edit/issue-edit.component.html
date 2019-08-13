@@ -1,0 +1,45 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{'Issue.EditDetails'| translate}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="caption" class="control-label">{{'Issue.Caption'| translate}}</label>
+          <input id="caption" type="text" class="form-control" placeholder="{{'Issue.Title'| translate}}"
+            formControlName="caption" />
+          <div [hidden]="(f.caption.valid || f.caption.untouched) && !submit">
+            <div [hidden]="!f.caption.hasError('required')" class="text-danger">
+              {{'Issue.InputCaptionError'| translate}}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="equipmentAttachmentIds" class="col-form-label">{{'Issue.EquipmentAtachment'| translate}}</label>
+          <ng-multiselect-dropdown [placeholder]="'Issue.EquipmentAtachment'| translate" [data]="equipmentAttachments"
+            formControlName="equipmentAttachmentIds" [settings]="dropdownSettings">
+          </ng-multiselect-dropdown>
+        </div>
+
+        <div class="form-group">
+          <label class="col-form-label">{{'Issue.Text'| translate}}</label>
+          <angular-editor formControlName="text" [config]="editorConfig"></angular-editor>
+          <div [hidden]="(f.text.valid || f.text.untouched) && !submit">
+            <div [hidden]="!f.text.hasError('required')" class="text-danger">
+              {{'Issue.InputTextError'| translate}}
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+    <div class="card-footer">
+      <button ngbAutofocus (click)="onSubmit()" class="btn btn-primary">{{'General.BtnEdit'| translate}}</button>
+    </div>
+  </div>
+</div>

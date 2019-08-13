@@ -25,6 +25,10 @@ import { environment } from 'src/environments/environment.prod';
 import { User } from 'src/app/dataModels/viewModels/user';
 import { saveAs } from 'file-saver';
 import { Guid } from "guid-typescript";
+import { IssueEditComponent } from '../issue-edit/issue-edit.component';
+import { EditIssueDetailFormModel } from 'src/app/dataModels/apiModels/editIssueDetailFormModel';
+import { EquipmentAttachmentUserFormModel } from 'src/app/dataModels/apiModels/equipmentAttachmentUserFormModel';
+import { EquipmentService } from 'src/app/core/equipment.service';
 
 @Component({
   selector: 'app-issue-display',
@@ -62,7 +66,8 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     public translate: TranslateService,
     private fileService: FileService,
-    private config: NgbModalConfig) {
+    private config: NgbModalConfig,
+    private equipmentService: EquipmentService) {
     translate.setDefaultLang(environment.language);
   }
 
@@ -218,23 +223,48 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
     }
   }
 
+  loadEdit(issueDetail: IssueDetailViewModel) {
+
+    const model = new EquipmentAttachmentUserFormModel();
+    model.equipmentIds = this.issue.equipments.map(x => x.id);
+    this.equipmentService.getEquipmentAttachmentForUser(model)
+      .subscribe((arg: ServerResponseViewModel<Array<EquipmentAttachmentViewModel>>) => {
+        const modalRef = this.modalService.open(IssueEditComponent, { windowClass: '.my-modal', size: 'lg' });
+        
+        const editIssueDetailModel = new EditIssueDetailFormModel();
+        editIssueDetailModel.caption = issueDetail.caption;
+        editIssueDetailModel.issueId = this.searchIssueDetailModel.issueId;
+        editIssueDetailModel.issueDetailId = issueDetail.issueDetailId;
+        editIssueDetailModel.text = issueDetail.text;        
+        // editIssueDetailModel.uploadFiles = issueDetail.issueDetailAttachments.map(x => x.fileId);
+        editIssueDetailModel.userId = this.currentUser.id;
+        modalRef.componentInstance.editIssueDetailModel = editIssueDetailModel;
+
+        modalRef.componentInstance.equipmentIds = this.issue.equipments.map(x => x.id);
+        modalRef.componentInstance.equipmentAttachments = arg.data;
+        modalRef.componentInstance.equipmentAttachmentIds = issueDetail.equipmentAttachmentViewModels.map(x => x.equipmentAttachmentId);
+
+        modalRef.result.then(result => {
+          if (result) {
+            let isuDet = this.issueDetails.find(x => x.issueDetailId === issueDetail.issueDetailId);
+            isuDet.caption = result.caption;
+            isuDet.text = result.text;
+            isuDet.equipmentAttachmentViewModels = arg.data.filter(x => result.equipmentAttachmentIds.includes(x.equipmentAttachmentId));
+          }
+        });
+      });
+  }
 
 
-  filePreview(param: EquipmentAttachmentViewModel){  
+  filePreview(param: EquipmentAttachmentViewModel) {
 
-    this.issueService.DownloadFile(param.fileId)
-    .subscribe(
-              success => {
-                try {
-                  saveAs(success,Guid.create()+"."+param.fileType ); 
-                } catch {
-                  
-                }
-                
-              },
-              err => {
-                  alert("Server error while downloading file.");
-              }
-          );
+    this.issueService.DownloadFile(param.fileId).subscribe(success => {
+      try {
+        saveAs(success, Guid.create() + "." + param.fileType);
+      } catch { }
+    }, err => {
+      alert("Server error while downloading file.");
+    }
+    );
   }
 }

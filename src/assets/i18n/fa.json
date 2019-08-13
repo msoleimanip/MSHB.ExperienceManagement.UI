@@ -6,7 +6,6 @@
     "ModelStateError": "لطفا مقادیر را به درستی وارد کنید",
     "TreeNotSelectedError": "تجهیز میبایستی انتخاب شده باشد.",
     "TreeHasChildError": "تجهیز انتخاب شده نبایستی زیرشاخه داشته باشد.",
-    "TreeSelectCaption": "اقامتگاه انتخاب شده",
     "IssueType": "نوع مسئله",
     "InputGenderTypeError": "جنسیت میبایستی انتخاب شود.",
     "BtnClose": "انصراف",
@@ -27,7 +26,8 @@
     "BtnAccept": "تائید اطـلاعات",
     "UnSelectAllText": "عدم انتخاب همه",
     "SelectAllText": "انتخاب همه",
-    "Unauthorized": "شما از سیستم خارج شده اید"
+    "Unauthorized": "شما از سیستم خارج شده اید",
+    "EditSuccessfully": "آینم مورد نظر با موفقیت به روز رسانی شد"
   },
   "IssueType": {
     "Question": "سـوال: طرح سوال برای رفع مشکل جاری",
@@ -261,6 +261,7 @@
     "ClickOnImage": "بر روی عکس کلیک کنید",
     "BtnAddComment": "درج",
     "AddDetails": "صفحه درج جواب",
+    "EditDetails": "صفحه ویرایش جواب",
     "DeleteTitle": "صفحه تائید حذف",
     "DeActiveTitle": "صفحه تغییر وضعیت",
     "DeActiveConfirm": "آیا از غیر فعالسازی این مورد اطمینان دارید؟",

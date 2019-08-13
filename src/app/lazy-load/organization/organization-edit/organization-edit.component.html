@@ -10,7 +10,7 @@
       <label for="orgName" class="col-sm-2 col-form-label">{{'Organization.OrgName'| translate}}</label>
       <div class="col-sm-10">
         <input id="orgName" type="text" class="form-control" formControlName="organizationName"
-          placeholder="{{'Organization.OrgName'| translate}}">
+          placeholder="{{'Organization.OrgName'| translate}}" (keyup.enter)="onSubmit()" ngbAutofocus>
         <div [hidden]="(f.organizationName.valid || f.organizationName.untouched) && !submitted">
           <div [hidden]="!f.organizationName.hasError('required')" class="text-danger">
             {{'Organization.InputOrganizationNameError'| translate}}
@@ -23,7 +23,7 @@
       <label for="orgDescription" class="col-sm-2 col-form-label">{{'Organization.OrgDescription'| translate}}</label>
       <div class="col-sm-10">
         <input id="orgDescription" type="text" class="form-control" formControlName="description"
-          placeholder="{{'Organization.OrgDescription'| translate}}">
+          placeholder="{{'Organization.OrgDescription'| translate}}" (keyup.enter)="onSubmit()">
       </div>
     </div>
 

@@ -54,7 +54,7 @@ export class EquipmentEditComponent implements OnInit {
 
     this.equipmentService.edit(this.equipment).subscribe(res => {
       if (res.data) {
-        this.toastr.success(this.translate.instant('Equipment.EditSuccessfully'), this.equipment.EquipmentId.toString());
+        this.toastr.success(this.translate.instant('Equipment.EditSuccessfully'));
         this.reloadTree = true;
         this.close();
       }

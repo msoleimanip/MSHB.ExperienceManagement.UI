@@ -16,6 +16,7 @@ import { IssueSearchComponent } from './issue-search/issue-search.component';
 import { IssueDisplayComponent } from './issue-display/issue-display.component';
 import { IssuePlayerComponent } from './issue-player/issue-player.component';
 import { IssueChangeComponent } from './issue-change/issue-change.component';
+import { IssueEditComponent } from './issue-edit/issue-edit.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { IssueChangeComponent } from './issue-change/issue-change.component';
     IssueDisplayComponent,
     IssuePlayerComponent,
     IssueDetailsComponent,
-    IssueChangeComponent
+    IssueChangeComponent,
+    IssueEditComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +46,8 @@ import { IssueChangeComponent } from './issue-change/issue-change.component';
   entryComponents: [
     IssuePlayerComponent,
     IssueDetailsComponent,
-    IssueChangeComponent
+    IssueChangeComponent,
+    IssueEditComponent
   ]
 })
 export class IssueModule { }

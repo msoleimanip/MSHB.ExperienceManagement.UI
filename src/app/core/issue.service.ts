@@ -10,6 +10,7 @@ import { AddIssueDetailFormModel } from '../dataModels/apiModels/addIssueDetailF
 import { ActivateIssueFormModel } from '../dataModels/apiModels/activateIssueFormModel';
 import { SearchSmartIssueFormModel } from '../dataModels/apiModels/searchSmartIssueFormModel';
 import { SearchIssueDetailFormModel } from '../dataModels/apiModels/searchIssueDetailFormModel';
+import { EditIssueDetailFormModel } from '../dataModels/apiModels/editIssueDetailFormModel';
 
 @Injectable()
 
@@ -61,11 +62,14 @@ export class IssueService {
     return this.http.get('api/Dashboard/GetUserLikesDashboard');
   }
 
+  editIssueDetails(editIssueDetailModel: EditIssueDetailFormModel): Observable<any> {
+    return this.http.post('api/Issue/editIssueDetails', editIssueDetailModel);
+  }
 
-  DownloadFile(fileId: string): Observable<any>{
-    
+  DownloadFile(fileId: string): Observable<any> {
+
     return this.http.post<Blob>("/api/File/download/" + fileId, '',
-    { responseType: 'blob' as 'json'});
-  
+      { responseType: 'blob' as 'json' });
+
   }
 }

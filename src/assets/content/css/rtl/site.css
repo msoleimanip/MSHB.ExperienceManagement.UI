@@ -949,7 +949,7 @@ a:active {
 }
 
 .easy-autocomplete-container ul .eac-category {
-  font-color: #aaa;
+  color: #aaa;
   font-style: italic;
 }
 
@@ -969,6 +969,10 @@ a:active {
 
 .form-control {
   font-size: 13px;
+}
+
+.btn-cursor{
+  cursor: pointer;
 }
 
 /* Table Sorting */
