@@ -27,7 +27,8 @@
     "UnSelectAllText": "عدم انتخاب همه",
     "SelectAllText": "انتخاب همه",
     "Unauthorized": "شما از سیستم خارج شده اید",
-    "EditSuccessfully": "آینم مورد نظر با موفقیت به روز رسانی شد"
+    "EditSuccessfully": "آیتم مورد نظر با موفقیت به روز رسانی شد",
+    "FilePreviewError":"Server error while downloading file."
   },
   "IssueType": {
     "Question": "سـوال: طرح سوال برای رفع مشکل جاری",

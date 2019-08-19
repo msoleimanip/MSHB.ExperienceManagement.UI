@@ -68,8 +68,10 @@ export class IssueService {
 
   DownloadFile(fileId: string): Observable<any> {
 
-    return this.http.post<Blob>("/api/File/download/" + fileId, '',
-      { responseType: 'blob' as 'json' });
+    return this.http.post<Blob>('/api/File/download/' + fileId, '', { responseType: 'blob' as 'json' });
 
+  }
+  deleteImageAttachment(id: number): Observable<any> {
+    throw new Error('Method not implemented.');
   }
 }

@@ -971,7 +971,7 @@ a:active {
   font-size: 13px;
 }
 
-.btn-cursor{
+.btn-cursor {
   cursor: pointer;
 }
 
@@ -1207,6 +1207,10 @@ th[sortable].desc:before {
 .img-answer-loading {
   margin: 11px 1px 0px 0px;
   float: left;
+}
+
+.btn-gallery {
+  background-color: transparent;
 }
 
 /* Begin Uploader */

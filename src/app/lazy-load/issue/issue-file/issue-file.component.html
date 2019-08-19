@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{'Issue.EditFilePageTitle'| translate}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="text-center container" >
+        <ngx-gallery id="galery" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+    </div>
+
+    <div class="container">
+
+      <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
+        <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+          <dropzone class="dropzone-container" [config]="config" [disabled]="false" fxLayout="row"
+            fxLayoutAlign="start strech" fxFlex="auto" [message]="'Click or drag images here to upload'"
+            (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (removedFile)="onRemoveFile($event)"></dropzone>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <img *ngIf="loading" class="pl-2" src="/assets/images/wait.gif" />
+    <button type="button" class="btn btn-outline-success" (click)="addImage()">{{'General.BtnCreate'| translate}}</button>
+    <button type="button" class="btn btn-outline-danger" (click)="close()">{{'General.BtnClose'| translate}}</button>
+  </div>

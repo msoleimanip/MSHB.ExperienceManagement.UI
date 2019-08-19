@@ -1,3 +1,4 @@
+import { IssueFileComponent } from './../issue-file/issue-file.component';
 import { IssueDetailBestAnswerFormModel } from './../../../dataModels/apiModels/issueDetailBestAnswerFormModel';
 import { AuthenticationService } from './../../../core/authentication.service';
 import { IssueDetailsLikeFormModel } from './../../../dataModels/apiModels/issueDetailsLikeFormModel';
@@ -230,12 +231,12 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
     this.equipmentService.getEquipmentAttachmentForUser(model)
       .subscribe((arg: ServerResponseViewModel<Array<EquipmentAttachmentViewModel>>) => {
         const modalRef = this.modalService.open(IssueEditComponent, { windowClass: '.my-modal', size: 'lg' });
-        
+
         const editIssueDetailModel = new EditIssueDetailFormModel();
         editIssueDetailModel.caption = issueDetail.caption;
         editIssueDetailModel.issueId = this.searchIssueDetailModel.issueId;
         editIssueDetailModel.issueDetailId = issueDetail.issueDetailId;
-        editIssueDetailModel.text = issueDetail.text;        
+        editIssueDetailModel.text = issueDetail.text;
         // editIssueDetailModel.uploadFiles = issueDetail.issueDetailAttachments.map(x => x.fileId);
         editIssueDetailModel.userId = this.currentUser.id;
         modalRef.componentInstance.editIssueDetailModel = editIssueDetailModel;
@@ -246,7 +247,7 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
 
         modalRef.result.then(result => {
           if (result) {
-            let isuDet = this.issueDetails.find(x => x.issueDetailId === issueDetail.issueDetailId);
+            const isuDet = this.issueDetails.find(x => x.issueDetailId === issueDetail.issueDetailId);
             isuDet.caption = result.caption;
             isuDet.text = result.text;
             isuDet.equipmentAttachmentViewModels = arg.data.filter(x => result.equipmentAttachmentIds.includes(x.equipmentAttachmentId));
@@ -255,16 +256,21 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
       });
   }
 
+  editAttachments(issueDetailsId: number) {
+    const issueDetail = this.issueDetails.find(x => x.issueDetailId === issueDetailsId);
+    const modalRef = this.modalService.open(IssueFileComponent, { windowClass: '.my-modal', size: 'lg' });
+    modalRef.componentInstance.issuettachments = issueDetail.issueDetailAttachments;
+  }
+
 
   filePreview(param: EquipmentAttachmentViewModel) {
 
     this.issueService.DownloadFile(param.fileId).subscribe(success => {
       try {
-        saveAs(success, Guid.create() + "." + param.fileType);
+        saveAs(success, Guid.create() + '.' + param.fileType);
       } catch { }
     }, err => {
-      alert("Server error while downloading file.");
-    }
-    );
+      this.toastr.error(this.translate.instant('General.FilePreviewError'));
+    });
   }
 }

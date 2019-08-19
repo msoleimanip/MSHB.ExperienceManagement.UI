@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { DropzoneComponent, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { DropzoneComponent } from 'ngx-dropzone-wrapper';
 import { User } from 'src/app/dataModels/viewModels/user';
 import { EquipmentAttachmentViewModel } from 'src/app/dataModels/viewModels/equipmentAttachmentViewModel';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
@@ -11,11 +11,7 @@ import { AuthenticationService } from 'src/app/core/authentication.service';
 import { IssueService } from 'src/app/core/issue.service';
 import { EquipmentService } from 'src/app/core/equipment.service';
 import { environment } from 'src/environments/environment.prod';
-import { EquipmentAttachmentUserFormModel } from 'src/app/dataModels/apiModels/equipmentAttachmentUserFormModel';
-import { ServerResponseViewModel } from 'src/app/dataModels/viewModels/serverResponseViewModel';
-import { ImageData } from './../../../dataModels/interfaces/imageData';
 import { EditIssueDetailFormModel } from 'src/app/dataModels/apiModels/editIssueDetailFormModel';
-import { IssueDetailAttachmentViewModel } from 'src/app/dataModels/viewModels/issueDetailAttachmentViewModel';
 
 @Component({
   selector: 'app-issue-edit',
@@ -62,7 +58,8 @@ export class IssueEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    let equipmentAttachmentSelectedIds = this.equipmentAttachments.filter(x => this.equipmentAttachmentIds.includes(x.equipmentAttachmentId));
+    const equipmentAttachmentSelectedIds =
+      this.equipmentAttachments.filter(x => this.equipmentAttachmentIds.includes(x.equipmentAttachmentId));
 
     this.editForm = this.formBuilder.group({
       caption: [this.editIssueDetailModel.caption, Validators.required],
