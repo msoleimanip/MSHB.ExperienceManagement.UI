@@ -68,6 +68,7 @@ export class TreeviewComponent implements OnInit, OnChanges {
 
       // tslint:disable-next-line: only-arrow-functions
       $('#tr' + self.id).bind('loaded.jstree', function (event, data) {
+        $('#tr' + self.id).click();
         self.loaded.emit();
       });
 
@@ -121,9 +122,7 @@ export class TreeviewComponent implements OnInit, OnChanges {
         selectedNodes.forEach(element => {
           const temp = $('#tr' + self.id).jstree().get_node(element);
           if (!self.byParentIds) {
-            if (temp.children.length === 0) {
               nodes.push(element.id);
-            }
           } else {
             nodes.push(element.id);
             element.parents.forEach(parent => {

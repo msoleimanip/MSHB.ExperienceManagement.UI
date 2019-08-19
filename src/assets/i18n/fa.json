@@ -187,7 +187,8 @@
     "IsPresident": "نوع کاربر",
     "InputIsPresidentError": "نوع کاربر میبایستی انتخاب شود",
     "UserActivationTitle": "صفحه تغییر وضعیت کاربر",
-    "ChangeActivationSuccessfully": "تغییر وضعیت کاربر با موفقیت انجام شد"
+    "ChangeActivationSuccessfully": "تغییر وضعیت کاربر با موفقیت انجام شد",
+    "UpdatePermissionSuccessfully":"دسترسی تجهیزات کاربر مورد نظر ویرایش گردید"
   },
   "Authentication": {
     "Title": "مدیریت گروه ها",

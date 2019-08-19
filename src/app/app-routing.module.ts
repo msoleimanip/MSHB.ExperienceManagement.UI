@@ -42,7 +42,7 @@ const routes: Routes = [
     path: 'issue',
     loadChildren: './lazy-load/issue/issue.module#IssueModule',
     canActivate: [AuthGuard],
-    data: { roles: [] }
+    data: { roles: ['Issue'] }
   },
   {
     path: 'authentication',

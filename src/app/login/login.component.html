@@ -12,7 +12,7 @@
           <span class="input-group-text">{{ 'Login.Username' | translate }}</span>
         </div>
         <input type="text" formControlName="username" class="form-control" placeholder="{{ 'Login.Username' | translate }}"
-          [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+          [ngClass]="{ 'is-invalid': submitted && f.username.errors }" (keyup.enter)="onSubmit()">
       </div>
       <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
         <div *ngIf="f.username.errors.required">Username is required</div>
@@ -25,7 +25,7 @@
             <span class="input-group-text">{{ 'Login.Password' | translate }}</span>
           </div>
           <input type="password" formControlName="password" class="form-control" placeholder="{{ 'Login.Password' | translate }}" autocomplete="off"
-          [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+          [ngClass]="{ 'is-invalid': submitted && f.password.errors }" (keyup.enter)="onSubmit()">
         </div>
         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
           <div *ngIf="f.password.errors.required">Password is required</div>
@@ -36,7 +36,7 @@
 <div class="modal-footer">
   <div class="container-fluid">
       <div class="form-group">
-        <button [disabled]="loading" type="button" class="btn btn-outline-success" (click)="onSubmit()">{{ 'Login.BtnLogin' | translate }}</button>
+        <button [disabled]="loading" type="button" ngbAutofocus class="btn btn-outline-success" (click)="onSubmit()">{{ 'Login.BtnLogin' | translate }}</button>
         <img *ngIf="loading" class="pl-2" src="/assets/images/wait.gif" />
       </div>
       <div class="form-group">

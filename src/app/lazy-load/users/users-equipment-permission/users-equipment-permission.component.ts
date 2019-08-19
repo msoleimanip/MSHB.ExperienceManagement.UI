@@ -54,7 +54,7 @@ export class UserEquipmentPermissionComponent implements OnInit {
 
       this.usersService.userEquipmentAssign(userOrgAssignModel).subscribe(res => {
         if (res.data) {
-          this.toastr.success(this.translate.instant('Users.AddSuccessfully'), '100');
+          this.toastr.success(this.translate.instant('Users.UpdatePermissionSuccessfully'));
           this.loading = false;
           this.close();
         }

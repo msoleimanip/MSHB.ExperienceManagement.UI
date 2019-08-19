@@ -12,12 +12,12 @@
         <label>{{'Users.EquipmentList' | translate}}</label>
         </div>
         <div class="panel-body">
-          <app-treeview [canSearch]="true" [hasCheckbox]="true" [titleLabel]="'Equipment.TreeTitle' | translate"
+          <app-treeview [canSearch]="true" [hasCheckbox]="true" [titleLabel]="'Equipment.TreeTitle' | translate" 
             [items]="files" [id]="'orgPer'" (clickByCheckbox)="treeClick($event)">
           </app-treeview>
         </div>
         <div class="panel-footer">
-          <label class="text-success">تعداد موارد انتخابی</label>: <label class="text-success">{{selectedIds.length}}</label>
+          <label class="text-success">{{'General.SelectedCount'| translate}}</label>: <label class="text-success">{{selectedIds.length}}</label>
         </div>
       </div>
     </div>

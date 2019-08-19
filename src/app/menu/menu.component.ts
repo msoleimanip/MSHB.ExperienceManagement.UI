@@ -59,6 +59,15 @@ export class MenuComponent implements OnInit {
       }
     });
   }
+  haspermission(role:string):boolean
+  {
+    if (this.currentUser)
+    {
+      return this.currentUser.role.includes(role);
+    }
+    
+    return false;
+  }
 
 }
 
