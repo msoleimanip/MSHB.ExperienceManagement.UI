@@ -1,4 +1,4 @@
-import { IssueFileComponent } from './../issue-file/issue-file.component';
+import { DeleteIssueDetailAttachmentFormModel } from './../../../dataModels/apiModels/deleteIssueDetailAttachmentFormModel';
 import { IssueDetailBestAnswerFormModel } from './../../../dataModels/apiModels/issueDetailBestAnswerFormModel';
 import { AuthenticationService } from './../../../core/authentication.service';
 import { IssueDetailsLikeFormModel } from './../../../dataModels/apiModels/issueDetailsLikeFormModel';
@@ -25,7 +25,7 @@ import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment.prod';
 import { User } from 'src/app/dataModels/viewModels/user';
 import { saveAs } from 'file-saver';
-import { Guid } from "guid-typescript";
+import { Guid } from 'guid-typescript';
 import { IssueEditComponent } from '../issue-edit/issue-edit.component';
 import { EditIssueDetailFormModel } from 'src/app/dataModels/apiModels/editIssueDetailFormModel';
 import { EquipmentAttachmentUserFormModel } from 'src/app/dataModels/apiModels/equipmentAttachmentUserFormModel';
@@ -42,13 +42,6 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
   issueDetails = new Array<IssueDetailViewModel>();
   issue = new IssueViewModel();
   currentUser: User;
-
-  galleryOptions: NgxGalleryOptions[] = [{
-    thumbnailActions: [{
-      icon: 'fa fa-play-circle-o text-danger', onClick: this.playVideo.bind(this),
-      titleText: 'play'
-    }], image: false, height: '100px'
-  }, { breakpoint: 500, width: '100%' }];
 
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -90,11 +83,38 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
 
     this.config.backdrop = false;
     this.config.keyboard = false;
+
   }
 
   ngOnDestroy(): void {
     this.config.backdrop = true;
     this.config.keyboard = true;
+  }
+
+  getGalleryOptions(userId: string) {
+    const self = this;
+
+    if (this.currentUser.id === userId) {
+      return [{
+        thumbnailActions: [{
+          icon: 'fa fa-play-circle-o text-green', onClick: this.playVideo.bind(this),
+          titleText: self.translate.instant('General.Play')
+        },
+        {
+          icon: 'fa fa-trash-o text-danger', onClick: this.deleteFile.bind(this),
+          titleText: self.translate.instant('General.Delete')
+        }
+        ], image: false, height: '100px'
+      }, { breakpoint: 500, width: '100%' }];
+    } else {
+      return [{
+        thumbnailActions: [{
+          icon: 'fa fa-play-circle-o text-green', onClick: this.playVideo.bind(this),
+          titleText: 'play'
+        }
+        ], image: false, height: '100px'
+      }, { breakpoint: 500, width: '100%' }];
+    }
   }
 
   loadImage(id: number) {
@@ -143,6 +163,29 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
         this.toastr.warning(this.translate.instant('Issue.ClickOnImage'));
       } else {
         this.toastr.warning(this.translate.instant('Issue.NotSupported'));
+      }
+    }
+  }
+
+  deleteFile(event, index) {
+
+    if (confirm(this.translate.instant('Issue.DeleteQuestion'))) {
+
+      const id = event.currentTarget.offsetParent.offsetParent.offsetParent.offsetParent.offsetParent.id;
+      const issuedet = this.issueDetails.find(x => x.issueDetailId === parseInt(id, 0));
+      if (issuedet) {
+        const file = issuedet.issueDetailAttachments[index];
+
+        const deleteModel = new DeleteIssueDetailAttachmentFormModel();
+        deleteModel.fileId = file.fileId;
+        deleteModel.issueDetailId = file.issueDetailId;
+
+        this.issueService.deleteIssueDetailAttachment(deleteModel).subscribe((res: ServerResponseViewModel<boolean>) => {
+          if (res.data) {
+            this.toastr.success(this.translate.instant('General.DeleteFileSuccessfully'));
+            issuedet.issueDetailAttachments.splice(index, 1);
+          }
+        });
       }
     }
   }
@@ -256,16 +299,10 @@ export class IssueDisplayComponent implements OnInit, OnDestroy {
       });
   }
 
-  editAttachments(issueDetailsId: number) {
-    const issueDetail = this.issueDetails.find(x => x.issueDetailId === issueDetailsId);
-    const modalRef = this.modalService.open(IssueFileComponent, { windowClass: '.my-modal', size: 'lg' });
-    modalRef.componentInstance.issuettachments = issueDetail.issueDetailAttachments;
-  }
-
 
   filePreview(param: EquipmentAttachmentViewModel) {
 
-    this.issueService.DownloadFile(param.fileId).subscribe(success => {
+    this.issueService.downloadFile(param.fileId).subscribe(success => {
       try {
         saveAs(success, Guid.create() + '.' + param.fileType);
       } catch { }

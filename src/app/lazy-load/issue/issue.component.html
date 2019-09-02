@@ -103,8 +103,6 @@
           </div>
 
           <div class="col-12 col-md-4">
-            <button class="btn btn-sm btn-warning pl" [title]="'Issue.Edit'| translate"><span
-                class="fa fa-pencil"></span></button>
             <button class="btn btn-sm pl btn-space"
               [ngClass]="{'btn-danger': item.isActive, 'btn-success': !item.isActive}"
               [title]="'Issue.Delete'| translate" (click)="change(item.id,item.isActive)">

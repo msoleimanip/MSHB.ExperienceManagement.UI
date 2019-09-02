@@ -28,7 +28,10 @@
     "SelectAllText": "انتخاب همه",
     "Unauthorized": "شما از سیستم خارج شده اید",
     "EditSuccessfully": "آیتم مورد نظر با موفقیت به روز رسانی شد",
-    "FilePreviewError":"Server error while downloading file."
+    "FilePreviewError": "خطای سرور در هنگام دانلود",
+    "DeleteFileSuccessfully": "فایل مورد نظر با موفقیت حذف شد",
+    "Play": "پخش ویدیو",
+    "Delete": "حـذف"
   },
   "IssueType": {
     "Question": "سـوال: طرح سوال برای رفع مشکل جاری",
@@ -189,7 +192,7 @@
     "InputIsPresidentError": "نوع کاربر میبایستی انتخاب شود",
     "UserActivationTitle": "صفحه تغییر وضعیت کاربر",
     "ChangeActivationSuccessfully": "تغییر وضعیت کاربر با موفقیت انجام شد",
-    "UpdatePermissionSuccessfully":"دسترسی تجهیزات کاربر مورد نظر ویرایش گردید"
+    "UpdatePermissionSuccessfully": "دسترسی تجهیزات کاربر مورد نظر ویرایش گردید"
   },
   "Authentication": {
     "Title": "مدیریت گروه ها",
@@ -273,7 +276,8 @@
     "EquipmentAtachment": "افزونه ها",
     "AddCommentSuccessfully": "نکته جدید با موفقیت ثبت شد",
     "IssueNotCompeleted": "مسئله مورد نظر بصورت ناقص پیاده سازی شده است",
-    "IsYourAnswer": "این پاسخ متعلق به شماست"
+    "IsYourAnswer": "این پاسخ متعلق به شماست",
+    "DeleteQuestion": "آیا از این فایل اطمینان دارید؟"
   },
   "Dashboard": {
     "SearchText": "چی دوست داری پیدا کنی ؟",

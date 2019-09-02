@@ -42,10 +42,8 @@
         <div class="box-answer" [innerHTML]="item.text"></div>
         <div *ngIf="item.issueDetailAttachments.length>0">
           <hr>
-          <button class="btn btn-sm btn-default btn-gallery" (click)="editAttachments(item.issueDetailId)"><span
-              class="fa fa-pencil"></span></button>
         </div>
-        <ngx-gallery *ngIf="item.issueDetailAttachments.length !== 0" class="gallery-custom" [options]="galleryOptions"
+        <ngx-gallery *ngIf="item.issueDetailAttachments.length !== 0" class="gallery-custom" [options]="getGalleryOptions(item.userId)"
           [images]="loadImage(item.issueDetailId)">
         </ngx-gallery>
       </div>

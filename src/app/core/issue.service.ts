@@ -1,3 +1,4 @@
+import { DeleteIssueDetailAttachmentFormModel } from './../dataModels/apiModels/deleteIssueDetailAttachmentFormModel';
 import { IssueDetailBestAnswerFormModel } from './../dataModels/apiModels/issueDetailBestAnswerFormModel';
 import { IssueDetailsLikeFormModel } from './../dataModels/apiModels/issueDetailsLikeFormModel';
 import { AddIssueDetailCommentFormModel } from './../dataModels/apiModels/addIssueDetailCommentFormModel';
@@ -66,12 +67,11 @@ export class IssueService {
     return this.http.post('api/Issue/editIssueDetails', editIssueDetailModel);
   }
 
-  DownloadFile(fileId: string): Observable<any> {
-
+  downloadFile(fileId: string): Observable<any> {
     return this.http.post<Blob>('/api/File/download/' + fileId, '', { responseType: 'blob' as 'json' });
-
   }
-  deleteImageAttachment(id: number): Observable<any> {
-    throw new Error('Method not implemented.');
+
+  deleteIssueDetailAttachment(deleteIssueDetailAttachmentModel: DeleteIssueDetailAttachmentFormModel): Observable<any> {
+    return this.http.post('api/Issue/deleteIssueDetailAttachment', deleteIssueDetailAttachmentModel);
   }
 }
