@@ -20,6 +20,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { IssueService } from 'src/app/core/issue.service';
 import { ActivateIssueFormModel } from 'src/app/dataModels/apiModels/activateIssueFormModel';
 import { Router } from '@angular/router';
+import { DeleteIssueFormModel } from 'src/app/dataModels/apiModels/DeleteIssueFormModel';
 
 @Component({
   selector: 'app-issue-add',
@@ -247,7 +248,7 @@ export class IssueAddComponent implements OnInit {
   activeIssue() {
     if (this.step1Form.valid && this.step2Form.valid) {
       if (this.issueId && this.issueDetailsId) {
-        let activateIssueModel = new ActivateIssueFormModel();
+        const activateIssueModel = new ActivateIssueFormModel();
         activateIssueModel.issueId = this.issueId;
         activateIssueModel.isActive = true;
         this.loading = true;
@@ -272,5 +273,16 @@ export class IssueAddComponent implements OnInit {
 
   removeImage() {
     this.step1Form.controls.imageId.setValue('');
+  }
+
+  delete() {
+
+    const deleteModel = new DeleteIssueFormModel();
+    deleteModel.userId = this.currentUser.id;
+    deleteModel.issueId = this.issueId;
+
+    this.issueService.deleteIssue(deleteModel).subscribe((res: ServerResponseViewModel<boolean>) => {
+
+    });
   }
 }

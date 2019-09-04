@@ -173,7 +173,8 @@
 
                 </div>
                 <div class="card-footer">
-                  <button (click)="next()" class="btn btn-primary">{{'Issue.Next'| translate}}</button>
+                  <button (click)="next()" class="btn btn-primary btn-space">{{'Issue.Next'| translate}}</button>
+                  <button (click)="delete()" class="btn btn-danger">{{'Issue.BtnDelete'| translate}}</button>
                 </div>
               </div>
             </div>
@@ -241,7 +242,8 @@
                           <div class="col-md-6">
 
                             <div class="form-group row">
-                              <label class="label-control col-md-3">{{'Issue.equipmentAttachmentsCount'| translate}}</label>
+                              <label
+                                class="label-control col-md-3">{{'Issue.equipmentAttachmentsCount'| translate}}</label>
                               <input type="text" class="form-control col-md-9" readonly
                                 [value]="step2.equipmentAttachmentIds.value.length" />
                             </div>
@@ -258,9 +260,12 @@
 
                 </div>
                 <div class="card-footer">
-                  <button type="button" class="btn btn-success"
+                  <button type="button" class="btn btn-success btn-space"
                     (click)="activeIssue()">{{'Issue.Accept'| translate}}</button>
-                  <img *ngIf="loading" class="pl-2" src="/assets/images/wait.gif" />
+                  <img *ngIf="loading" class="pl-2 btn-space" src="/assets/images/wait.gif" />
+
+                  <button (click)="delete()" class="btn btn-danger">{{'Issue.BtnDelete'| translate}}</button>
+
                 </div>
               </div>
             </div>

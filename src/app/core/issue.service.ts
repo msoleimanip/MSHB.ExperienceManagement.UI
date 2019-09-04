@@ -1,3 +1,4 @@
+import { DeleteIssueFormModel } from './../dataModels/apiModels/DeleteIssueFormModel';
 import { DeleteIssueDetailAttachmentFormModel } from './../dataModels/apiModels/deleteIssueDetailAttachmentFormModel';
 import { IssueDetailBestAnswerFormModel } from './../dataModels/apiModels/issueDetailBestAnswerFormModel';
 import { IssueDetailsLikeFormModel } from './../dataModels/apiModels/issueDetailsLikeFormModel';
@@ -73,5 +74,9 @@ export class IssueService {
 
   deleteIssueDetailAttachment(deleteIssueDetailAttachmentModel: DeleteIssueDetailAttachmentFormModel): Observable<any> {
     return this.http.post('api/Issue/deleteIssueDetailAttachment', deleteIssueDetailAttachmentModel);
+  }
+
+  deleteIssue(deleteIssueModel: DeleteIssueFormModel): Observable<any> {
+    return this.http.post('api/Issue/deleteIssue', deleteIssueModel);
   }
 }
