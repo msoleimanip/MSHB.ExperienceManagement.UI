@@ -277,12 +277,15 @@ export class IssueAddComponent implements OnInit {
 
   delete() {
 
-    const deleteModel = new DeleteIssueFormModel();
-    deleteModel.userId = this.currentUser.id;
-    deleteModel.issueId = this.issueId;
+    if (confirm(this.translate.instant('Issue.DeleteQuestion'))) {
+      const deleteModel = new DeleteIssueFormModel();
+      deleteModel.userId = this.currentUser.id;
+      deleteModel.issueId = this.issueId;
 
-    this.issueService.deleteIssue(deleteModel).subscribe((res: ServerResponseViewModel<boolean>) => {
-
-    });
+      this.issueService.deleteIssue(deleteModel).subscribe((res: ServerResponseViewModel<boolean>) => {
+        this.toastr.warning(this.translate.instant('Issue.NotComplete'));
+        this.router.navigate(['issue']);
+      });
+    }
   }
 }

@@ -277,8 +277,9 @@
     "AddCommentSuccessfully": "نکته جدید با موفقیت ثبت شد",
     "IssueNotCompeleted": "مسئله مورد نظر بصورت ناقص پیاده سازی شده است",
     "IsYourAnswer": "این پاسخ متعلق به شماست",
-    "DeleteQuestion": "آیا از این فایل اطمینان دارید؟",
-    "BtnDelete": "حـذف مسئله جاری"
+    "DeleteQuestion": "آیا از حـذف این فایل اطمینان دارید؟",
+    "BtnDelete": "حـذف مسئله جاری",
+    "NotComplete": "مسئله شما قبل از انتشار حذف گردید"
   },
   "Dashboard": {
     "SearchText": "چی دوست داری پیدا کنی ؟",
