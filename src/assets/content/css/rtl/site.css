@@ -95,9 +95,10 @@ body {
 }
 
 .landing-layer {
-  background: url(/assets/images/slide.jpg) no-repeat scroll center center/cover;
+  /* background: url(/assets/images/slide.jpg) no-repeat scroll center center/cover; */
   padding: 70px 0 50px;
-  border-bottom: 3px solid #1abff5;
+  /* border-bottom: 3px solid #1abff5; */
+  margin-top: -215px;
 }
 
 .landing-layer h2 {
@@ -1208,7 +1209,6 @@ th[sortable].desc:before {
   margin: 11px 1px 0px 0px;
   float: left;
 }
-
 
 /* Begin Uploader */
 

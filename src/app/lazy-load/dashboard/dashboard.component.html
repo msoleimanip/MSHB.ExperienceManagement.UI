@@ -1,104 +1,106 @@
-<div *ngIf="currentUser">
-  <div class="landing-layer">
-    <div class="container">
-      <h2>(( زكـوة الـعلم نـشره ))</h2>
-      <h1>زکات دانش، نـشر آن است.</h1>
-      <h3>امير المؤمنين على بن ابيطالب عليه السّلام</h3>
-      <div class="center-layer">
-        <div class="search-form">
-          <div>
-            <div class="easy-autocomplete">
-              <input id="main-search" type="text" name="search" placeholder="{{'Dashboard.SearchText'| translate}}"
-                autocomplete="off" style="border-radius:40px!important" [(ngModel)]="searchContent"
-                (keyup.enter)="search()">
-              <div class="easy-autocomplete-container" id="eac-container-main-search">
-                <ul style="display: none;"></ul>
-              </div>
-            </div>
-            <button (click)="search()"> <i class="fa fa-search"></i> </button>
+<hr>
+<ngb-carousel *ngIf="images" [showNavigationArrows]="'true'" [showNavigationIndicators]="'true'">
+  <ng-template ngbSlide *ngFor="let image of images">
+    <img [src]="image" alt="Random slide" style="width: 100%;">
+  </ng-template>
+</ngb-carousel>
+<hr>
+
+<div class="landing-layer">
+  <div class="container">
+    <div class="center-layer">
+      <div class="search-form">
+        <div class="easy-autocomplete">
+          <input id="main-search" type="text" name="search" placeholder="{{'Dashboard.SearchText'| translate}}"
+            autocomplete="off" style="border-radius:40px!important" [(ngModel)]="searchContent"
+            (keyup.enter)="search()">
+          <div class="easy-autocomplete-container" id="eac-container-main-search">
+            <ul style="display: none;"></ul>
           </div>
         </div>
+        <button (click)="search()"> <i class="fa fa-search"></i> </button>
       </div>
     </div>
   </div>
-
-  <div class="container">
-    <section class="terms-item-layer">
-      <header class="section-heading">
-        <h2>آخرین دوره های ســجات</h2>
-      </header>
-      <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 term-box" *ngFor="let item of issueViewModel">
-          <article>
-            <div class="img-layer">
-              <img class="img" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
-                src="/api/File/download/{{item.fileId}}" lazy="loaded" data-was-processed="true"
-                onerror="this.onerror=null; this.src='assets/images/default.jpg'">
+</div>
 
 
 
-              <div class="description">
-                <ul>
-                  <li><i class="fa fa-comment"></i> {{item.answerCount}}</li>
-                  <li><i class="fa fa-thumbs-up"></i> {{item.sumLikes}}</li>
-                </ul>
-                <a [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active"
-                  class="more">{{'Dashboard.ShowDetails'| translate}}
-                </a>
+<div class="container">
+  <section class="terms-item-layer">
+    <header class="section-heading">
+      <h2>آخرین دوره های ســجات</h2>
+    </header>
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 term-box" *ngFor="let item of issueViewModel">
+        <article>
+          <div class="img-layer">
+            <img class="img" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
+              src="/api/File/download/{{item.fileId}}" lazy="loaded" data-was-processed="true"
+              onerror="this.onerror=null; this.src='assets/images/default.jpg'">
 
-              </div>
+
+
+            <div class="description">
+              <ul>
+                <li><i class="fa fa-comment"></i> {{item.answerCount}}</li>
+                <li><i class="fa fa-thumbs-up"></i> {{item.sumLikes}}</li>
+              </ul>
+              <a [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active"
+                class="more">{{'Dashboard.ShowDetails'| translate}}
+              </a>
+
             </div>
-            <h2><a [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active">
-                {{item.title| slice:0:30}} </a></h2>
-            <div class="footer">
-              <span class="time">
-                <i class="glyphicon glyphicon-time"></i>
-                {{timeConvert(item.creationDate)}}
-              </span>
-              <label>
-                {{ issueType[item.issueType]| translate}}
-              </label>
-            </div>
+          </div>
+          <h2><a [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active">
+              {{item.title| slice:0:30}} </a></h2>
+          <div class="footer">
+            <span class="time">
+              <i class="glyphicon glyphicon-time"></i>
+              {{timeConvert(item.creationDate)}}
+            </span>
+            <label>
+              {{ issueType[item.issueType]| translate}}
+            </label>
+          </div>
 
-          </article>
-        </div>
+        </article>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
+</div>
 
-  <div class="container">
-    <section class="terms-item-layer">
-      <header class="section-heading">
-        <h2>محبوب ترین ها</h2>
-      </header>
-      <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 term-box" *ngFor="let item of issueLikesViewModel">
-          <article>
-            <div class="img-layer">
-              <img class="img" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
-                src="/api/File/download/{{item.fileId}}" lazy="loaded" data-was-processed="true"
-                onerror="this.onerror=null; this.src='assets/images/default.jpg'">
-
-
-
-              <div class="description">
-                <ul>
-                  <li><i class="fa fa-comment"></i> {{item.answerCount}}</li>
-                  <li><i class="fa fa-thumbs-up"></i> {{item.sumLikes}}</li>
-                </ul><a [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active"
-                  title="{{item.title| slice:0:10}}" class="more">{{'Dashboard.ShowDetails'| translate}}</a>
+<div class="container">
+  <section class="terms-item-layer">
+    <header class="section-heading">
+      <h2>محبوب ترین ها</h2>
+    </header>
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 term-box" *ngFor="let item of issueLikesViewModel">
+        <article>
+          <div class="img-layer">
+            <img class="img" alt="{{item.title}}" data-src="/api/File/download/{{item.fileId}}"
+              src="/api/File/download/{{item.fileId}}" lazy="loaded" data-was-processed="true"
+              onerror="this.onerror=null; this.src='assets/images/default.jpg'">
 
 
-              </div>
+
+            <div class="description">
+              <ul>
+                <li><i class="fa fa-comment"></i> {{item.answerCount}}</li>
+                <li><i class="fa fa-thumbs-up"></i> {{item.sumLikes}}</li>
+              </ul><a [routerLink]="['/issue/display', item.id]" routerLinkActive="router-link-active"
+                title="{{item.title| slice:0:10}}" class="more">{{'Dashboard.ShowDetails'| translate}}</a>
+
+
             </div>
-            <h2><a href="#" title="{{item.title| slice:0:10}}"> {{item.title| slice:0:30}} </a></h2>
-            <div class="footer"><span class="time"> <i class="glyphicon glyphicon-time"></i>
-                {{timeConvert(item.creationDate)}} </span> <label>
-                {{ issueType[item.issueType]| translate}}</label></div>
-          </article>
-        </div>
+          </div>
+          <h2><a href="#" title="{{item.title| slice:0:10}}"> {{item.title| slice:0:30}} </a></h2>
+          <div class="footer"><span class="time"> <i class="glyphicon glyphicon-time"></i>
+              {{timeConvert(item.creationDate)}} </span> <label>
+              {{ issueType[item.issueType]| translate}}</label></div>
+        </article>
       </div>
-    </section>
-  </div>
-
+    </div>
+  </section>
 </div>

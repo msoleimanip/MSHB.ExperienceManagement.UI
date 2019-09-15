@@ -24,6 +24,11 @@ export class DashboardComponent implements OnInit {
   currentUser: User;
   issueType = IssueType;
 
+  images = [
+    '/assets/images/dash1.jpg',
+    '/assets/images/dash2.jpg',
+    '/assets/images/dash3.jpg'];
+
   constructor(
     private authenticationService: AuthenticationService,
     public translate: TranslateService,

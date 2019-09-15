@@ -1,7 +1,8 @@
 .landing-layer {
-  background: url(/assets/images/slide.jpg) no-repeat scroll center center/cover;
+  /* background: url(/assets/images/slide.jpg) no-repeat scroll center center/cover; */
   padding: 70px 0 50px;
-  border-bottom: 3px solid #1abff5;
+  /* border-bottom: 3px solid #1abff5; */
+  margin-top: -215px;
 }
 
 .landing-layer h2 {

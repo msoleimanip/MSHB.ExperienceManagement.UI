@@ -1,3 +1,4 @@
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -15,7 +16,8 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
      TranslateModule,
      FormsModule,
-     RouterModule
+     RouterModule,
+     NgbModule
   ],
   exports: [],
   providers: []

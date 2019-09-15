@@ -46,7 +46,8 @@
   },
   "FilterType": {
     "NoAnswers": "بدون جواب ها",
-    "NoAcceptedAnswer": "مواردی که جوابشان تایید نشده"
+    "NoAcceptedAnswer": "مواردی که جوابشان تایید نشده",
+    "AcceptedAnswer": "با جواب تائید شده"
   },
   "EquipmentAttachmentType": {
     "Document": "اسناد",
@@ -279,10 +280,11 @@
     "IsYourAnswer": "این پاسخ متعلق به شماست",
     "DeleteQuestion": "آیا از حـذف این فایل اطمینان دارید؟",
     "BtnDelete": "حـذف مسئله جاری",
-    "NotComplete": "مسئله شما قبل از انتشار حذف گردید"
+    "NotComplete": "مسئله شما قبل از انتشار حذف گردید",
+    "CreationDate": "زمان ایجاد مسئله"
   },
   "Dashboard": {
-    "SearchText": "چی دوست داری پیدا کنی ؟",
+    "SearchText": "چی دوست داری یاد بگیری ؟",
     "Text1": "تکست اول",
     "Text2": "تکست دوم",
     "Text3": "تکست سوم",
